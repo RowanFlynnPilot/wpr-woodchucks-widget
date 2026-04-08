@@ -1,0 +1,47 @@
+name: Fetch NWL Data
+
+on:
+  schedule:
+    # During season (late May - mid Aug): every 30 min during game hours (CT = UTC-5)
+    # Games typically 12 PM - 10 PM CT = 17:00 - 03:00 UTC
+    - cron: '*/30 17-23 * 5-8 *'  # Every 30 min, 5 PM - 11 PM UTC (noon-6 PM CT), May-Aug
+    - cron: '*/30 0-3 * 6-8 *'    # Every 30 min, midnight-3 AM UTC (7-10 PM CT), Jun-Aug
+    # Off-season: daily at noon CT
+    - cron: '0 17 * 9-12,1-4 *'   # Daily at 5 PM UTC (noon CT), Sep-Apr
+  workflow_dispatch:                # Manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r scraper/requirements.txt
+
+      - name: Run scraper
+        run: python scraper/fetch_nwl.py
+
+      - name: Commit and push data
+        run: |
+          cd docs/data
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          CHANGES=$(git diff --cached --stat)
+          if [ -n "$CHANGES" ]; then
+            TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+            git commit -m "📊 Update NWL data — ${TIMESTAMP}"
+            git push
+          else
+            echo "No data changes detected, skipping commit."
+          fi
