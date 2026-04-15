@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-04-14T18:05:44.777242+00:00",
+  "last_updated": "2026-04-15T18:06:35.812136+00:00",
   "total_games": 70,
   "games": [
     {
@@ -15,8 +15,8 @@
       "location": "Warner Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5653,
@@ -30,8 +30,8 @@
       "location": "Warner Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5666,
@@ -75,8 +75,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5702,
@@ -90,8 +90,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5712,
@@ -165,8 +165,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5772,
@@ -180,8 +180,8 @@
       "location": "Warner Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5785,
@@ -195,8 +195,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5797,
@@ -210,8 +210,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5825,
@@ -225,8 +225,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5830,
@@ -240,8 +240,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5857,
@@ -345,8 +345,8 @@
       "location": "Herr-Baker Field",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5945,
@@ -360,8 +360,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5951,
@@ -375,8 +375,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5965,
@@ -390,8 +390,8 @@
       "location": "Herr-Baker Field",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5982,
@@ -405,8 +405,8 @@
       "location": "Herr-Baker Field",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 5989,
@@ -420,8 +420,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6003,
@@ -465,8 +465,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6036,
@@ -480,8 +480,8 @@
       "location": "Herr-Baker Field",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6047,
@@ -495,8 +495,8 @@
       "location": "Witter Field",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6069,
@@ -510,8 +510,8 @@
       "location": "Witter Field",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6079,
@@ -525,8 +525,8 @@
       "location": "Witter Field",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6088,
@@ -540,8 +540,8 @@
       "location": "Witter Field",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6098,
@@ -585,8 +585,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6130,
@@ -600,8 +600,8 @@
       "location": "Warner Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6144,
@@ -615,8 +615,8 @@
       "location": "Herr-Baker Field",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6156,
@@ -630,8 +630,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6168,
@@ -675,8 +675,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6207,
@@ -690,8 +690,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6218,
@@ -705,8 +705,8 @@
       "location": "Port Arthur Stadium",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6235,
@@ -720,8 +720,8 @@
       "location": "Port Arthur Stadium",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6242,
@@ -735,8 +735,8 @@
       "location": "Wade Stadium",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6259,
@@ -750,8 +750,8 @@
       "location": "Wade Stadium",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6274,
@@ -765,8 +765,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6293,
@@ -780,8 +780,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6297,
@@ -855,8 +855,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6356,
@@ -870,8 +870,8 @@
       "location": "Witter Field",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6369,
@@ -885,8 +885,8 @@
       "location": "Herr-Baker Field",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6380,
@@ -900,8 +900,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6383,
@@ -915,8 +915,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6395,
@@ -930,8 +930,8 @@
       "location": "Witter Field",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6407,
@@ -1035,8 +1035,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     },
     {
       "id": 6528,
@@ -1050,8 +1050,8 @@
       "location": "Athletic Park",
       "status_code": 0,
       "status": "Scheduled",
-      "broadcast": "nwl",
-      "broadcast_label": "WATCH NWL+"
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
     }
   ]
 }
