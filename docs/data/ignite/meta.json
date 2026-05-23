@@ -1,0 +1,7 @@
+{
+  "last_scrape": null,
+  "team_id": null,
+  "team_name": "Wausau Ignite",
+  "sport": "Softball",
+  "_note": "Hand-edited. When the NWL softball API becomes reachable, the scraper will overwrite this file and populate last_scrape automatically."
+}

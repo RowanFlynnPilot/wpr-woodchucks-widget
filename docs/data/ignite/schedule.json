@@ -1,0 +1,7 @@
+{
+  "season": 2026,
+  "last_updated": null,
+  "total_games": 0,
+  "_note": "Hand-edited. NWL softball schedule API isn't reachable yet; add games here as the Ignite publishes them. Same shape as the Woodchucks schedule.json — see docs/data/woodchucks/schedule.json for the field list.",
+  "games": []
+}

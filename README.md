@@ -1,90 +1,126 @@
-# 🏟️ WPR Woodchucks Widget
+# 🏟️ WPR Northwoods Widget
 
-Embeddable widget for [Wausau Pilot & Review](https://wausaupilotandreview.com) covering the **Wausau Woodchucks** and the **Northwoods League**.
+Embeddable widgets for [Wausau Pilot & Review](https://wausaupilotandreview.com) covering the **Wausau Woodchucks** (baseball) and **Wausau Ignite** (softball) of the Northwoods League.
+
+One repo, one widget, two embeds — the team is picked via the URL.
 
 ## Features
 
-- **Schedule** — Full 2026 season with month navigation, home/away filters, game times, and ticket links
-- **Standings** — Great Lakes Division with 1st Half / 2nd Half / Full Season toggle
-- **Box Scores** — Linescore and expandable batting stats (populated during season)
-- **Events** — Theme nights, promos, community events, and special dates
+- **Schedule** — Full season with month navigation, home/away filters, game times, and ticket links
+- **Standings** — Great Lakes Division with 1st Half / 2nd Half / Full Season toggle (Woodchucks); roster placeholder until softball API opens (Ignite)
+- **Results** — Final scores for completed games
+- **Events** — Theme nights, promos, community events, and special dates (editorial — JSON file per team)
 
 ## Architecture
 
 ```
-NWL Scorebook API → Python scraper → GitHub Actions (cron) → Static JSON → HTML Widget → GitHub Pages
+NWL Scorebook API → Python scraper → GitHub Actions (cron) → docs/data/<team>/*.json → docs/index.html (?team=…) → GitHub Pages
 ```
 
-Data is sourced from the NWL's Scorebook API (`scorebook.northwoodsleague.com/api/`) and cached as static JSON files. The widget reads from these local JSON files, with a fallback to the live API.
+The widget reads `?team=woodchucks` or `?team=ignite` from the URL, then loads from `docs/data/<team>/`. Defaults to `woodchucks` when no param is set (preserves the original embed URL).
 
-## Setup
+| Team | Data source |
+|------|-------------|
+| Woodchucks | Scraped from `scorebook.northwoodsleague.com/api/` every ~30 min during game hours |
+| Ignite | Hand-edited JSON files until the NWL softball API becomes reachable |
 
-### 1. Enable GitHub Pages
+## WordPress Embed
 
-Go to **Settings → Pages** and set source to **Deploy from a branch**, branch `main`, folder `/docs`.
+Drop these in Custom HTML blocks. Both widgets share one parent-side listener — paste it once at the bottom of the page.
 
-### 2. Enable GitHub Actions
-
-The workflow at `.github/workflows/scrape.yml` runs automatically:
-- **During season (May–Aug)**: Every 30 minutes during game hours
-- **Off-season (Sep–Apr)**: Daily at noon CT
-
-You can also trigger it manually from the **Actions** tab.
-
-### 3. WordPress Embed
-
-Drop this in a Custom HTML block. The widget auto-resizes to fit its content via `postMessage`, so the iframe grows and shrinks as readers switch between tabs.
+### Woodchucks
 
 ```html
 <iframe
-  id="wpr-woodchucks-widget"
-  src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/"
+  id="wpr-widget-woodchucks"
+  data-team="woodchucks"
+  src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/?team=woodchucks"
   style="width:100%;max-width:720px;height:600px;border:none;display:block;margin:0 auto;"
   title="Wausau Woodchucks Schedule & Standings"
   loading="lazy"
   scrolling="no">
 </iframe>
+```
+
+### Ignite
+
+```html
+<iframe
+  id="wpr-widget-ignite"
+  data-team="ignite"
+  src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/?team=ignite"
+  style="width:100%;max-width:720px;height:600px;border:none;display:block;margin:0 auto;"
+  title="Wausau Ignite Schedule & Standings"
+  loading="lazy"
+  scrolling="no">
+</iframe>
+```
+
+### Shared resize listener (paste once)
+
+```html
 <script>
   window.addEventListener('message', function (e) {
-    if (!e.data || e.data.type !== 'wpr-woodchucks-resize') return;
-    var f = document.getElementById('wpr-woodchucks-widget');
+    if (!e.data || e.data.type !== 'wpr-widget-resize') return;
+    var f = document.querySelector('iframe[data-team="' + e.data.team + '"]');
     if (f && typeof e.data.height === 'number') f.style.height = e.data.height + 'px';
   });
 </script>
 ```
 
-If WordPress strips the `<script>` tag, the widget still works — the iframe stays at the initial 600px and tab content scrolls naturally inside it.
+If WordPress strips the `<script>` tag (security plugin / user role), both widgets still work — they just stay at the initial 600px height with internal scrolling.
+
+## Setup
+
+### 1. Enable GitHub Pages
+**Settings → Pages**, source: **Deploy from a branch**, branch `main`, folder `/docs`.
+
+### 2. GitHub Actions cron
+The workflow at `.github/workflows/scrape.yml` runs the Woodchucks scraper:
+- **During season (May–Aug)**: every 30 min during game hours
+- **Off-season**: daily at noon CT
+- Manual trigger via the **Actions** tab
+
+Ignite is not on the cron — its JSON files in `docs/data/ignite/` are hand-edited. Once the softball API surfaces, extend the scraper to fetch both teams.
 
 ## Local Development
 
 ```bash
-# Install scraper dependencies
+# Install scraper deps
 pip install -r scraper/requirements.txt
 
-# Run the scraper to fetch fresh data
+# Run the Woodchucks scraper
 python scraper/fetch_nwl.py
 
-# Preview the widget
-open docs/index.html
+# Preview locally
+python -m http.server 8765 --directory docs
+# then open http://localhost:8765/?team=woodchucks or ?team=ignite
 ```
 
 ## Data Files
 
-| File | Description |
-|------|-------------|
-| `docs/data/schedule.json` | Woodchucks game schedule with results |
-| `docs/data/standings.json` | GL West & East standings (all halves) |
-| `docs/data/meta.json` | Last scrape timestamp |
+```
+docs/data/
+  woodchucks/
+    schedule.json   # autoupdated by scraper
+    standings.json  # autoupdated by scraper
+    meta.json       # autoupdated by scraper
+    events.json     # editorial — hand-edited
+  ignite/
+    schedule.json   # hand-edited until API surfaces
+    standings.json  # hand-edited
+    meta.json       # hand-edited
+    events.json     # editorial — hand-edited
+```
 
 ## NWL API Reference
 
 | Endpoint | Description |
 |----------|-------------|
-| `/api/schedule?teamid=68` | Full league schedule (filter for team 68) |
-| `/api/standings` | League standings (all divisions, all halves) |
-| `/api/divisions` | Division list with IDs |
+| `/api/schedule?teamid=68` | Full baseball schedule (filter for team 68 = Woodchucks) |
+| `/api/standings` | League standings (all baseball divisions, all halves) |
 
-Woodchucks team ID: `68` · Great Lakes West division ID: `11`
+Softball is on the same vendor but a different (currently unreachable from outside) data source. Watch the `season` field on `https://northwoodsleague.com/softball/` — when it flips from "Off" to "Active", the API is likely live.
 
 ---
 

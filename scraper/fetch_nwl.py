@@ -28,7 +28,8 @@ except ImportError:
 
 API_BASE = "https://scorebook.northwoodsleague.com/api"
 WOODCHUCKS_TEAM_ID = 68
-OUTPUT_DIR = Path(__file__).parent.parent / "docs" / "data"
+TEAM_SLUG = "woodchucks"  # Multi-team layout: docs/data/<slug>/{schedule,standings,meta}.json
+OUTPUT_DIR = Path(__file__).parent.parent / "docs" / "data" / TEAM_SLUG
 
 # Standings group structure:
 # The API returns 3 groups: [0]=1st half, [1]=2nd half, [2]=full season

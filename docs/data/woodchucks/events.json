@@ -1,0 +1,17 @@
+{
+  "_note": "Editorial — hand-edited by WPR. Each event: {date: 'YYYY-MM-DD', month: 'May', day: '28', title: '...', desc: '...', tags: ['promo'|'theme'|'community'|'fireworks'|...]}.",
+  "events": [
+    { "date": "2026-05-28", "month": "May", "day": "28", "title": "Home Opener vs Green Bay Rockers", "desc": "Opening night at Athletic Park! Wisconsin Lottery hat giveaway for the first 500 fans 18 and older. First pitch at 6:35 PM.", "tags": ["promo"] },
+    { "date": "2026-06-09", "month": "Jun", "day": "9",  "title": "Thunder Bay Border Cats Visit Wausau", "desc": "The Border Cats make their cross-border trip to Athletic Park for a two-game series (Jun 9-10).", "tags": ["theme"] },
+    { "date": "2026-06-17", "month": "Jun", "day": "17", "title": "Doubleheader at Eau Claire", "desc": "Two games in one day at Carson Park! Game 1 at 12:05 PM, Game 2 at 6:35 PM.", "tags": ["theme"] },
+    { "date": "2026-07-02", "month": "Jul", "day": "2",  "title": "Kenosha Kingfish Visit Wausau", "desc": "The Kingfish visit Athletic Park for a two-game series ahead of Independence Day weekend.", "tags": ["theme"] },
+    { "date": "2026-07-04", "month": "Jul", "day": "4",  "title": "Independence Day Celebration", "desc": "Celebrate the 4th of July at Athletic Park! Woodchucks host the Madison Mallards at 6:05 PM.", "tags": ["promo", "fireworks"] },
+    { "date": "2026-07-07", "month": "Jul", "day": "7",  "title": "NWL All-Star Break — Home Run Challenge", "desc": "The Home Run Challenge kicks off at the Field of Dreams movie site in Dyersville, Iowa.", "tags": ["theme", "community"] },
+    { "date": "2026-07-08", "month": "Jul", "day": "8",  "title": "NWL All-Star Game — Field of Dreams", "desc": "The 2026 NWL All-Star Game at the new ballpark on the iconic Field of Dreams movie site.", "tags": ["theme", "community"] },
+    { "date": "2026-07-16", "month": "Jul", "day": "16", "title": "Road Trip to Thunder Bay, Ontario", "desc": "The Woodchucks head north of the border for a two-game series at Port Arthur Stadium (Jul 16-17).", "tags": ["theme"] },
+    { "date": "2026-07-21", "month": "Jul", "day": "21", "title": "7-Game Homestand Begins", "desc": "Longest homestand of 2026! Duluth (Jul 21-22), Green Bay DH (Jul 23), Eau Claire (Jul 24-25), WI Rapids (Jul 26).", "tags": ["promo"] },
+    { "date": "2026-07-23", "month": "Jul", "day": "23", "title": "Doubleheader vs Green Bay Rockers", "desc": "Two games at Athletic Park! Game 1 at 12:05 PM, Game 2 at 6:35 PM.", "tags": ["theme"] },
+    { "date": "2026-08-07", "month": "Aug", "day": "7",  "title": "Minnesota Mud Puppies Visit Wausau", "desc": "The NWL's travel team visits Athletic Park for the final home series of the regular season.", "tags": ["community"] },
+    { "date": "2026-08-08", "month": "Aug", "day": "8",  "title": "Regular Season Home Finale", "desc": "Last chance to catch the Woodchucks at Athletic Park this summer! Mud Puppies at 5:05 PM.", "tags": ["promo", "community"] }
+  ]
+}

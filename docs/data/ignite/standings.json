@@ -1,0 +1,23 @@
+{
+  "season": 26,
+  "season_name": "2026 - Regular Season",
+  "last_updated": null,
+  "_note": "Hand-edited. NWL softball standings API isn't reachable yet; teams listed at 0-0 until games begin. The widget keys off great_lakes_west / great_lakes_east, so until softball divisions are clarified we list all NWL Softball teams under great_lakes_west.",
+  "great_lakes_west": {
+    "first_half": [],
+    "second_half": [
+      { "team_id": null, "name": "Grand Forks Spitfires",  "abbr": "GF",  "division": "NWL Softball", "W": 0, "L": 0, "T": 0, "PCT": ".000", "GB": "-", "STREAK": "-", "LAST10": "-" },
+      { "team_id": null, "name": "La Crosse Steam",        "abbr": "LAX", "division": "NWL Softball", "W": 0, "L": 0, "T": 0, "PCT": ".000", "GB": "-", "STREAK": "-", "LAST10": "-" },
+      { "team_id": null, "name": "Madison Night Mares",    "abbr": "MAD", "division": "NWL Softball", "W": 0, "L": 0, "T": 0, "PCT": ".000", "GB": "-", "STREAK": "-", "LAST10": "-" },
+      { "team_id": null, "name": "Mankato Habaneros",      "abbr": "MAN", "division": "NWL Softball", "W": 0, "L": 0, "T": 0, "PCT": ".000", "GB": "-", "STREAK": "-", "LAST10": "-" },
+      { "team_id": null, "name": "Minot Honeybees",        "abbr": "MIN", "division": "NWL Softball", "W": 0, "L": 0, "T": 0, "PCT": ".000", "GB": "-", "STREAK": "-", "LAST10": "-" },
+      { "team_id": null, "name": "Wausau Ignite",          "abbr": "WAU", "division": "NWL Softball", "W": 0, "L": 0, "T": 0, "PCT": ".000", "GB": "-", "STREAK": "-", "LAST10": "-" }
+    ],
+    "full": []
+  },
+  "great_lakes_east": {
+    "first_half": [],
+    "second_half": [],
+    "full": []
+  }
+}
