@@ -1606,10 +1606,20 @@ function displayStandings(half) {
   }
   if (label) label.textContent = standingsData.season_name || '';
   const halfKey = { first: 'first_half', second: 'second_half', full: 'full' }[half] || 'first_half';
-  const westTeams = (standingsData.great_lakes_west || {})[halfKey] || [];
-  const eastTeams = (standingsData.great_lakes_east || {})[halfKey] || [];
-  if (west) renderStandings(west, westTeams);
-  if (east) renderStandings(east, eastTeams);
+
+  // Pre-season the API returns an empty 1st-half but a populated 2nd-half with
+  // every team at 0-0. Show the team list with zeroed stats so users don't see
+  // a blank table just because no games have been played yet.
+  function pickTeams(division) {
+    const halves = standingsData[division] || {};
+    const direct = halves[halfKey];
+    if (direct && direct.length > 0) return direct;
+    const fallback = halves.full || halves.second_half || halves.first_half || [];
+    return fallback.map(t => ({ ...t, W: 0, L: 0, T: 0, PCT: '.000', GB: '-', STREAK: '-', LAST10: '-' }));
+  }
+
+  if (west) renderStandings(west, pickTeams('great_lakes_west'));
+  if (east) renderStandings(east, pickTeams('great_lakes_east'));
 }
 
 function renderEvents() {
