@@ -28,8 +28,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r scraper/requirements.txt
 
-      - name: Run scraper
-        run: python scraper/fetch_nwl.py
+      - name: Run scraper (both teams)
+        run: python scraper/fetch_nwl.py --team all
 
       - name: Commit and push data
         run: |

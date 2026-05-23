@@ -1,7 +1,7 @@
 {
-  "last_scrape": null,
-  "team_id": null,
+  "last_scrape": "2026-05-23T01:22:05.232232+00:00",
+  "team_id": 5,
   "team_name": "Wausau Ignite",
   "sport": "Softball",
-  "_note": "Hand-edited. When the NWL softball API becomes reachable, the scraper will overwrite this file and populate last_scrape automatically."
+  "api_base": "https://scorebook-softball.northwoodsleague.com/api"
 }

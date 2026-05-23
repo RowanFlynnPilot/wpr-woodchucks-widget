@@ -22,7 +22,7 @@ The widget reads `?team=woodchucks` or `?team=ignite` from the URL, then loads f
 | Team | Data source |
 |------|-------------|
 | Woodchucks | Scraped from `scorebook.northwoodsleague.com/api/` every ~30 min during game hours |
-| Ignite | Hand-edited JSON files until the NWL softball API becomes reachable |
+| Ignite | Scraped from `scorebook-softball.northwoodsleague.com/api/` (separate softball subdomain), same cadence |
 
 ## WordPress Embed
 
@@ -76,12 +76,10 @@ If WordPress strips the `<script>` tag (security plugin / user role), both widge
 **Settings → Pages**, source: **Deploy from a branch**, branch `main`, folder `/docs`.
 
 ### 2. GitHub Actions cron
-The workflow at `.github/workflows/scrape.yml` runs the Woodchucks scraper:
+The workflow at `.github/workflows/scrape.yml` runs the scraper for **both teams** in sequence:
 - **During season (May–Aug)**: every 30 min during game hours
 - **Off-season**: daily at noon CT
 - Manual trigger via the **Actions** tab
-
-Ignite is not on the cron — its JSON files in `docs/data/ignite/` are hand-edited. Once the softball API surfaces, extend the scraper to fetch both teams.
 
 ## Local Development
 
@@ -89,8 +87,10 @@ Ignite is not on the cron — its JSON files in `docs/data/ignite/` are hand-edi
 # Install scraper deps
 pip install -r scraper/requirements.txt
 
-# Run the Woodchucks scraper
+# Run the scraper (defaults to --team all; both Woodchucks + Ignite)
 python scraper/fetch_nwl.py
+python scraper/fetch_nwl.py --team ignite   # just one team
+python scraper/fetch_nwl.py --schedule-only # skip standings
 
 # Preview locally
 python -m http.server 8765 --directory docs
@@ -102,25 +102,34 @@ python -m http.server 8765 --directory docs
 ```
 docs/data/
   woodchucks/
-    schedule.json   # autoupdated by scraper
-    standings.json  # autoupdated by scraper
-    meta.json       # autoupdated by scraper
+    schedule.json   # auto-updated by scraper
+    standings.json  # auto-updated by scraper
+    meta.json       # auto-updated by scraper
     events.json     # editorial — hand-edited
   ignite/
-    schedule.json   # hand-edited until API surfaces
-    standings.json  # hand-edited
-    meta.json       # hand-edited
+    schedule.json   # auto-updated by scraper
+    standings.json  # auto-updated by scraper
+    meta.json       # auto-updated by scraper
     events.json     # editorial — hand-edited
 ```
 
 ## NWL API Reference
 
+Baseball (Woodchucks) — host `scorebook.northwoodsleague.com`:
+
 | Endpoint | Description |
 |----------|-------------|
-| `/api/schedule?teamid=68` | Full baseball schedule (filter for team 68 = Woodchucks) |
+| `/api/schedule?teamid=68` | Full baseball schedule (filtered client-side for team 68) |
 | `/api/standings` | League standings (all baseball divisions, all halves) |
 
-Softball is on the same vendor but a different (currently unreachable from outside) data source. Watch the `season` field on `https://northwoodsleague.com/softball/` — when it flips from "Off" to "Active", the API is likely live.
+Softball (Ignite) — host `scorebook-softball.northwoodsleague.com` (separate subdomain, same response shape):
+
+| Endpoint | Description |
+|----------|-------------|
+| `/api/schedule?teamid=5` | Full softball schedule (filtered client-side for team 5) |
+| `/api/standings` | NWL Softball standings |
+
+Both have open CORS, but we cache to static JSON via the scraper for reliability and rate-limit safety.
 
 ---
 
