@@ -1167,7 +1167,7 @@ body {
       <div class="standings-section">
         <div class="standings-header">
           <div>
-            <div class="standings-title">Great Lakes Division</div>
+            <div class="standings-title" id="standingsHeading">Great Lakes Division</div>
             <div id="standingsSeasonLabel" style="font-size:11px;color:var(--neutral-600);margin-top:2px">Loading standings...</div>
           </div>
           <div class="half-toggle" role="group" aria-label="Season half">
@@ -1178,8 +1178,8 @@ body {
         </div>
       </div>
 
-      <div class="division-divider">West Sub-Division</div>
-      <div class="standings-section" style="padding-top:8px">
+      <div class="division-divider" id="standingsWestLabel">West Sub-Division</div>
+      <div class="standings-section" id="standingsWestSection" style="padding-top:8px">
         <table class="standings-table">
           <thead>
             <tr>
@@ -1195,8 +1195,8 @@ body {
         </table>
       </div>
 
-      <div class="division-divider">East Sub-Division</div>
-      <div class="standings-section" style="padding-top:8px">
+      <div class="division-divider" id="standingsEastLabel">East Sub-Division</div>
+      <div class="standings-section" id="standingsEastSection" style="padding-top:8px">
         <table class="standings-table">
           <thead>
             <tr>
@@ -1264,6 +1264,8 @@ const TEAMS = {
     logoUrl: 'woodchucks-logo.png',
     brand: { navy: '#162b4d', navyLight: '#1e3a66', accent: '#00b8d4', accentLight: '#4dd0e1' },
     seasonMonths: [4, 5, 6, 7], // May–Aug
+    standingsHeading: 'Great Lakes Division',
+    divisionLabels: { west: 'West Sub-Division', east: 'East Sub-Division' },
     fallbackSchedule: [
       { date: '2026-05-25', day: 'Mon', time: '4:05 PM', home: false, opponent: 'Madison Mallards', opponent_abbr: 'MAD', location: 'Warner Park', status_code: 0 },
       { date: '2026-05-26', day: 'Tue', time: '6:05 PM', home: false, opponent: 'Madison Mallards', opponent_abbr: 'MAD', location: 'Warner Park', status_code: 0 },
@@ -1286,6 +1288,8 @@ const TEAMS = {
     logoUrl: 'ignite-logo.png',
     brand: { navy: '#001830', navyLight: '#1a3450', accent: '#48a8d8', accentLight: '#90c0c0' },
     seasonMonths: [4, 5, 6, 7],
+    standingsHeading: 'NWL Softball',
+    divisionLabels: { west: null, east: null }, // single-division league — heading covers it
     fallbackSchedule: [],
   },
 };
@@ -1878,6 +1882,27 @@ function applyBranding() {
   if (logo) { logo.src = TEAM.logoUrl; logo.alt = TEAM.name; }
   const dataLink = document.querySelector('.powered-by a');
   if (dataLink) dataLink.href = TEAM.siteUrl;
+
+  // Standings heading + sub-dividers. For single-division leagues (softball),
+  // hide both sub-dividers so the heading is the only label.
+  const heading = document.getElementById('standingsHeading');
+  if (heading && TEAM.standingsHeading) heading.textContent = TEAM.standingsHeading;
+  const labels = TEAM.divisionLabels || { west: 'West Sub-Division', east: 'East Sub-Division' };
+  const setSection = (labelId, sectionId, text) => {
+    const lab = document.getElementById(labelId);
+    const sec = document.getElementById(sectionId);
+    if (text) {
+      if (lab) { lab.textContent = text; lab.style.display = ''; }
+      if (sec) sec.style.display = '';
+    } else {
+      if (lab) lab.style.display = 'none';
+      // Keep section visible only if it's the west one (we still need its tbody
+      // for the single-division render).
+      if (sec && sectionId === 'standingsEastSection') sec.style.display = 'none';
+    }
+  };
+  setSection('standingsWestLabel', 'standingsWestSection', labels.west);
+  setSection('standingsEastLabel', 'standingsEastSection', labels.east);
 }
 
 // ═══════ INIT ═══════
