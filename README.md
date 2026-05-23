@@ -33,13 +33,27 @@ You can also trigger it manually from the **Actions** tab.
 
 ### 3. WordPress Embed
 
+Drop this in a Custom HTML block. The widget auto-resizes to fit its content via `postMessage`, so the iframe grows and shrinks as readers switch between tabs.
+
 ```html
 <iframe
+  id="wpr-woodchucks-widget"
   src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/"
-  style="width:100%;max-width:720px;height:800px;border:none;"
-  title="Wausau Woodchucks Schedule & Standings">
+  style="width:100%;max-width:720px;height:600px;border:none;display:block;margin:0 auto;"
+  title="Wausau Woodchucks Schedule & Standings"
+  loading="lazy"
+  scrolling="no">
 </iframe>
+<script>
+  window.addEventListener('message', function (e) {
+    if (!e.data || e.data.type !== 'wpr-woodchucks-resize') return;
+    var f = document.getElementById('wpr-woodchucks-widget');
+    if (f && typeof e.data.height === 'number') f.style.height = e.data.height + 'px';
+  });
+</script>
 ```
+
+If WordPress strips the `<script>` tag, the widget still works — the iframe stays at the initial 600px and tab content scrolls naturally inside it.
 
 ## Local Development
 

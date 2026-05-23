@@ -4,7 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wausau Woodchucks — Northwoods League | Wausau Pilot & Review</title>
+<meta name="description" content="Wausau Woodchucks 2026 schedule, standings, results, and events. Northwoods League coverage from Wausau Pilot & Review.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Wausau Woodchucks — Northwoods League">
+<meta property="og:description" content="Schedule, standings, results, and events for the Wausau Woodchucks. Updated automatically from the NWL Scorebook.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wausau Pilot & Review">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23162b4d'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23f5f0e8' stroke='%2300b8d4' stroke-width='2'/%3E%3Cpath d='M22 26 Q32 22 42 26 M22 38 Q32 42 42 38' stroke='%23c62828' stroke-width='1.5' fill='none'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&family=Bebas+Neue&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -193,6 +202,16 @@ body {
 }
 
 .tab-panel.active { display: block; }
+.tab-panel[hidden] { display: none; }
+
+/* Visible focus ring — keyboard only. */
+:focus-visible {
+  outline: 2px solid #00b8d4;
+  outline-offset: 2px;
+}
+.tab-btn:focus-visible {
+  outline-offset: -2px;
+}
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
@@ -850,21 +869,139 @@ body {
 
 .widget-footer a:hover { text-decoration: underline; }
 
+/* WPR branded band (sponsor sign-off) */
+.wpr-band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: var(--wpr-teal);
+  color: var(--wpr-cream);
+  text-decoration: none;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  transition: background 0.15s ease;
+}
+
+.wpr-band-logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  flex-shrink: 0;
+  display: block;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.4);
+}
+
+.wpr-band:hover, .wpr-band:focus-visible {
+  background: var(--wpr-teal-dark);
+  text-decoration: none;
+}
+
+.wpr-band-label {
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  opacity: 0.85;
+  font-weight: 600;
+}
+
+.wpr-band-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
 .powered-by {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
+.last-updated {
+  color: var(--neutral-600);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  opacity: 0.85;
+}
+
+.last-updated.stale {
+  color: #b85c00;
+}
+
+.last-updated.stale::before {
+  content: "\26A0 ";
+}
+
+/* ─── LOADING / ERROR STATES ─── */
+.loading-state, .error-state {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--neutral-600);
+}
+
+.loading-state .spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(0,0,0,0.08);
+  border-top-color: #00b8d4;
+  border-radius: 50%;
+  animation: wpr-spin 0.8s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes wpr-spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-state p, .error-state p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.error-state .retry-btn {
+  margin-top: 12px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #00b8d4;
+  color: #162b4d;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.error-state .retry-btn:hover { filter: brightness(1.08); }
+
 /* ─── RESPONSIVE ─── */
+/* Tablet (the widget is already capped at max-width: 720px on the container,
+   so most desktop styles work — these are just small typography touch-ups.) */
+@media (max-width: 720px) {
+  .widget-container { border-radius: 0; }
+  .schedule-controls { flex-wrap: wrap; gap: 10px; }
+}
+
+/* Phone */
 @media (max-width: 480px) {
   .widget-header { padding: 16px; }
   .header-text h1 { font-size: 22px; }
+  .header-text .league-name { font-size: 11px; }
+  .team-logo { width: 48px; height: 48px; }
+  .team-logo img { width: 40px; height: 40px; }
+  .season-badge { font-size: 14px; padding: 3px 10px; }
   .tab-btn { font-size: 11px; padding: 10px 4px; letter-spacing: 0.3px; }
-  .schedule-controls { flex-direction: column; gap: 10px; }
+  .schedule-controls { flex-direction: column; align-items: stretch; gap: 8px; padding: 12px 14px; }
+  .filter-pills { justify-content: center; }
+  .filter-pill { font-size: 11px; padding: 5px 12px; }
   .game-card { grid-template-columns: 50px 1fr auto; gap: 10px; padding: 12px 14px; }
   .game-date .day-num { font-size: 22px; }
   .game-opponent { font-size: 14px; }
+  .game-meta { font-size: 11px; flex-wrap: wrap; }
+  .standings-header { flex-wrap: wrap; gap: 10px; }
   .standings-section { padding: 12px 14px; }
   .standings-table { font-size: 12px; }
   .standings-table th, .standings-table td { padding: 8px 6px; }
@@ -873,14 +1010,25 @@ body {
   .linescore th, .linescore td { padding: 6px 4px; font-size: 11px; }
   .linescore .team-col { width: 90px; font-size: 12px; }
   .linescore .total-col { font-size: 13px; }
-  .filter-pills { display: none; }
+  .widget-footer { flex-direction: column; align-items: flex-start; gap: 4px; padding: 10px 16px; }
+  .wpr-band { padding: 10px 16px; flex-wrap: wrap; }
+  .wpr-band-brand { font-size: 16px; }
+}
+
+/* Tiny phones (e.g., iPhone SE in landscape, older Androids) */
+@media (max-width: 360px) {
+  .widget-header { padding: 14px; }
+  .header-text h1 { font-size: 20px; letter-spacing: 1px; }
+  .tab-btn { font-size: 10px; padding: 9px 2px; }
+  .game-card { grid-template-columns: 44px 1fr auto; gap: 8px; padding: 10px 12px; }
+  .game-opponent { font-size: 13px; }
+  .ticket-btn { font-size: 10px; padding: 4px 8px; }
 }
 
 /* ─── SCROLLBAR ─── */
-.tab-content { max-height: 650px; overflow-y: auto; }
-.tab-content::-webkit-scrollbar { width: 5px; }
-.tab-content::-webkit-scrollbar-track { background: var(--neutral-100); }
-.tab-content::-webkit-scrollbar-thumb { background: var(--neutral-300); border-radius: 3px; }
+/* Tab content flows naturally; the parent iframe is auto-sized via postMessage.
+   Falls back gracefully if embedded without the listener (page just scrolls). */
+.tab-content { overflow: visible; }
 
 /* ─── LINESCORE SCROLL ─── */
 .linescore-wrap {
@@ -987,25 +1135,25 @@ body {
   </div>
 
   <!-- TAB NAV -->
-  <div class="tab-nav">
-    <button class="tab-btn active" data-tab="schedule">Schedule</button>
-    <button class="tab-btn" data-tab="standings">Standings</button>
-    <button class="tab-btn" data-tab="boxscores">Box Scores</button>
-    <button class="tab-btn" data-tab="events">Events</button>
+  <div class="tab-nav" role="tablist" aria-label="Sections">
+    <button class="tab-btn active" data-tab="schedule" role="tab" id="tabbtn-schedule" aria-controls="tab-schedule" aria-selected="true" tabindex="0">Schedule</button>
+    <button class="tab-btn" data-tab="standings" role="tab" id="tabbtn-standings" aria-controls="tab-standings" aria-selected="false" tabindex="-1">Standings</button>
+    <button class="tab-btn" data-tab="results" role="tab" id="tabbtn-results" aria-controls="tab-results" aria-selected="false" tabindex="-1">Results</button>
+    <button class="tab-btn" data-tab="events" role="tab" id="tabbtn-events" aria-controls="tab-events" aria-selected="false" tabindex="-1">Events</button>
   </div>
 
   <!-- ═══════ SCHEDULE TAB ═══════ -->
-  <div class="tab-panel active" id="tab-schedule">
+  <div class="tab-panel active" id="tab-schedule" role="tabpanel" aria-labelledby="tabbtn-schedule">
     <div class="schedule-controls">
       <div class="month-nav">
-        <button onclick="changeMonth(-1)">&#9664;</button>
-        <span class="month-label" id="monthLabel">June 2026</span>
-        <button onclick="changeMonth(1)">&#9654;</button>
+        <button onclick="changeMonth(-1)" aria-label="Previous month" type="button">&#9664;</button>
+        <span class="month-label" id="monthLabel" aria-live="polite">June 2026</span>
+        <button onclick="changeMonth(1)" aria-label="Next month" type="button">&#9654;</button>
       </div>
-      <div class="filter-pills">
-        <button class="filter-pill active" data-filter="all">All</button>
-        <button class="filter-pill" data-filter="home">Home</button>
-        <button class="filter-pill" data-filter="away">Away</button>
+      <div class="filter-pills" role="group" aria-label="Filter games by location">
+        <button class="filter-pill active" data-filter="all" type="button">All</button>
+        <button class="filter-pill" data-filter="home" type="button">Home</button>
+        <button class="filter-pill" data-filter="away" type="button">Away</button>
       </div>
     </div>
     <div class="tab-content">
@@ -1014,7 +1162,7 @@ body {
   </div>
 
   <!-- ═══════ STANDINGS TAB ═══════ -->
-  <div class="tab-panel" id="tab-standings">
+  <div class="tab-panel" id="tab-standings" role="tabpanel" aria-labelledby="tabbtn-standings" hidden>
     <div class="tab-content">
       <div class="standings-section">
         <div class="standings-header">
@@ -1022,10 +1170,10 @@ body {
             <div class="standings-title">Great Lakes Division</div>
             <div id="standingsSeasonLabel" style="font-size:11px;color:var(--neutral-600);margin-top:2px">Loading standings...</div>
           </div>
-          <div class="half-toggle">
-            <button class="half-btn active" data-half="first">1st Half</button>
-            <button class="half-btn" data-half="second">2nd Half</button>
-            <button class="half-btn" data-half="full">Full</button>
+          <div class="half-toggle" role="group" aria-label="Season half">
+            <button class="half-btn active" data-half="first" type="button">1st Half</button>
+            <button class="half-btn" data-half="second" type="button">2nd Half</button>
+            <button class="half-btn" data-half="full" type="button">Full</button>
           </div>
         </div>
       </div>
@@ -1066,155 +1214,56 @@ body {
     </div>
   </div>
 
-  <!-- ═══════ BOX SCORES TAB ═══════ -->
-  <div class="tab-panel" id="tab-boxscores">
+  <!-- ═══════ RESULTS TAB ═══════ -->
+  <div class="tab-panel" id="tab-results" role="tabpanel" aria-labelledby="tabbtn-results" hidden>
     <div class="tab-content">
-      <div class="boxscore-list" id="boxscoreList"></div>
+      <div class="boxscore-list" id="resultsList"></div>
     </div>
   </div>
 
   <!-- ═══════ EVENTS TAB ═══════ -->
-  <div class="tab-panel" id="tab-events">
+  <div class="tab-panel" id="tab-events" role="tabpanel" aria-labelledby="tabbtn-events" hidden>
     <div class="tab-content">
       <div class="events-list" id="eventsList"></div>
     </div>
   </div>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (data attribution) -->
   <div class="widget-footer">
     <div class="powered-by">
       &#9918; Data from <a href="https://northwoodsleague.com/wausau-woodchucks/" target="_blank" rel="noopener">northwoodsleague.com</a>
+      <span class="last-updated" id="lastUpdated"></span>
     </div>
-    <a href="https://wausaupilotandreview.com" target="_blank" rel="noopener">Wausau Pilot & Review</a>
   </div>
+
+  <!-- WPR branded band -->
+  <a class="wpr-band" href="https://wausaupilotandreview.com" target="_blank" rel="noopener" aria-label="Wausau Pilot & Review (opens in new tab)">
+    <span class="wpr-band-label">Brought to you by</span>
+    <span class="wpr-band-brand">Wausau Pilot &amp; Review</span>
+    <img class="wpr-band-logo" src="wpr-logo.png" alt="" loading="lazy" decoding="async" width="24" height="24">
+  </a>
 </div>
 
 <script>
-// ═══════ DATA (Sample 2026 season data — will be replaced with live API) ═══════
+// ═══════ DATA ═══════
+// Schedule, results, and standings load from docs/data/*.json (refreshed every
+// ~30 min during game hours by the GitHub Actions scraper).
+// Events are editorial — WPR can edit the EVENTS list below directly.
 
-const SCHEDULE = [
-  // May
-  { date: '2026-05-25', day: 'Mon', opponent: 'Madison Mallards', home: false, time: '4:05 PM', result: null },
-  { date: '2026-05-26', day: 'Tue', opponent: 'Madison Mallards', home: false, time: '6:05 PM', result: null },
-  { date: '2026-05-27', day: 'Wed', opponent: 'Green Bay Rockers', home: false, time: '6:35 PM', result: null },
-  { date: '2026-05-28', day: 'Thu', opponent: 'Green Bay Rockers', home: true, time: '6:35 PM', result: null, promo: 'Home Opener — WI Lottery Hat Giveaway' },
-  { date: '2026-05-29', day: 'Fri', opponent: 'Wisconsin Rapids Rafters', home: true, time: '6:35 PM', result: null },
-  { date: '2026-05-30', day: 'Sat', opponent: 'Wisconsin Rapids Rafters', home: true, time: '5:05 PM', result: null },
-  { date: '2026-05-31', day: 'Sun', opponent: 'Green Bay Rockers', home: false, time: '1:05 PM', result: null },
-  // June
-  { date: '2026-06-01', day: 'Mon', opponent: 'Green Bay Rockers', home: false, time: '6:35 PM', result: null },
-  { date: '2026-06-02', day: 'Tue', opponent: 'Lakeshore Chinooks', home: true, time: '6:05 PM', result: null },
-  { date: '2026-06-03', day: 'Wed', opponent: 'Lakeshore Chinooks', home: true, time: '6:05 PM', result: null },
-  { date: '2026-06-04', day: 'Thu', opponent: 'Madison Mallards', home: true, time: '6:05 PM', result: null },
-  { date: '2026-06-05', day: 'Fri', opponent: 'Madison Mallards', home: false, time: '6:05 PM', result: null },
-  { date: '2026-06-06', day: 'Sat', opponent: 'Wisconsin Rapids Rafters', home: true, time: '5:05 PM', result: null },
-  { date: '2026-06-07', day: 'Sun', opponent: 'Wisconsin Rapids Rafters', home: true, time: '1:05 PM', result: null },
-  { date: '2026-06-09', day: 'Tue', opponent: 'Thunder Bay Border Cats', home: true, time: '6:35 PM', result: null },
-  { date: '2026-06-10', day: 'Wed', opponent: 'Thunder Bay Border Cats', home: true, time: '6:35 PM', result: null },
-  { date: '2026-06-13', day: 'Sat', opponent: 'Lakeshore Chinooks', home: false, time: '5:05 PM', result: null },
-  { date: '2026-06-14', day: 'Sun', opponent: 'Lakeshore Chinooks', home: false, time: '1:05 PM', result: null },
-  { date: '2026-06-15', day: 'Mon', opponent: 'Lakeshore Chinooks', home: false, time: '6:05 PM', result: null },
-  { date: '2026-06-16', day: 'Tue', opponent: 'Lakeshore Chinooks', home: false, time: '6:05 PM', result: null },
-  { date: '2026-06-17', day: 'Wed', opponent: 'Eau Claire Express', home: false, time: '12:05 PM', result: null, promo: 'Doubleheader Game 1' },
-  { date: '2026-06-17', day: 'Wed', opponent: 'Eau Claire Express', home: false, time: '6:35 PM', result: null, promo: 'Doubleheader Game 2' },
-  { date: '2026-06-18', day: 'Thu', opponent: 'Fond du Lac Dock Spiders', home: false, time: '6:35 PM', result: null },
-  { date: '2026-06-19', day: 'Fri', opponent: 'Fond du Lac Dock Spiders', home: true, time: '6:35 PM', result: null },
-  { date: '2026-06-20', day: 'Sat', opponent: 'Fond du Lac Dock Spiders', home: true, time: '5:05 PM', result: null },
-  { date: '2026-06-21', day: 'Sun', opponent: 'Fond du Lac Dock Spiders', home: false, time: '1:05 PM', result: null },
-  { date: '2026-06-22', day: 'Mon', opponent: 'Fond du Lac Dock Spiders', home: false, time: '6:35 PM', result: null },
-  { date: '2026-06-23', day: 'Tue', opponent: 'Fond du Lac Dock Spiders', home: true, time: '6:35 PM', result: null },
-  { date: '2026-06-24', day: 'Wed', opponent: 'Green Bay Rockers', home: false, time: '6:35 PM', result: null },
-  { date: '2026-06-25', day: 'Thu', opponent: 'Green Bay Rockers', home: true, time: '6:35 PM', result: null },
-  { date: '2026-06-26', day: 'Fri', opponent: 'Fond du Lac Dock Spiders', home: true, time: '6:35 PM', result: null },
-  { date: '2026-06-27', day: 'Sat', opponent: 'Fond du Lac Dock Spiders', home: false, time: '4:05 PM', result: null },
-  { date: '2026-06-28', day: 'Sun', opponent: 'Wisconsin Rapids Rafters', home: false, time: '1:05 PM', result: null },
-  { date: '2026-06-29', day: 'Mon', opponent: 'Wisconsin Rapids Rafters', home: false, time: '6:35 PM', result: null },
-  { date: '2026-06-30', day: 'Tue', opponent: 'Wisconsin Rapids Rafters', home: false, time: '6:35 PM', result: null },
-  // July
-  { date: '2026-07-01', day: 'Wed', opponent: 'Wisconsin Rapids Rafters', home: false, time: '6:35 PM', result: null },
-  { date: '2026-07-02', day: 'Thu', opponent: 'Kenosha Kingfish', home: true, time: '6:35 PM', result: null },
-  { date: '2026-07-03', day: 'Fri', opponent: 'Kenosha Kingfish', home: true, time: '6:35 PM', result: null },
-  { date: '2026-07-04', day: 'Sat', opponent: 'Madison Mallards', home: true, time: '6:05 PM', result: null, promo: 'Independence Day Celebration' },
-  { date: '2026-07-05', day: 'Sun', opponent: 'Madison Mallards', home: false, time: '1:05 PM', result: null },
-  // July 7-9: NWL All-Star Break (Field of Dreams, Dyersville, IA)
-  { date: '2026-07-10', day: 'Fri', opponent: 'Fond du Lac Dock Spiders', home: false, time: '6:35 PM', result: null },
-  { date: '2026-07-11', day: 'Sat', opponent: 'Fond du Lac Dock Spiders', home: true, time: '5:05 PM', result: null },
-  { date: '2026-07-12', day: 'Sun', opponent: 'Green Bay Rockers', home: false, time: '1:05 PM', result: null },
-  { date: '2026-07-13', day: 'Mon', opponent: 'Green Bay Rockers', home: true, time: '6:05 PM', result: null },
-  { date: '2026-07-14', day: 'Tue', opponent: 'Madison Mallards', home: true, time: '6:35 PM', result: null },
-  { date: '2026-07-15', day: 'Wed', opponent: 'Madison Mallards', home: true, time: '6:35 PM', result: null },
-  { date: '2026-07-16', day: 'Thu', opponent: 'Thunder Bay Border Cats', home: false, time: '6:35 PM', result: null },
-  { date: '2026-07-17', day: 'Fri', opponent: 'Thunder Bay Border Cats', home: false, time: '6:35 PM', result: null },
-  { date: '2026-07-18', day: 'Sat', opponent: 'Duluth Huskies', home: false, time: '5:35 PM', result: null },
-  { date: '2026-07-19', day: 'Sun', opponent: 'Duluth Huskies', home: false, time: '3:05 PM', result: null },
-  { date: '2026-07-21', day: 'Tue', opponent: 'Duluth Huskies', home: true, time: '6:35 PM', result: null },
-  { date: '2026-07-22', day: 'Wed', opponent: 'Duluth Huskies', home: true, time: '6:35 PM', result: null },
-  { date: '2026-07-23', day: 'Thu', opponent: 'Green Bay Rockers', home: true, time: '12:05 PM', result: null, promo: 'Doubleheader Game 1' },
-  { date: '2026-07-23', day: 'Thu', opponent: 'Green Bay Rockers', home: true, time: '6:35 PM', result: null, promo: 'Doubleheader Game 2' },
-  { date: '2026-07-24', day: 'Fri', opponent: 'Eau Claire Express', home: true, time: '6:35 PM', result: null },
-  { date: '2026-07-25', day: 'Sat', opponent: 'Eau Claire Express', home: true, time: '5:05 PM', result: null },
-  { date: '2026-07-26', day: 'Sun', opponent: 'Wisconsin Rapids Rafters', home: true, time: '1:05 PM', result: null },
-  { date: '2026-07-27', day: 'Mon', opponent: 'Wisconsin Rapids Rafters', home: false, time: '6:35 PM', result: null },
-  { date: '2026-07-28', day: 'Tue', opponent: 'Fond du Lac Dock Spiders', home: false, time: '6:35 PM', result: null },
-  { date: '2026-07-29', day: 'Wed', opponent: 'Fond du Lac Dock Spiders', home: true, time: '6:35 PM', result: null },
-  { date: '2026-07-30', day: 'Thu', opponent: 'Wisconsin Rapids Rafters', home: true, time: '6:35 PM', result: null },
-  { date: '2026-07-31', day: 'Fri', opponent: 'Wisconsin Rapids Rafters', home: false, time: '6:35 PM', result: null },
-  // August
-  { date: '2026-08-01', day: 'Sat', opponent: 'Lakeshore Chinooks', home: true, time: '5:05 PM', result: null },
-  { date: '2026-08-02', day: 'Sun', opponent: 'Lakeshore Chinooks', home: true, time: '1:05 PM', result: null },
-  { date: '2026-08-03', day: 'Mon', opponent: 'Green Bay Rockers', home: false, time: '6:35 PM', result: null },
-  { date: '2026-08-04', day: 'Tue', opponent: 'Green Bay Rockers', home: true, time: '6:35 PM', result: null },
-  { date: '2026-08-05', day: 'Wed', opponent: 'Kenosha Kingfish', home: false, time: '6:35 PM', result: null },
-  { date: '2026-08-06', day: 'Thu', opponent: 'Kenosha Kingfish', home: false, time: '6:35 PM', result: null },
-  { date: '2026-08-07', day: 'Fri', opponent: 'Minnesota Mud Puppies', home: true, time: '6:35 PM', result: null },
-  { date: '2026-08-08', day: 'Sat', opponent: 'Minnesota Mud Puppies', home: true, time: '5:05 PM', result: null },
-];
+const SEASON_YEAR = 2026;
+const TICKETS_URL = 'https://wausau-woodchucks.nwltickets.com/SingleGame/Tickets';
+const HOME_VENUE = 'Athletic Park, Wausau';
+const STALE_HOURS = 24;
 
-// Standings data fetched from NWL API
-let standingsData = null;
-let currentHalf = 'first'; // 'first', 'second', 'full'
-
-const BOXSCORES = [
-  {
-    date: 'Sat, Jun 27',
-    away: { name: 'Woodchucks', abbr: 'WAU', innings: [3,0,2,0,1,0,2,0,2], r: 10, h: 14, e: 0 },
-    home: { name: 'WI Rapids Rafters', abbr: 'WRR', innings: [0,1,0,2,0,0,1,0,0], r: 4, h: 8, e: 2 },
-    status: 'Final',
-    winner: 'away',
-    batting: {
-      away: [
-        { name: 'J. Martinez', pos: 'CF', ab: 5, r: 2, h: 3, rbi: 2, bb: 0, so: 1 },
-        { name: 'T. O\'Brien', pos: 'SS', ab: 5, r: 2, h: 2, rbi: 3, bb: 0, so: 0 },
-        { name: 'M. Kowalski', pos: '1B', ab: 4, r: 1, h: 2, rbi: 1, bb: 1, so: 1 },
-        { name: 'D. Chen', pos: 'RF', ab: 5, r: 1, h: 2, rbi: 2, bb: 0, so: 1 },
-        { name: 'R. Thompson', pos: '3B', ab: 4, r: 2, h: 2, rbi: 0, bb: 1, so: 0 },
-        { name: 'K. Williams', pos: 'LF', ab: 4, r: 1, h: 1, rbi: 1, bb: 1, so: 2 },
-      ],
-      home: [
-        { name: 'A. Patel', pos: 'CF', ab: 4, r: 1, h: 2, rbi: 0, bb: 0, so: 1 },
-        { name: 'C. Johnson', pos: '2B', ab: 4, r: 1, h: 2, rbi: 2, bb: 0, so: 0 },
-        { name: 'B. Davis', pos: '1B', ab: 4, r: 0, h: 1, rbi: 1, bb: 0, so: 2 },
-        { name: 'L. Garcia', pos: 'SS', ab: 4, r: 1, h: 1, rbi: 0, bb: 0, so: 1 },
-        { name: 'N. Brown', pos: 'RF', ab: 3, r: 1, h: 1, rbi: 1, bb: 1, so: 0 },
-      ]
-    }
-  },
-  {
-    date: 'Fri, Jun 26',
-    home: { name: 'WI Rapids Rafters', abbr: 'WRR', innings: [1,0,2,0,1,0,1,0,'x'], r: 5, h: 9, e: 0 },
-    away: { name: 'Woodchucks', abbr: 'WAU', innings: [0,0,1,0,0,2,0,0,0], r: 3, h: 7, e: 1 },
-    status: 'Final',
-    winner: 'home',
-    batting: null
-  },
-  {
-    date: 'Wed, Jun 24',
-    away: { name: 'Woodchucks', abbr: 'WAU', innings: [2,0,1,0,0,3,0,0,0], r: 6, h: 10, e: 0 },
-    home: { name: 'Rockford Rivets', abbr: 'RFD', innings: [0,1,0,0,2,0,0,0,0], r: 3, h: 6, e: 1 },
-    status: 'Final',
-    winner: 'away',
-    batting: null
-  }
+// Minimal embedded schedule used only if the scraper JSON is unreachable.
+// Kept intentionally short — better a few games than a stale 70-row hardcode.
+const FALLBACK_SCHEDULE = [
+  { date: '2026-05-25', day: 'Mon', time: '4:05 PM', home: false, opponent: 'Madison Mallards', opponent_abbr: 'MAD', location: 'Warner Park', status_code: 0 },
+  { date: '2026-05-26', day: 'Tue', time: '6:05 PM', home: false, opponent: 'Madison Mallards', opponent_abbr: 'MAD', location: 'Warner Park', status_code: 0 },
+  { date: '2026-05-27', day: 'Wed', time: '6:35 PM', home: false, opponent: 'Green Bay Rockers', opponent_abbr: 'GB', location: 'Capital Credit Union Park', status_code: 0 },
+  { date: '2026-05-28', day: 'Thu', time: '6:35 PM', home: true, opponent: 'Green Bay Rockers', opponent_abbr: 'GB', location: 'Athletic Park', status_code: 0 },
+  { date: '2026-05-29', day: 'Fri', time: '6:35 PM', home: true, opponent: 'Wisconsin Rapids Rafters', opponent_abbr: 'WIR', location: 'Athletic Park', status_code: 0 },
+  { date: '2026-05-30', day: 'Sat', time: '5:05 PM', home: true, opponent: 'Wisconsin Rapids Rafters', opponent_abbr: 'WIR', location: 'Athletic Park', status_code: 0 },
 ];
 
 const EVENTS = [
@@ -1230,26 +1279,184 @@ const EVENTS = [
   { date: '2026-07-23', month: 'Jul', day: '23', title: 'Doubleheader vs Green Bay Rockers', desc: 'Two games at Athletic Park! Game 1 at 12:05 PM, Game 2 at 6:35 PM.', tags: ['theme'] },
   { date: '2026-08-07', month: 'Aug', day: '7', title: 'Minnesota Mud Puppies Visit Wausau', desc: "The NWL's travel team visits Athletic Park for the final home series of the regular season.", tags: ['community'] },
   { date: '2026-08-08', month: 'Aug', day: '8', title: 'Regular Season Home Finale', desc: 'Last chance to catch the Woodchucks at Athletic Park this summer! Mud Puppies at 5:05 PM.', tags: ['promo', 'community'] },
-  { date: '2026-04-18', month: 'Apr', day: '18', title: 'Rookie Program — Ages 4-8', desc: 'Boys and girls learn fundamentals in a fun indoor setting. Ages 4-6 at 5 PM, Ages 6-8 at 6 PM.', tags: ['community', 'family'] },
 ];
+
+// ═══════ STATE ═══════
+
+let scheduleData = null;   // { games: [...], season, last_updated }
+let standingsData = null;  // { great_lakes_west: {...}, great_lakes_east: {...} }
+let metaData = null;       // { last_scrape, ... }
+let currentMonth = null;   // 0–11; set on init based on today's date
+let currentHalf = 'first';
+let currentFilter = 'all';
+let scheduleUsingFallback = false;
+
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const SEASON_MONTHS = [4, 5, 6, 7]; // May, Jun, Jul, Aug (0-indexed)
+
+// ═══════ UTILITIES ═══════
+
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function parseDate(yyyyMmDd) {
+  // Use noon local to avoid timezone edge-cases shifting the date.
+  return new Date(yyyyMmDd + 'T12:00:00');
+}
+
+function formatTimeLabel(t) {
+  if (!t) return '';
+  return String(t).trim().toUpperCase().replace(/\s+/g, ' ');
+}
+
+function relativeUpdated(iso) {
+  if (!iso) return '';
+  const then = new Date(iso);
+  if (isNaN(then.getTime())) return '';
+  const diffMs = Date.now() - then.getTime();
+  const diffMin = Math.round(diffMs / 60000);
+  const diffHr = Math.round(diffMs / 3600000);
+  if (diffMin < 1) return 'Updated just now';
+  if (diffMin < 60) return `Updated ${diffMin} min ago`;
+  if (diffHr < 24) return `Updated ${diffHr} hr ago`;
+  const diffDay = Math.round(diffHr / 24);
+  return `Updated ${diffDay} day${diffDay === 1 ? '' : 's'} ago`;
+}
+
+function isStale(iso) {
+  if (!iso) return true;
+  const then = new Date(iso);
+  if (isNaN(then.getTime())) return true;
+  return (Date.now() - then.getTime()) > STALE_HOURS * 3600000;
+}
+
+function defaultMonth() {
+  const now = new Date();
+  if (now.getFullYear() !== SEASON_YEAR) return SEASON_MONTHS[0];
+  const m = now.getMonth();
+  if (m < SEASON_MONTHS[0]) return SEASON_MONTHS[0];
+  if (m > SEASON_MONTHS[SEASON_MONTHS.length - 1]) return SEASON_MONTHS[SEASON_MONTHS.length - 1];
+  return m;
+}
+
+// ═══════ DATA LOADING ═══════
+
+async function fetchJson(path, timeoutMs = 8000) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const resp = await fetch(path, { signal: ctrl.signal, cache: 'no-cache' });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    return await resp.json();
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+async function loadSchedule() {
+  try {
+    const data = await fetchJson('data/schedule.json');
+    if (!data || !Array.isArray(data.games)) throw new Error('Malformed schedule.json');
+    scheduleData = data;
+    scheduleUsingFallback = false;
+  } catch (err) {
+    console.warn('schedule.json load failed, using fallback:', err);
+    scheduleData = { games: FALLBACK_SCHEDULE, last_updated: null, season: SEASON_YEAR };
+    scheduleUsingFallback = true;
+  }
+}
+
+async function loadStandings() {
+  try {
+    standingsData = await fetchJson('data/standings.json');
+  } catch (err) {
+    // Best-effort API fallback (CORS-enabled per CLAUDE.md).
+    try {
+      const apiData = await fetchJson('https://scorebook.northwoodsleague.com/api/standings');
+      const groups = apiData.standings.groups;
+      standingsData = {
+        season_name: (apiData.standings.info && apiData.standings.info.season_name) || '',
+        great_lakes_west: {
+          first_half: extractApiDiv(groups[0], 'Great Lakes West'),
+          second_half: extractApiDiv(groups[1], 'Great Lakes West'),
+          full: extractApiDiv(groups[2], 'Great Lakes West'),
+        },
+        great_lakes_east: {
+          first_half: extractApiDiv(groups[0], 'Great Lakes East'),
+          second_half: extractApiDiv(groups[1], 'Great Lakes East'),
+          full: extractApiDiv(groups[2], 'Great Lakes East'),
+        },
+      };
+    } catch (err2) {
+      console.warn('standings unavailable (local + API both failed):', err, err2);
+      standingsData = null;
+    }
+  }
+}
+
+async function loadMeta() {
+  try {
+    metaData = await fetchJson('data/meta.json');
+  } catch {
+    metaData = null;
+  }
+}
+
+function extractApiDiv(group, divName) {
+  if (!group || !group[divName]) return [];
+  return group[divName].map(t => ({
+    name: t.team.Name, W: t.W, L: t.L, T: t.T || 0,
+    PCT: t.PCT, GB: t.GB, STREAK: t.STREAK || '-', LAST10: t.LAST10 || '-',
+  }));
+}
 
 // ═══════ RENDERING ═══════
 
-const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-let currentMonth = 4; // May (0-indexed)
-let currentFilter = 'all';
+function loadingHtml(msg) {
+  return `<div class="loading-state"><div class="spinner" aria-hidden="true"></div><p>${escapeHtml(msg || 'Loading...')}</p></div>`;
+}
+
+function errorHtml(msg, retryFn) {
+  const btn = retryFn ? `<button class="retry-btn" onclick="${retryFn}">Try again</button>` : '';
+  return `<div class="error-state"><p>${escapeHtml(msg)}</p>${btn}</div>`;
+}
+
+function setLoadingAll() {
+  const gl = document.getElementById('gameList');
+  if (gl) gl.innerHTML = loadingHtml('Loading schedule...');
+  const rl = document.getElementById('resultsList');
+  if (rl) rl.innerHTML = loadingHtml('Loading results...');
+  const sw = document.getElementById('standingsWest');
+  if (sw) sw.innerHTML = `<tr><td colspan="6">${loadingHtml('Loading standings...')}</td></tr>`;
+  const se = document.getElementById('standingsEast');
+  if (se) se.innerHTML = '';
+}
 
 function renderSchedule() {
   const list = document.getElementById('gameList');
-  const monthStr = `2026-${String(currentMonth + 1).padStart(2, '0')}`;
-  const games = SCHEDULE.filter(g => g.date.startsWith(monthStr));
+  if (!list) return;
+  if (!scheduleData || !Array.isArray(scheduleData.games)) {
+    list.innerHTML = errorHtml('Schedule data is unavailable right now.', 'reload()');
+    return;
+  }
+  const monthStr = `${SEASON_YEAR}-${String(currentMonth + 1).padStart(2, '0')}`;
+  const games = scheduleData.games.filter(g => g.date && g.date.startsWith(monthStr));
   const filtered = games.filter(g => {
     if (currentFilter === 'home') return g.home;
     if (currentFilter === 'away') return !g.home;
     return true;
   });
 
-  document.getElementById('monthLabel').textContent = `${MONTHS[currentMonth]} 2026`;
+  const lbl = document.getElementById('monthLabel');
+  if (lbl) lbl.textContent = `${MONTHS[currentMonth]} ${SEASON_YEAR}`;
 
   if (filtered.length === 0) {
     list.innerHTML = `<div class="empty-state"><div class="empty-icon">&#9918;</div><p>No games scheduled this month.<br>The season runs Memorial Day through August.</p></div>`;
@@ -1257,44 +1464,106 @@ function renderSchedule() {
   }
 
   list.innerHTML = filtered.map(g => {
-    const d = new Date(g.date + 'T12:00:00');
+    const d = parseDate(g.date);
     const dayNum = d.getDate();
-    const monthAbbr = MONTHS[d.getMonth()].slice(0, 3);
+    const monthAbbr = MONTH_ABBR[d.getMonth()];
+    const dayAbbr = g.day || d.toLocaleDateString('en-US', { weekday: 'short' });
+    const final = (g.status_code || 0) >= 2;
+    const live = (g.status_code || 0) === 1;
 
     let resultHTML = '';
-    if (g.result) {
-      const cls = g.result.w ? 'win' : 'loss';
-      const oc = g.result.w ? 'w' : 'l';
+    if (final && typeof g.chucks_score === 'number' && typeof g.opponent_score === 'number') {
+      const won = g.chucks_score > g.opponent_score;
       resultHTML = `
         <div class="game-result">
-          <div class="game-score ${cls}">${g.result.score}</div>
-          <div class="game-outcome ${oc}">${g.result.w ? 'W' : 'L'}</div>
+          <div class="game-score ${won ? 'win' : 'loss'}">${g.chucks_score}-${g.opponent_score}</div>
+          <div class="game-outcome ${won ? 'w' : 'l'}">${won ? 'W' : 'L'}</div>
         </div>`;
+    } else if (live) {
+      resultHTML = `<div class="game-result"><div class="game-time" style="color:#c62828;font-weight:700">LIVE</div></div>`;
     } else {
-      const ticketBtn = g.home ? `<a class="ticket-btn" href="https://wausau-woodchucks.nwltickets.com/SingleGame/Tickets" target="_blank" rel="noopener" onclick="event.stopPropagation()">🎟️ Buy Tickets</a>` : '';
-      resultHTML = `<div class="game-result"><div class="game-time">${g.time}</div>${ticketBtn}</div>`;
+      const ticketBtn = g.home
+        ? `<a class="ticket-btn" href="${TICKETS_URL}" target="_blank" rel="noopener" onclick="event.stopPropagation()">&#127903;&#65039; Buy Tickets</a>`
+        : '';
+      resultHTML = `<div class="game-result"><div class="game-time">${escapeHtml(formatTimeLabel(g.time))}</div>${ticketBtn}</div>`;
     }
+
+    const venue = g.home ? HOME_VENUE : (g.location ? escapeHtml(g.location) : 'Away');
 
     return `
       <div class="game-card">
         <div class="game-date">
-          <div class="day-name">${g.day}</div>
+          <div class="day-name">${escapeHtml(dayAbbr)}</div>
           <div class="day-num">${dayNum}</div>
           <div class="month">${monthAbbr}</div>
         </div>
         <div class="game-info">
           <div class="game-opponent">
             <span class="home-away ${g.home ? 'home' : 'away'}">${g.home ? 'vs' : '@'}</span>
-            ${g.opponent}
+            ${escapeHtml(g.opponent || 'TBD')}
           </div>
           <div class="game-meta">
-            <span>${g.home ? 'Athletic Park, Wausau' : 'Away'}</span>
+            <span>${venue}</span>
             <span>&bull;</span>
-            <span>${g.time}</span>
+            <span>${escapeHtml(formatTimeLabel(g.time))}</span>
+            ${g.status === 'Postponed' ? '<span>&bull;</span><span style="color:#b85c00;font-weight:600">Postponed</span>' : ''}
           </div>
-          ${g.promo ? `<div class="game-promo">&#11088; ${g.promo}</div>` : ''}
         </div>
         ${resultHTML}
+      </div>`;
+  }).join('');
+}
+
+function renderResults() {
+  const list = document.getElementById('resultsList');
+  if (!list) return;
+  if (!scheduleData || !Array.isArray(scheduleData.games)) {
+    list.innerHTML = errorHtml('Results data is unavailable right now.', 'reload()');
+    return;
+  }
+  const finals = scheduleData.games
+    .filter(g => (g.status_code || 0) >= 2 && typeof g.chucks_score === 'number' && typeof g.opponent_score === 'number')
+    .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+  if (finals.length === 0) {
+    list.innerHTML = `<div class="empty-state" style="padding:40px 20px"><div class="empty-icon">&#9918;</div><p>No completed games yet.<br>Box scores will appear here as the season gets underway.</p></div>`;
+    return;
+  }
+
+  list.innerHTML = finals.map(g => {
+    const d = parseDate(g.date);
+    const dateLabel = `${d.toLocaleDateString('en-US', { weekday: 'short' })}, ${MONTH_ABBR[d.getMonth()]} ${d.getDate()}`;
+    const chucks = g.chucks_score;
+    const opp = g.opponent_score;
+    const won = chucks > opp;
+    const statusLabel = g.status_code === 3 ? 'Postponed' : (g.status_code === 4 ? 'Suspended' : (g.status || 'Final'));
+
+    return `
+      <div class="boxscore-card">
+        <div class="boxscore-header">
+          <div class="boxscore-date">${escapeHtml(dateLabel)} &middot; ${g.home ? 'vs' : '@'} ${escapeHtml(g.opponent || 'TBD')}</div>
+          <div class="boxscore-status final">${escapeHtml(statusLabel)}</div>
+        </div>
+        <table class="linescore" style="width:100%">
+          <thead>
+            <tr>
+              <th class="team-col"></th>
+              <th class="total-col">R</th>
+              <th class="rhe-col" style="opacity:0.7">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="team-col ${won ? 'winner' : ''}">Woodchucks</td>
+              <td class="total-col ${won ? 'winner' : ''}">${chucks}</td>
+              <td class="rhe-col" rowspan="2" style="vertical-align:middle;font-weight:700;color:${won ? '#2e7d32' : '#c62828'}">${won ? 'W' : 'L'} ${chucks}-${opp}</td>
+            </tr>
+            <tr>
+              <td class="team-col ${!won ? 'winner' : ''}">${escapeHtml(g.opponent || 'Opponent')}</td>
+              <td class="total-col ${!won ? 'winner' : ''}">${opp}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>`;
   }).join('');
 }
@@ -1305,226 +1574,243 @@ function renderStandings(tbody, teams) {
     return;
   }
   tbody.innerHTML = teams.map((t, i) => {
-    const name = t.name;
-    const isChucks = name.includes('Woodchucks');
+    const isChucks = (t.name || '').includes('Woodchucks');
+    const gb = (t.GB === '-' || t.GB === 0 || t.GB === '0') ? '—' : t.GB;
+    const streak = t.STREAK && t.STREAK !== '-' ? t.STREAK : '—';
     return `
     <tr class="${isChucks ? 'highlight' : ''}">
       <td>
         <div class="team-name-cell">
           <span class="team-rank">${i + 1}</span>
-          ${name}
+          ${escapeHtml(t.name)}
         </div>
       </td>
       <td class="stat">${t.W}</td>
       <td class="stat">${t.L}</td>
       <td class="stat">${t.PCT}</td>
-      <td class="stat">${t.GB === '-' ? '—' : t.GB}</td>
-      <td class="stat">${t.STREAK}</td>
+      <td class="stat">${gb}</td>
+      <td class="stat">${escapeHtml(streak)}</td>
     </tr>`;
   }).join('');
 }
 
 function displayStandings(half) {
-  if (!standingsData) return;
-  // JSON structure: { great_lakes_west: { first_half, second_half, full }, great_lakes_east: { ... } }
-  const halfKey = { first: 'first_half', second: 'second_half', full: 'full' }[half] || 'first_half';
-
-  const westTeams = standingsData.great_lakes_west[halfKey] || [];
-  const eastTeams = standingsData.great_lakes_east[halfKey] || [];
-
-  renderStandings(document.getElementById('standingsWest'), westTeams);
-  renderStandings(document.getElementById('standingsEast'), eastTeams);
-}
-
-async function fetchStandings() {
+  const west = document.getElementById('standingsWest');
+  const east = document.getElementById('standingsEast');
   const label = document.getElementById('standingsSeasonLabel');
-  try {
-    // Try local JSON first (GitHub Pages), then fall back to API
-    let data;
-    try {
-      const localResp = await fetch('data/standings.json');
-      if (localResp.ok) data = await localResp.json();
-    } catch(e) {}
-
-    if (!data) {
-      const apiResp = await fetch('https://scorebook.northwoodsleague.com/api/standings');
-      const apiData = await apiResp.json();
-      // Transform API format to our JSON format
-      const groups = apiData.standings.groups;
-      data = {
-        season_name: apiData.standings.info.season_name || '',
-        great_lakes_west: {
-          first_half: extractApiDiv(groups[0], 'Great Lakes West'),
-          second_half: extractApiDiv(groups[1], 'Great Lakes West'),
-          full: extractApiDiv(groups[2], 'Great Lakes West'),
-        },
-        great_lakes_east: {
-          first_half: extractApiDiv(groups[0], 'Great Lakes East'),
-          second_half: extractApiDiv(groups[1], 'Great Lakes East'),
-          full: extractApiDiv(groups[2], 'Great Lakes East'),
-        }
-      };
-    }
-
-    standingsData = data;
-    if (label) label.textContent = data.season_name || '';
-    displayStandings(currentHalf);
-  } catch (err) {
-    console.warn('Could not fetch standings:', err);
+  if (!standingsData) {
+    if (west) west.innerHTML = `<tr><td colspan="6">${errorHtml('Standings data is unavailable right now.', 'reload()')}</td></tr>`;
+    if (east) east.innerHTML = '';
     if (label) label.textContent = 'Unable to load standings';
-    document.getElementById('standingsWest').innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;color:var(--neutral-600)">Could not load standings data.</td></tr>';
-    document.getElementById('standingsEast').innerHTML = '';
+    return;
   }
-}
-
-function extractApiDiv(group, divName) {
-  if (!group || !group[divName]) return [];
-  return group[divName].map(t => ({
-    name: t.team.Name, W: t.W, L: t.L, PCT: t.PCT, GB: t.GB, STREAK: t.STREAK
-  }));
-}
-
-function renderBoxscores() {
-  const list = document.getElementById('boxscoreList');
-  list.innerHTML = BOXSCORES.map((g, idx) => {
-    const awayWin = g.winner === 'away';
-    const homeWin = g.winner === 'home';
-
-    let detailHTML = '';
-    if (g.batting) {
-      detailHTML = `
-        <div class="boxscore-detail" id="detail-${idx}">
-          <div class="detail-section-title">Batting — ${g.away.name}</div>
-          <table class="stat-table">
-            <thead><tr><th>Player</th><th>Pos</th><th>AB</th><th>R</th><th>H</th><th>RBI</th><th>BB</th><th>SO</th></tr></thead>
-            <tbody>${g.batting.away.map(p => `<tr><td>${p.name}</td><td>${p.pos}</td><td>${p.ab}</td><td>${p.r}</td><td>${p.h}</td><td>${p.rbi}</td><td>${p.bb}</td><td>${p.so}</td></tr>`).join('')}</tbody>
-          </table>
-          <div class="detail-section-title">Batting — ${g.home.name}</div>
-          <table class="stat-table">
-            <thead><tr><th>Player</th><th>Pos</th><th>AB</th><th>R</th><th>H</th><th>RBI</th><th>BB</th><th>SO</th></tr></thead>
-            <tbody>${g.batting.home.map(p => `<tr><td>${p.name}</td><td>${p.pos}</td><td>${p.ab}</td><td>${p.r}</td><td>${p.h}</td><td>${p.rbi}</td><td>${p.bb}</td><td>${p.so}</td></tr>`).join('')}</tbody>
-          </table>
-        </div>`;
-    }
-
-    return `
-      <div class="boxscore-card">
-        <div class="boxscore-header">
-          <div class="boxscore-date">${g.date}</div>
-          <div class="boxscore-status final">${g.status}</div>
-        </div>
-        <div class="linescore-wrap">
-          <table class="linescore">
-            <thead>
-              <tr>
-                <th class="team-col"></th>
-                ${g.away.innings.map((_,i) => `<th class="inning-col">${i+1}</th>`).join('')}
-                <th class="total-col">R</th>
-                <th class="rhe-col">H</th>
-                <th class="rhe-col">E</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="team-col ${awayWin ? 'winner' : ''}">${g.away.abbr}</td>
-                ${g.away.innings.map(v => `<td class="inning-col">${v}</td>`).join('')}
-                <td class="total-col ${awayWin ? 'winner' : ''}">${g.away.r}</td>
-                <td class="rhe-col">${g.away.h}</td>
-                <td class="rhe-col">${g.away.e}</td>
-              </tr>
-              <tr>
-                <td class="team-col ${homeWin ? 'winner' : ''}">${g.home.abbr}</td>
-                ${g.home.innings.map(v => `<td class="inning-col">${v}</td>`).join('')}
-                <td class="total-col ${homeWin ? 'winner' : ''}">${g.home.r}</td>
-                <td class="rhe-col">${g.home.h}</td>
-                <td class="rhe-col">${g.home.e}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        ${g.batting ? `<div class="boxscore-toggle" onclick="toggleDetail(${idx})">&#9660; View Box Score Details</div>` : ''}
-        ${detailHTML}
-      </div>`;
-  }).join('');
+  if (label) label.textContent = standingsData.season_name || '';
+  const halfKey = { first: 'first_half', second: 'second_half', full: 'full' }[half] || 'first_half';
+  const westTeams = (standingsData.great_lakes_west || {})[halfKey] || [];
+  const eastTeams = (standingsData.great_lakes_east || {})[halfKey] || [];
+  if (west) renderStandings(west, westTeams);
+  if (east) renderStandings(east, eastTeams);
 }
 
 function renderEvents() {
   const list = document.getElementById('eventsList');
+  if (!list) return;
   const sorted = [...EVENTS].sort((a, b) => a.date.localeCompare(b.date));
-  const ordered = sorted;
-
-  list.innerHTML = ordered.map(e => `
+  list.innerHTML = sorted.map(e => `
     <div class="event-card">
       <div class="event-date-badge">
-        <div class="e-month">${e.month}</div>
-        <div class="e-day">${e.day}</div>
+        <div class="e-month">${escapeHtml(e.month)}</div>
+        <div class="e-day">${escapeHtml(e.day)}</div>
       </div>
       <div class="event-info">
-        <div class="event-title">${e.title}</div>
-        <div class="event-desc">${e.desc}</div>
+        <div class="event-title">${escapeHtml(e.title)}</div>
+        <div class="event-desc">${escapeHtml(e.desc)}</div>
         <div class="event-tags">
-          ${e.tags.map(t => `<span class="event-tag ${t}">${t}</span>`).join('')}
+          ${e.tags.map(t => `<span class="event-tag ${escapeHtml(t)}">${escapeHtml(t)}</span>`).join('')}
         </div>
       </div>
     </div>
   `).join('');
 }
 
+function renderRecordBanner() {
+  const banner = document.getElementById('recordBanner');
+  if (!banner || !scheduleData) return;
+  const finals = scheduleData.games.filter(g =>
+    (g.status_code || 0) >= 2 && typeof g.chucks_score === 'number' && typeof g.opponent_score === 'number'
+  );
+  if (finals.length === 0) {
+    banner.style.display = 'none';
+    return;
+  }
+  let w = 0, l = 0, hw = 0, hl = 0, aw = 0, al = 0;
+  finals.forEach(g => {
+    const won = g.chucks_score > g.opponent_score;
+    if (won) w++; else l++;
+    if (g.home) { if (won) hw++; else hl++; }
+    else { if (won) aw++; else al++; }
+  });
+  // Streak from standings (more accurate than re-computing).
+  let streak = '';
+  if (standingsData) {
+    const halves = standingsData.great_lakes_west || {};
+    const all = [...(halves.full || []), ...(halves.second_half || []), ...(halves.first_half || [])];
+    const chucks = all.find(t => (t.name || '').includes('Woodchucks'));
+    if (chucks && chucks.STREAK && chucks.STREAK !== '-') streak = chucks.STREAK;
+  }
+  banner.innerHTML = `
+    <div class="record-item"><span class="record-label">Record</span><span class="record-value">${w}-${l}</span></div>
+    <div class="record-divider"></div>
+    <div class="record-item"><span class="record-label">Home</span><span class="record-value">${hw}-${hl}</span></div>
+    <div class="record-divider"></div>
+    <div class="record-item"><span class="record-label">Away</span><span class="record-value">${aw}-${al}</span></div>
+    ${streak ? `<div class="record-divider"></div><div class="record-item"><span class="record-label">Streak</span><span class="record-value">${escapeHtml(streak)}</span></div>` : ''}
+  `;
+  banner.style.display = '';
+}
+
+function renderLastUpdated() {
+  const el = document.getElementById('lastUpdated');
+  if (!el) return;
+  const iso = (metaData && metaData.last_scrape) || (scheduleData && scheduleData.last_updated);
+  if (!iso) {
+    el.textContent = scheduleUsingFallback ? 'Live data unavailable' : '';
+    el.className = 'last-updated' + (scheduleUsingFallback ? ' stale' : '');
+    return;
+  }
+  el.textContent = relativeUpdated(iso);
+  el.className = 'last-updated' + (isStale(iso) ? ' stale' : '');
+  el.title = new Date(iso).toLocaleString();
+}
+
 // ═══════ INTERACTIONS ═══════
 
 function changeMonth(dir) {
-  currentMonth = Math.max(4, Math.min(7, currentMonth + dir)); // May through August
+  const min = SEASON_MONTHS[0];
+  const max = SEASON_MONTHS[SEASON_MONTHS.length - 1];
+  currentMonth = Math.max(min, Math.min(max, currentMonth + dir));
   renderSchedule();
 }
 
-function toggleDetail(idx) {
-  const detail = document.getElementById(`detail-${idx}`);
-  if (detail) {
-    detail.classList.toggle('open');
-    const toggle = detail.previousElementSibling;
-    if (detail.classList.contains('open')) {
-      toggle.innerHTML = '&#9650; Hide Box Score Details';
-    } else {
-      toggle.innerHTML = '&#9660; View Box Score Details';
-    }
-  }
+function reload() {
+  setLoadingAll();
+  init();
 }
 
-// Tab switching
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+// Tab switching (ARIA tab pattern with arrow-key navigation)
+const tabButtons = Array.from(document.querySelectorAll('[role="tab"]'));
+
+function activateTab(btn, { focus = false } = {}) {
+  if (!btn) return;
+  tabButtons.forEach(b => {
+    const selected = b === btn;
+    b.classList.toggle('active', selected);
+    b.setAttribute('aria-selected', selected ? 'true' : 'false');
+    b.setAttribute('tabindex', selected ? '0' : '-1');
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => {
+    p.classList.remove('active');
+    p.setAttribute('hidden', '');
+  });
+  const panel = document.getElementById(`tab-${btn.dataset.tab}`);
+  if (panel) {
+    panel.classList.add('active');
+    panel.removeAttribute('hidden');
+  }
+  if (focus) btn.focus();
+}
+
+tabButtons.forEach(btn => {
+  btn.addEventListener('click', () => activateTab(btn));
+  btn.addEventListener('keydown', (e) => {
+    const i = tabButtons.indexOf(btn);
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      activateTab(tabButtons[(i + 1) % tabButtons.length], { focus: true });
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      activateTab(tabButtons[(i - 1 + tabButtons.length) % tabButtons.length], { focus: true });
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      activateTab(tabButtons[0], { focus: true });
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      activateTab(tabButtons[tabButtons.length - 1], { focus: true });
+    }
   });
 });
 
 // Filter pills
 document.querySelectorAll('.filter-pill').forEach(pill => {
   pill.addEventListener('click', () => {
-    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.filter-pill').forEach(p => {
+      p.classList.remove('active');
+      p.setAttribute('aria-pressed', 'false');
+    });
     pill.classList.add('active');
+    pill.setAttribute('aria-pressed', 'true');
     currentFilter = pill.dataset.filter;
     renderSchedule();
   });
+  pill.setAttribute('aria-pressed', pill.classList.contains('active') ? 'true' : 'false');
 });
 
 // Half toggles
 document.querySelectorAll('.half-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.half-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.half-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
     btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
     currentHalf = btn.dataset.half;
     displayStandings(currentHalf);
   });
+  btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
 });
 
+// ═══════ IFRAME AUTO-RESIZE ═══════
+// Posts content height to the parent page so the WordPress embed iframe can
+// match it. Parent listens for { type: 'wpr-woodchucks-resize', height }.
+// See README for the parent-side listener snippet.
+
+const RESIZE_MSG_TYPE = 'wpr-woodchucks-resize';
+let lastPostedHeight = 0;
+
+function postHeight() {
+  if (window.parent === window) return; // not in an iframe
+  const h = Math.ceil(document.documentElement.getBoundingClientRect().height);
+  if (h === lastPostedHeight) return;
+  lastPostedHeight = h;
+  try {
+    window.parent.postMessage({ type: RESIZE_MSG_TYPE, height: h }, '*');
+  } catch {}
+}
+
+if (typeof ResizeObserver !== 'undefined') {
+  new ResizeObserver(postHeight).observe(document.documentElement);
+} else {
+  window.addEventListener('resize', postHeight);
+}
+window.addEventListener('load', postHeight);
+
 // ═══════ INIT ═══════
-renderSchedule();
-fetchStandings();
-renderBoxscores();
-renderEvents();
+
+async function init() {
+  currentMonth = defaultMonth();
+  setLoadingAll();
+  renderEvents();
+  await Promise.all([loadSchedule(), loadStandings(), loadMeta()]);
+  renderSchedule();
+  renderResults();
+  displayStandings(currentHalf);
+  renderRecordBanner();
+  renderLastUpdated();
+  postHeight();
+}
+
+init();
 </script>
 </body>
 </html>
