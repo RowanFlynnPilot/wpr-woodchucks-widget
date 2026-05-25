@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-05-25T20:05:54.151454+00:00",
+  "last_updated": "2026-05-25T21:38:30.233606+00:00",
   "total_games": 70,
   "games": [
     {
@@ -13,10 +13,14 @@
       "opponent_abbr": "MAD",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6565logocapmad.png",
       "location": "Warner Park",
-      "status_code": 0,
-      "status": "Scheduled",
+      "status_code": 1,
+      "status": "In progress / Bottom 2nd",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "visitor_score": 0,
+      "home_score": 0,
+      "chucks_score": 0,
+      "opponent_score": 0
     },
     {
       "id": 5653,
