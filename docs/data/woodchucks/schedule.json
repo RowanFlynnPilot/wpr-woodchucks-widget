@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-05-25T21:38:30.233606+00:00",
+  "last_updated": "2026-05-25T22:50:08.968705+00:00",
   "total_games": 70,
   "games": [
     {
@@ -14,13 +14,13 @@
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6565logocapmad.png",
       "location": "Warner Park",
       "status_code": 1,
-      "status": "In progress / Bottom 2nd",
+      "status": "In progress / Bottom 5th",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "visitor_score": 0,
-      "home_score": 0,
-      "chucks_score": 0,
-      "opponent_score": 0
+      "visitor_score": 7,
+      "home_score": 2,
+      "chucks_score": 7,
+      "opponent_score": 2
     },
     {
       "id": 5653,
