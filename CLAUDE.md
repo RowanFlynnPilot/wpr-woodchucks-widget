@@ -1,71 +1,158 @@
-# WPR Woodchucks Widget
+# WPR Northwoods Widget
 
 ## Project Overview
-Embeddable widget for Wausau Pilot & Review covering the **Wausau Woodchucks** and the **Northwoods League**. Displays schedule, standings, box scores, and special events. Deployed to GitHub Pages and embedded in WPR's WordPress site via iframe.
+Embeddable widget for **Wausau Pilot & Review** covering the **Wausau Woodchucks** (baseball, Northwoods League) and the **Wausau Ignite** (softball, NWL Softball). One self-contained HTML file serves both — the team is picked from `?team=woodchucks` or `?team=ignite` in the URL. Defaults to `woodchucks` when no param is set (preserves the original single-team embed URL).
+
+Deployed to GitHub Pages and embedded in WPR's WordPress site via iframe.
 
 ## Architecture
 ```
-scraper/fetch_nwl.py → GitHub Actions (cron) → docs/data/*.json → docs/index.html (GitHub Pages)
+scraper/fetch_nwl.py --team all
+  ↓ (GitHub Actions cron, every ~30 min during game hours)
+docs/data/<team>/{schedule,standings,meta}.json
+docs/data/<team>/events.json (hand-edited from each team's official promo page)
+  ↓
+docs/index.html (single file, reads ?team= URL param)
+  ↓ (GitHub Pages serves from /docs)
+WordPress iframe with postMessage auto-resize listener
 ```
 
-- **Data Source**: NWL Scorebook API at `https://scorebook.northwoodsleague.com/api/`
-  - `/api/standings` — returns all standings (1st half, 2nd half, full) for the current/latest season
-  - `/api/schedule?teamid=68` — returns full league schedule; filter for team 68 (Woodchucks)
-  - API has `Access-Control-Allow-Origin: *` (CORS open), but we cache to static JSON for reliability
-- **Scraper**: Python script fetches from the NWL API and writes JSON to `docs/data/`
-- **Frontend**: Self-contained HTML widget in `docs/index.html`, reads from `docs/data/*.json`
-- **Deployment**: GitHub Pages serves from `docs/` directory
-- **Cron**: GitHub Actions runs scraper every 30 minutes during game hours (May–August), daily otherwise
+## Data Sources
 
-## NWL API Details
-- **Woodchucks team ID**: `68`
-- **League**: `1` (baseball)
-- **Division**: Great Lakes West (division ID `11`)
-- **Season**: API returns latest season automatically; season ID 26 = 2026
-- **Schedule response**: `{ schedule: { info: {...}, games: [...] } }`
-  - Each game has: `id`, `date` (MM-DD-YYYY), `time`, `visitor_team`, `home_team`, opponent names/abbrs/logos, `status_code`, `status`, `broadcast`, etc.
-  - `status_code`: 0=Scheduled, 1=In Progress, 2=Final, 3=Postponed, 4=Suspended
-- **Standings response**: `{ standings: { info: {...}, groups: [...] } }`
-  - Groups array has 3 entries: `[0]`=1st half, `[1]`=2nd half, `[2]`=full season
-  - Each group is a dict keyed by division name: `"Great Lakes East"`, `"Great Lakes West"`, `"Great Plains East"`, `"Great Plains West"`
-  - Access pattern: `groups[0]["Great Lakes West"]` = 1st half GL West standings
-  - Each team entry: `{ team: { idteam, Name, Abv, ... }, W, L, T, PCT, GB, STREAK, LAST10 }`
+| Team       | Sport    | API base                                              | Team ID |
+|------------|----------|-------------------------------------------------------|---------|
+| Woodchucks | Baseball | `https://scorebook.northwoodsleague.com/api/`         | 68      |
+| Ignite     | Softball | `https://scorebook-softball.northwoodsleague.com/api/`| 5       |
 
-## WPR Brand
-- Teal: `#4aaba7` / `#3e9e9a` / `#0d7377`
-- Cream: `#f5f0e8` / `#f6f2eb`
-- Ink: `#1c1917` / `#181816`
-- Fonts: Playfair Display (headlines), Source Sans 3 (body), JetBrains Mono (data/labels)
+Both endpoints return the **same response shape**, so one fetcher in `fetch_nwl.py` handles both. Both have open CORS, but we cache to static JSON for reliability.
 
-## Woodchucks Brand (used in widget)
+### Common endpoints (both hosts)
+- `/api/schedule` — returns full league schedule (`teamid=` param is silently ignored; scraper filters client-side)
+- `/api/standings` — three groups: `[0]`=1st half, `[1]`=2nd half, `[2]`=full. Each group is a dict keyed by division name.
+
+### Status codes
+`0` = Scheduled · `1` = In Progress · `2` = Final · `3` = Postponed · `4` = Suspended
+
+### Standings division keys
+- **Baseball**: `"Great Lakes East"`, `"Great Lakes West"`, `"Great Plains East"`, `"Great Plains West"`
+- **Softball**: `"NWL Softball"` (single division)
+
+The widget's standings JSON always uses `great_lakes_west` / `great_lakes_east` keys. For softball, the scraper buckets the single `"NWL Softball"` division into `great_lakes_west` so the widget renders it without UI changes; `great_lakes_east` stays empty and the widget hides the East section.
+
+### How the softball API was found
+The NWL site's React component bundle (`/wp-content/themes/NWL-Extend/components/index.js`) lazy-loads webpack chunks at runtime. The main bundle has no URL strings — they live in numbered chunks (`<id>.<hash>.js`). Chunk **768** hardcodes `scorebook-softball.northwoodsleague.com`. If the team adds a third sport in the future, check this bundle the same way.
+
+## Brand Palettes
+
+### WPR (used in the teal sponsor band at the bottom)
+- Teal: `#4aaba7` / `#3a8e8b` · Cream: `#faf7f2` · Ink: `#1a1a1a`
+- Fonts: Source Sans 3 (body), Bebas Neue (display), JetBrains Mono (data/labels)
+
+### Woodchucks (default team theme)
 - Navy: `#162b4d` / `#1e3a66`
-- Cyan: `#00b8d4` / `#4dd0e1`
-- Logo: dark background with woodchuck mascot + bat
+- Accent (cyan): `#00b8d4` / `#4dd0e1`
+- Logo: navy rounded square with woodchuck mascot + bat (`docs/woodchucks-logo.png`)
+
+### Ignite (softball team theme)
+- Navy: `#001830` / `#1a3450`
+- Accent (ice blue): `#48a8d8` / `#90c0c0`
+- Logo: snowy owl wings outstretched (`docs/ignite-logo.png`)
+- Single-division layout — standings heading is "NWL Softball", no East sub-divider
+
+Brand values are applied at runtime by `applyBranding()` via CSS custom properties (`--chucks-navy`, `--chucks-cyan`, etc.). The variable names are legacy and shared by both teams — only the values change.
 
 ## Key Files
-- `docs/index.html` — the widget (self-contained HTML, loads data from `docs/data/`)
-- `docs/data/schedule.json` — cached schedule with game results
-- `docs/data/standings.json` — cached standings (all halves)
-- `docs/data/meta.json` — last scrape timestamp and season info
-- `scraper/fetch_nwl.py` — Python scraper
-- `.github/workflows/scrape.yml` — GitHub Actions workflow
 
-## WordPress Embed
-```html
-<iframe src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/"
-        style="width:100%;max-width:720px;height:800px;border:none;"
-        title="Wausau Woodchucks Schedule & Standings">
-</iframe>
+```
+docs/
+  index.html                # the widget (single file, all CSS+JS inline)
+  woodchucks-logo.png       # 96x96 transparent
+  ignite-logo.png           # 96x96 transparent
+  wpr-logo.png              # for the sponsor band
+  data/
+    woodchucks/
+      schedule.json         # auto-updated by scraper
+      standings.json        # auto-updated by scraper
+      meta.json             # auto-updated by scraper
+      events.json           # editorial — hand-edited
+    ignite/
+      schedule.json         # auto-updated by scraper
+      standings.json        # auto-updated by scraper
+      meta.json             # auto-updated by scraper
+      events.json           # editorial — hand-edited
+scraper/
+  fetch_nwl.py              # TEAMS dict at top maps slug → API base + team_id
+  requirements.txt          # just `requests`
+.github/workflows/
+  scrape.yml                # runs `python scraper/fetch_nwl.py --team all` on cron
 ```
 
+## WordPress Embed
+
+Two iframes + one shared listener (the listener routes by `data-team`):
+
+```html
+<iframe id="wpr-widget-woodchucks" data-team="woodchucks"
+  src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/?team=woodchucks"
+  style="width:100%;max-width:720px;height:600px;border:none;display:block;margin:0 auto;"
+  title="Wausau Woodchucks Schedule & Standings" loading="lazy" scrolling="no"></iframe>
+
+<iframe id="wpr-widget-ignite" data-team="ignite"
+  src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/?team=ignite"
+  style="width:100%;max-width:720px;height:600px;border:none;display:block;margin:0 auto;"
+  title="Wausau Ignite Schedule & Standings" loading="lazy" scrolling="no"></iframe>
+
+<script>
+  window.addEventListener('message', function (e) {
+    if (!e.data || e.data.type !== 'wpr-widget-resize') return;
+    var f = document.querySelector('iframe[data-team="' + e.data.team + '"]');
+    if (f && typeof e.data.height === 'number') f.style.height = e.data.height + 'px';
+  });
+</script>
+```
+
+Resize message contract: `{ type: 'wpr-widget-resize', team: 'woodchucks'|'ignite', height: <number> }`. Posted on `ResizeObserver` of `<html>`.
+
 ## Season Timeline
-- **Late May**: Season opens (Memorial Day weekend)
-- **Early July**: All-Star Break (Jul 7-9, 2026 at Field of Dreams)
-- **Early August**: Regular season ends (~Aug 8-9)
-- **Aug 9-13**: Playoffs
-- Season is split into two halves for standings purposes
+
+### Woodchucks (Baseball)
+- **Late May**: Season opens (Memorial Day weekend) — 2026 opener May 28
+- **Early July**: NWL All-Star Break at Field of Dreams (Jul 7–9)
+- **Early August**: Regular season ends (~Aug 8)
+- Season is split into 1st/2nd halves for standings
+
+### Ignite (Softball)
+- **Mid June**: Season opens — 2026 opener Jun 9
+- **Late July**: Regular season ends (~Jul 31)
+- Single half (no split standings)
+
+## Editorial Events Refresh (Annual)
+
+Each team publishes a promotional schedule page once a year:
+- Woodchucks: `https://northwoodsleague.com/wausau-woodchucks/2026-promotional-schedule/`
+- Ignite: `https://northwoodsleague.com/wausau-ignite/2026-promotional-schedule-2/`
+
+Set a calendar reminder for **late April / early May** each year to re-curate `docs/data/<team>/events.json` from the new season's promo page. ~20 min per team.
 
 ## Development
-- Local preview: open `docs/index.html` in browser
-- Test scraper: `cd scraper && python fetch_nwl.py`
-- Future: migrate to React/Vite for frontend
+
+```bash
+# Install scraper deps (one-time)
+pip install -r scraper/requirements.txt
+
+# Run scraper (defaults to --team all)
+python scraper/fetch_nwl.py
+python scraper/fetch_nwl.py --team ignite     # one team
+python scraper/fetch_nwl.py --schedule-only   # skip standings
+
+# Preview locally
+python -m http.server 8765 --directory docs
+# http://localhost:8765/?team=woodchucks  or  ?team=ignite
+```
+
+## Common Edits
+
+- **Add an event**: edit `docs/data/<team>/events.json`, push. Widget picks it up on next reload.
+- **Add a new team**: extend `TEAMS` in both `scraper/fetch_nwl.py` and the `TEAMS` block at the top of `docs/index.html` (~30 lines per team for the widget config).
+- **Brand tweaks**: change values in the team's `brand:` object in `docs/index.html`.
+- **Season year rollover**: bump `seasonYear` in each `TEAMS` entry; the rest follows.

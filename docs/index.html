@@ -1374,6 +1374,21 @@ function defaultMonth() {
   return m;
 }
 
+// After data loads, prefer the month containing the next upcoming game. Keeps
+// the widget from landing on an empty pre-season month (e.g. Ignite opens June 9
+// — anyone visiting before that should see June, not an empty May).
+function bestMonthForSchedule() {
+  if (!scheduleData || !Array.isArray(scheduleData.games) || scheduleData.games.length === 0) {
+    return defaultMonth();
+  }
+  const todayIso = new Date().toISOString().slice(0, 10);
+  const future = scheduleData.games.filter(g => g.date && g.date >= todayIso);
+  if (future.length > 0) return parseDate(future[0].date).getMonth();
+  // Season is over — show the last month with games.
+  const last = scheduleData.games[scheduleData.games.length - 1];
+  return parseDate(last.date).getMonth();
+}
+
 // ═══════ DATA LOADING ═══════
 
 async function fetchJson(path, timeoutMs = 8000) {
@@ -1646,7 +1661,18 @@ function displayStandings(half) {
     if (label) label.textContent = 'Unable to load standings';
     return;
   }
-  if (label) label.textContent = standingsData.season_name || '';
+  if (label) {
+    const seasonName = standingsData.season_name || '';
+    // If the standings season label starts with a year earlier than our
+    // configured SEASON_YEAR, the API hasn't rolled over yet — make that
+    // explicit so visitors don't misread last year's records as current.
+    const yearMatch = seasonName.match(/(\d{4})/);
+    const isPriorSeason = yearMatch && parseInt(yearMatch[1], 10) < SEASON_YEAR;
+    label.textContent = seasonName;
+    if (isPriorSeason) {
+      label.innerHTML = `${escapeHtml(seasonName)} <span style="color:#b85c00;font-weight:600">— final · ${SEASON_YEAR} records reset at opening day</span>`;
+    }
+  }
   const halfKey = { first: 'first_half', second: 'second_half', full: 'full' }[half] || 'first_half';
 
   // Pre-season the API returns an empty 1st-half but a populated 2nd-half with
@@ -1912,6 +1938,7 @@ async function init() {
   currentMonth = defaultMonth();
   setLoadingAll();
   await Promise.all([loadSchedule(), loadStandings(), loadMeta(), loadEvents()]);
+  currentMonth = bestMonthForSchedule();
   renderSchedule();
   renderResults();
   displayStandings(currentHalf);
