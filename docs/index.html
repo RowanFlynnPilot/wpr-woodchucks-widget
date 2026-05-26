@@ -1286,6 +1286,23 @@ img.opp-logo:not([src]), img.standings-logo:not([src]) { display: none; }
   margin-top: 14px;
   margin-bottom: 6px;
   padding-left: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.game-modal-section .gm-team-header .opp-logo {
+  width: 20px;
+  height: 20px;
+}
+.gm-team-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.gm-team-cell .opp-logo {
+  width: 18px;
+  height: 18px;
+  margin-right: 0;
 }
 .game-modal-section .gm-team-header:first-child { margin-top: 0; }
 .game-modal-section.gm-metadata {
@@ -1334,6 +1351,22 @@ img.opp-logo:not([src]), img.standings-logo:not([src]) { display: none; }
   transition: background 0.15s;
 }
 .boxscore-card.clickable:hover { background: var(--field-blue); }
+/* The R-column has its own neutral-50 background — override it on hover so
+   the highlight reads as one continuous box across the row. */
+.boxscore-card.clickable:hover .linescore .total-col { background: var(--field-blue); }
+
+/* Team label inside the Results linescore — flexbox so the logo + name sit
+   on a single line and align cleanly. */
+.bx-team {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.bx-team .opp-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 0;
+}
 
 /* ─── RESPONSIVE ─── */
 /* Tablet (the widget is already capped at max-width: 720px on the container,
@@ -1987,10 +2020,14 @@ function renderResults() {
     const clickAttrs = clickable
       ? ` class="boxscore-card clickable" tabindex="0" role="button" aria-label="View box score" data-game-id="${g.id}"`
       : ' class="boxscore-card"';
+    const ourLogo = TEAM.logoUrl;
+    const oppLogo = g.opponent_logo;
+    const ourName = TEAM.name.split(' ').pop();
+    const teamCell = (logo, name) => `<span class="bx-team">${logo ? `<img class="opp-logo" src="${escapeHtml(logo)}" alt="" loading="lazy" decoding="async" width="20" height="20">` : ''}<span>${escapeHtml(name)}</span></span>`;
     return `
       <div${clickAttrs}>
         <div class="boxscore-header">
-          <div class="boxscore-date">${escapeHtml(dateLabel)} &middot; ${g.home ? 'vs' : '@'} ${g.opponent_logo ? `<img class="opp-logo" src="${escapeHtml(g.opponent_logo)}" alt="" loading="lazy" decoding="async" width="18" height="18">` : ''} ${escapeHtml(g.opponent || 'TBD')}</div>
+          <div class="boxscore-date">${escapeHtml(dateLabel)} &middot; ${g.home ? 'vs' : '@'} ${escapeHtml(g.opponent || 'TBD')}</div>
           <div class="boxscore-status final">${escapeHtml(statusLabel)}</div>
         </div>
         <table class="linescore" style="width:100%">
@@ -2003,12 +2040,12 @@ function renderResults() {
           </thead>
           <tbody>
             <tr>
-              <td class="team-col ${won ? 'winner' : ''}">${escapeHtml(TEAM.name.split(' ').pop())}</td>
+              <td class="team-col ${won ? 'winner' : ''}">${teamCell(ourLogo, ourName)}</td>
               <td class="total-col ${won ? 'winner' : ''}">${chucks}</td>
               <td class="rhe-col" rowspan="2" style="vertical-align:middle;font-weight:700;color:${won ? '#2e7d32' : '#c62828'}">${won ? 'W' : 'L'} ${chucks}-${opp}</td>
             </tr>
             <tr>
-              <td class="team-col ${!won ? 'winner' : ''}">${escapeHtml(g.opponent || 'Opponent')}</td>
+              <td class="team-col ${!won ? 'winner' : ''}">${teamCell(oppLogo, g.opponent || 'Opponent')}</td>
               <td class="total-col ${!won ? 'winner' : ''}">${opp}</td>
             </tr>
           </tbody>
@@ -2496,11 +2533,14 @@ function renderGameDetail(boxResp, statsResp) {
   // Linescore
   if (linescore && linescore.visitor && linescore.home) {
     const inningNums = Object.keys(linescore.visitor.innings || {}).map(Number).sort((a, b) => a - b);
-    const innRow = (sideName, sideObj, isWinner) => {
+    const visitorLogo = game.visitor_team_logo || '';
+    const homeLogo = game.home_team_logo || '';
+    const innRow = (sideName, sideObj, isWinner, logo) => {
       const cells = inningNums.map(n => `<td>${sideObj.innings[n] != null ? sideObj.innings[n] : '-'}</td>`).join('');
       const t = sideObj.totals || {};
+      const logoHtml = logo ? `<img class="opp-logo" src="${escapeHtml(logo)}" alt="" loading="lazy" decoding="async" width="18" height="18">` : '';
       return `<tr${isWinner ? ' class="team-totals"' : ''}>
-        <td>${escapeHtml(sideName)}</td>${cells}
+        <td><span class="gm-team-cell">${logoHtml}${escapeHtml(sideName)}</span></td>${cells}
         <td class="rhe">${t.R != null ? t.R : '-'}</td>
         <td class="rhe">${t.H != null ? t.H : '-'}</td>
         <td class="rhe">${t.E != null ? t.E : '-'}</td>
@@ -2520,8 +2560,8 @@ function renderGameDetail(boxResp, statsResp) {
               </tr>
             </thead>
             <tbody>
-              ${innRow(visitorName, linescore.visitor, winnerSide === 'visitor')}
-              ${innRow(homeName, linescore.home, winnerSide === 'home')}
+              ${innRow(visitorName, linescore.visitor, winnerSide === 'visitor', visitorLogo)}
+              ${innRow(homeName, linescore.home, winnerSide === 'home', homeLogo)}
             </tbody>
           </table>
         </div>
@@ -2532,9 +2572,11 @@ function renderGameDetail(boxResp, statsResp) {
 
   // Batting + Pitching per team
   if (stats && (stats.visitor || stats.home)) {
-    const bothBatting = renderBatting(visitorName, stats.visitor && stats.visitor.batting, homeName, stats.home && stats.home.batting);
+    const vLogo = game.visitor_team_logo || '';
+    const hLogo = game.home_team_logo || '';
+    const bothBatting = renderBatting(visitorName, stats.visitor && stats.visitor.batting, vLogo, homeName, stats.home && stats.home.batting, hLogo);
     if (bothBatting) html += `<div class="game-modal-section"><h3>Batting</h3>${bothBatting}</div>`;
-    const bothPitching = renderPitching(visitorName, stats.visitor && stats.visitor.pitching, homeName, stats.home && stats.home.pitching);
+    const bothPitching = renderPitching(visitorName, stats.visitor && stats.visitor.pitching, vLogo, homeName, stats.home && stats.home.pitching, hLogo);
     if (bothPitching) html += `<div class="game-modal-section"><h3>Pitching</h3>${bothPitching}</div>`;
   }
 
@@ -2566,10 +2608,10 @@ function renderPitchersOfRecord(pof) {
   return parts.length ? `<div style="margin-top:10px;font-size:11px;color:var(--neutral-700)">${parts.join(' · ')}</div>` : '';
 }
 
-function renderBatting(vName, vObj, hName, hObj) {
+function renderBatting(vName, vObj, vLogo, hName, hObj, hLogo) {
   if (!vObj && !hObj) return '';
   const cols = ['AB', 'R', 'H', 'RBI', 'BB', 'K', 'AVG'];
-  const renderSide = (name, obj) => {
+  const renderSide = (name, obj, logo) => {
     if (!obj || !Array.isArray(obj.stats) || obj.stats.length === 0) return '';
     const rows = obj.stats.map(p => `
       <tr>
@@ -2578,8 +2620,9 @@ function renderBatting(vName, vObj, hName, hObj) {
       </tr>
     `).join('');
     const totals = obj.totals || {};
+    const logoHtml = logo ? `<img class="opp-logo" src="${escapeHtml(logo)}" alt="" loading="lazy" decoding="async" width="20" height="20">` : '';
     return `
-      <div class="gm-team-header">${escapeHtml(name)}</div>
+      <div class="gm-team-header">${logoHtml}${escapeHtml(name)}</div>
       <table>
         <thead><tr><th>Player</th>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
         <tbody>
@@ -2589,13 +2632,13 @@ function renderBatting(vName, vObj, hName, hObj) {
       </table>
     `;
   };
-  return renderSide(vName, vObj) + renderSide(hName, hObj);
+  return renderSide(vName, vObj, vLogo) + renderSide(hName, hObj, hLogo);
 }
 
-function renderPitching(vName, vObj, hName, hObj) {
+function renderPitching(vName, vObj, vLogo, hName, hObj, hLogo) {
   if (!vObj && !hObj) return '';
   const cols = ['IP', 'H', 'R', 'ER', 'BB', 'K', 'ERA'];
-  const renderSide = (name, obj) => {
+  const renderSide = (name, obj, logo) => {
     if (!obj || !Array.isArray(obj.stats) || obj.stats.length === 0) return '';
     const rows = obj.stats.map(p => `
       <tr>
@@ -2604,8 +2647,9 @@ function renderPitching(vName, vObj, hName, hObj) {
       </tr>
     `).join('');
     const totals = obj.totals || {};
+    const logoHtml = logo ? `<img class="opp-logo" src="${escapeHtml(logo)}" alt="" loading="lazy" decoding="async" width="20" height="20">` : '';
     return `
-      <div class="gm-team-header">${escapeHtml(name)}</div>
+      <div class="gm-team-header">${logoHtml}${escapeHtml(name)}</div>
       <table>
         <thead><tr><th>Pitcher</th>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
         <tbody>
@@ -2615,7 +2659,7 @@ function renderPitching(vName, vObj, hName, hObj) {
       </table>
     `;
   };
-  return renderSide(vName, vObj) + renderSide(hName, hObj);
+  return renderSide(vName, vObj, vLogo) + renderSide(hName, hObj, hLogo);
 }
 
 function formatStat(v) {
