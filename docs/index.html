@@ -1451,11 +1451,6 @@ body {
             <div class="standings-title" id="standingsHeading">Great Lakes Division</div>
             <div id="standingsSeasonLabel" style="font-size:11px;color:var(--neutral-600);margin-top:2px">Loading standings...</div>
           </div>
-          <div class="half-toggle" role="group" aria-label="Season half">
-            <button class="half-btn active" data-half="first" type="button">1st Half</button>
-            <button class="half-btn" data-half="second" type="button">2nd Half</button>
-            <button class="half-btn" data-half="full" type="button">Full</button>
-          </div>
         </div>
       </div>
 
@@ -1621,7 +1616,6 @@ let scheduleData = null;   // { games: [...], season, last_updated }
 let standingsData = null;  // { great_lakes_west: {...}, great_lakes_east: {...} }
 let metaData = null;       // { last_scrape, ... }
 let currentMonth = null;   // 0–11; set on init based on today's date
-let currentHalf = 'first';
 let currentFilter = 'all';
 let scheduleUsingFallback = false;
 
@@ -1967,7 +1961,7 @@ function renderStandings(tbody, teams) {
   }).join('');
 }
 
-function displayStandings(half) {
+function displayStandings() {
   const west = document.getElementById('standingsWest');
   const east = document.getElementById('standingsEast');
   const label = document.getElementById('standingsSeasonLabel');
@@ -1989,18 +1983,13 @@ function displayStandings(half) {
       label.innerHTML = `${escapeHtml(seasonName)} <span style="color:#b85c00;font-weight:600">— final · ${SEASON_YEAR} records reset at opening day</span>`;
     }
   }
-  const halfKey = { first: 'first_half', second: 'second_half', full: 'full' }[half] || 'first_half';
 
-  // Pre-season the API returns an empty 1st-half but a populated 2nd-half with
-  // every team at 0-0. Show the team list with zeroed stats so users don't see
-  // a blank table just because no games have been played yet.
+  // The NWL Scorebook API exposes `groups[0]` (always empty), `groups[1]`, and
+  // `groups[2]` (identical to [1]) — there is no actual 1st-half / 2nd-half
+  // split, so we just pick the first populated group.
   function pickTeams(division) {
     const halves = standingsData[division] || {};
-    const direct = halves[halfKey];
-    if (direct && direct.length > 0) return direct;
-    // Empty arrays are truthy — pick the first non-empty fallback half.
-    const fallback = [halves.full, halves.second_half, halves.first_half].find(a => Array.isArray(a) && a.length > 0) || [];
-    return fallback.map(t => ({ ...t, W: 0, L: 0, T: 0, PCT: '.000', GB: '-', STREAK: '-', LAST10: '-' }));
+    return [halves.second_half, halves.full, halves.first_half].find(a => Array.isArray(a) && a.length > 0) || [];
   }
 
   if (west) renderStandings(west, pickTeams('great_lakes_west'));
@@ -2490,21 +2479,6 @@ document.querySelectorAll('.filter-pill').forEach(pill => {
   pill.setAttribute('aria-pressed', pill.classList.contains('active') ? 'true' : 'false');
 });
 
-// Half toggles
-document.querySelectorAll('.half-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.half-btn').forEach(b => {
-      b.classList.remove('active');
-      b.setAttribute('aria-pressed', 'false');
-    });
-    btn.classList.add('active');
-    btn.setAttribute('aria-pressed', 'true');
-    currentHalf = btn.dataset.half;
-    displayStandings(currentHalf);
-  });
-  btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
-});
-
 // Stats batting/pitching toggle
 document.querySelectorAll('.stats-tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -2644,7 +2618,7 @@ async function init() {
   currentMonth = bestMonthForSchedule();
   renderSchedule();
   renderResults();
-  displayStandings(currentHalf);
+  displayStandings();
   renderRecordBanner();
   renderLastUpdated();
   renderEvents();
