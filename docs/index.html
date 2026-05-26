@@ -869,32 +869,31 @@ body {
 
 .widget-footer a:hover { text-decoration: underline; }
 
-/* WPR branded band (sponsor sign-off) */
+/* Team-branded sponsor band (sign-off at the bottom). Colors set per team
+   by applyBranding() via --band-bg / --band-bg-hover. */
 .wpr-band {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   padding: 10px 20px;
-  background: var(--wpr-teal);
-  color: var(--wpr-cream);
+  background: var(--band-bg, var(--chucks-navy));
+  color: #fff;
   text-decoration: none;
   border-top: 1px solid rgba(0,0,0,0.08);
   transition: background 0.15s ease;
 }
 
 .wpr-band-logo {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #fff;
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
   display: block;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.4);
+  object-fit: contain;
 }
 
 .wpr-band:hover, .wpr-band:focus-visible {
-  background: var(--wpr-teal-dark);
+  background: var(--band-bg-hover, var(--chucks-navy-light));
   text-decoration: none;
 }
 
@@ -1236,11 +1235,12 @@ body {
     </div>
   </div>
 
-  <!-- WPR branded band -->
-  <a class="wpr-band" href="https://wausaupilotandreview.com" target="_blank" rel="noopener" aria-label="Wausau Pilot & Review (opens in new tab)">
+  <!-- Team-branded sponsor band (link, label, brand text, and logo are all
+       overwritten per team at runtime by applyBranding()) -->
+  <a class="wpr-band" href="https://northwoodsleague.com/wausau-woodchucks/" target="_blank" rel="noopener" aria-label="Wausau Woodchucks (opens in new tab)">
     <span class="wpr-band-label">Brought to you by</span>
-    <span class="wpr-band-brand">Wausau Pilot &amp; Review</span>
-    <img class="wpr-band-logo" src="wpr-logo.png" alt="" loading="lazy" decoding="async" width="24" height="24">
+    <span class="wpr-band-brand">the Wausau Woodchucks</span>
+    <img class="wpr-band-logo" src="woodchucks-logo.png" alt="" loading="lazy" decoding="async" width="28" height="28">
   </a>
 </div>
 
@@ -1890,6 +1890,10 @@ function applyBranding() {
   root.setProperty('--chucks-navy-light', TEAM.brand.navyLight);
   root.setProperty('--chucks-cyan', TEAM.brand.accent);
   root.setProperty('--chucks-cyan-light', TEAM.brand.accentLight);
+  // Sponsor band uses the team's navy as a deeper sign-off; hover goes to the
+  // accent. Teams can override via brand.bandBg / brand.bandBgHover.
+  root.setProperty('--band-bg', TEAM.brand.bandBg || TEAM.brand.navy);
+  root.setProperty('--band-bg-hover', TEAM.brand.bandBgHover || TEAM.brand.navyLight);
 
   document.title = `${TEAM.name} — ${TEAM.league} | Wausau Pilot & Review`;
   const setMeta = (sel, value) => { const el = document.querySelector(sel); if (el) el.setAttribute('content', value); };
@@ -1908,6 +1912,17 @@ function applyBranding() {
   if (logo) { logo.src = TEAM.logoUrl; logo.alt = TEAM.name; }
   const dataLink = document.querySelector('.powered-by a');
   if (dataLink) dataLink.href = TEAM.siteUrl;
+
+  // Sponsor band — link, brand text, and logo are all team-specific.
+  const band = document.querySelector('.wpr-band');
+  if (band) {
+    band.href = TEAM.siteUrl;
+    band.setAttribute('aria-label', `${TEAM.name} (opens in new tab)`);
+  }
+  const bandBrand = document.querySelector('.wpr-band-brand');
+  if (bandBrand) bandBrand.textContent = `the ${TEAM.name}`;
+  const bandLogo = document.querySelector('.wpr-band-logo');
+  if (bandLogo) { bandLogo.src = TEAM.logoUrl; bandLogo.alt = ''; }
 
   // Standings heading + sub-dividers. For single-division leagues (softball),
   // hide both sub-dividers so the heading is the only label.
