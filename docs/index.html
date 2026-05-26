@@ -2218,9 +2218,9 @@ function buildGameContext(game, boxScoreEnvelope, statsEnvelope) {
   return { game, meta, linescore, pitchersOfRecord, ourSide, ourPlayers, ourPitchers };
 }
 
-// Schedule recap — one short, contextual sentence describing how the game went.
-// Kept concise: just the lead. Stat-heavy player call-outs live in the POTG
-// callout on the Results tab.
+// Schedule recap — a contextual lead sentence + a "led the way" player line.
+// Example: "The Woodchucks started the season strong, beating the Madison
+// Mallards 8-3. Chase and Karll led the way with a combined 4 hits and 4 RBI."
 function buildSummary(ctx) {
   const { game, meta, linescore } = ctx;
   const we = TEAM.name.split(' ').pop();
@@ -2228,7 +2228,8 @@ function buildSummary(ctx) {
   const ourScore = game.chucks_score;
   const theirScore = game.opponent_score;
   const margin = Math.abs(ourScore - theirScore);
-  const opponent = game.opponent || 'their opponent';
+  const opp = `the ${game.opponent || 'opponent'}`;
+  const Opp = opp.charAt(0).toUpperCase() + opp.slice(1);
 
   const isOpener = scheduleData && scheduleData.games && scheduleData.games.find(x => (x.status_code || 0) >= 2)?.id === game.id;
   const innings = linescore && linescore.visitor && linescore.visitor.innings ? Object.keys(linescore.visitor.innings).map(Number) : [];
@@ -2238,19 +2239,71 @@ function buildSummary(ctx) {
   const isCloseGame = margin <= 1;
 
   let lead;
-  if (won && isOpener) lead = `The ${we} started the season strong, beating ${opponent} ${ourScore}-${theirScore}.`;
-  else if (!won && isOpener) lead = `The ${we} dropped their season opener to ${opponent}, ${ourScore}-${theirScore}.`;
-  else if (won && isShutout) lead = `${we} pitching shut out ${opponent} ${ourScore}-0.`;
-  else if (won && wentExtras) lead = `The ${we} held on in extras to beat ${opponent} ${ourScore}-${theirScore}.`;
-  else if (!won && wentExtras) lead = `The ${we} fell in extras to ${opponent} ${theirScore}-${ourScore}.`;
-  else if (won && isBlowout) lead = `The ${we} rolled past ${opponent} ${ourScore}-${theirScore}.`;
-  else if (!won && isBlowout) lead = `${opponent} ran away from the ${we} ${theirScore}-${ourScore}.`;
-  else if (won && isCloseGame) lead = `The ${we} edged out ${opponent} ${ourScore}-${theirScore}.`;
-  else if (!won && isCloseGame) lead = `The ${we} fell to ${opponent} by one, ${ourScore}-${theirScore}.`;
-  else if (won) lead = `The ${we} beat ${opponent} ${ourScore}-${theirScore}.`;
-  else lead = `The ${we} fell to ${opponent} ${ourScore}-${theirScore}.`;
+  if (won && isOpener) lead = `The ${we} started the season strong, beating ${opp} ${ourScore}-${theirScore}.`;
+  else if (!won && isOpener) lead = `The ${we} dropped their season opener to ${opp}, ${ourScore}-${theirScore}.`;
+  else if (won && isShutout) lead = `The ${we} shut out ${opp} ${ourScore}-0.`;
+  else if (won && wentExtras) lead = `The ${we} held on in extras to beat ${opp} ${ourScore}-${theirScore}.`;
+  else if (!won && wentExtras) lead = `The ${we} fell in extras to ${opp} ${theirScore}-${ourScore}.`;
+  else if (won && isBlowout) lead = `The ${we} rolled past ${opp} ${ourScore}-${theirScore}.`;
+  else if (!won && isBlowout) lead = `${Opp} ran away from the ${we} ${theirScore}-${ourScore}.`;
+  else if (won && isCloseGame) lead = `The ${we} edged out ${opp} ${ourScore}-${theirScore}.`;
+  else if (!won && isCloseGame) lead = `The ${we} fell to ${opp} by one, ${ourScore}-${theirScore}.`;
+  else if (won) lead = `The ${we} beat ${opp} ${ourScore}-${theirScore}.`;
+  else lead = `The ${we} fell to ${opp} ${ourScore}-${theirScore}.`;
 
-  return `<span class="summary-lead">${escapeHtml(lead)}</span>`;
+  const callout = buildScheduleCallout(ctx);
+  return `<span class="summary-lead">${escapeHtml(lead)}</span>${callout ? ' ' + callout : ''}`;
+}
+
+// "Led the way" player line for the Schedule summary. Picks top batter(s) by
+// RBI (tied players included when 2+ RBI) and sums their hits/RBI/HR for a
+// single combined sentence.
+function buildScheduleCallout(ctx) {
+  const players = (ctx.ourPlayers || []).filter(p => p && ((+p.H || 0) > 0 || (+p.RBI || 0) > 0));
+  if (players.length === 0) return '';
+
+  const ranked = [...players].sort((a, b) => (+b.RBI || 0) - (+a.RBI || 0));
+  const topRBI = +ranked[0].RBI || 0;
+  let picked;
+  if (topRBI >= 2) {
+    // Include everyone tied at the top, capped at the two most notable.
+    picked = ranked.filter(p => (+p.RBI || 0) === topRBI).slice(0, 2);
+  } else {
+    // No big RBI day — fall back to the top multi-hit batter, if any.
+    const byHits = [...players].filter(p => (+p.H || 0) >= 2).sort((a, b) => (+b.H || 0) - (+a.H || 0));
+    if (byHits.length === 0) return '';
+    picked = [byHits[0]];
+  }
+
+  const totalH = picked.reduce((s, p) => s + (+p.H || 0), 0);
+  const totalRBI = picked.reduce((s, p) => s + (+p.RBI || 0), 0);
+  const totalHR = picked.reduce((s, p) => s + (+p.HR || 0), 0);
+
+  const names = picked.map(p => `<span class="summary-lead">${escapeHtml(p.lastname || '')}</span>`);
+  const bits = [];
+  if (totalH > 0) bits.push(`<span class="summary-stat">${totalH} hit${totalH === 1 ? '' : 's'}</span>`);
+  if (totalRBI > 0) bits.push(`<span class="summary-stat">${totalRBI} RBI</span>`);
+  if (totalHR > 0) bits.push(`<span class="summary-stat">${totalHR} HR</span>`);
+  if (bits.length === 0) return '';
+  const statsClause = bits.length === 1 ? bits[0]
+    : bits.length === 2 ? `${bits[0]} and ${bits[1]}`
+    : `${bits.slice(0, -1).join(', ')}, and ${bits[bits.length - 1]}`;
+
+  if (picked.length >= 2) {
+    return `${names[0]} and ${names[1]} led the way with a combined ${statsClause}.`;
+  }
+  // Single player — use "going N-for-M with X RBI" when we have at-bats.
+  const p = picked[0];
+  const ab = +p.AB || 0;
+  const h = +p.H || 0;
+  const rbi = +p.RBI || 0;
+  if (h > 0 && ab > 0) {
+    const sub = [`<span class="summary-stat">${h}-for-${ab}</span>`];
+    if (rbi > 0) sub.push(`<span class="summary-stat">${rbi} RBI</span>`);
+    const subClause = sub.length === 1 ? sub[0] : `${sub[0]} with ${sub.slice(1).join(' and ')}`;
+    return `${names[0]} led the way, going ${subClause}.`;
+  }
+  return `${names[0]} led the way with ${statsClause}.`;
 }
 
 // Player of the Game (Results tab callout). Scores every batter + pitcher and
