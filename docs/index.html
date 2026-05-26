@@ -2162,8 +2162,9 @@ function buildSummary(game, boxScoreEnvelope, statsEnvelope) {
   const linescore = boxScoreEnvelope && boxScoreEnvelope.boxScore;
   const pitchers = boxScoreEnvelope && boxScoreEnvelope.pitchersOfRecord;
   const ourSide = meta ? (meta.home_team === TEAM.teamId ? 'home' : 'visitor') : (game.home ? 'home' : 'visitor');
-  const ourBatting = statsEnvelope && statsEnvelope.stats && statsEnvelope.stats[ourSide] && statsEnvelope.stats[ourSide].batting;
-  const ourPlayers = (ourBatting && Array.isArray(ourBatting.stats)) ? ourBatting.stats : [];
+  const ourSideStats = statsEnvelope && statsEnvelope.stats && statsEnvelope.stats[ourSide];
+  const ourPlayers = (ourSideStats && ourSideStats.batting && Array.isArray(ourSideStats.batting.stats)) ? ourSideStats.batting.stats : [];
+  const ourPitchers = (ourSideStats && ourSideStats.pitching && Array.isArray(ourSideStats.pitching.stats)) ? ourSideStats.pitching.stats : [];
 
   // ── Lead clause (contextual) ──
   const isOpener = scheduleData && scheduleData.games && scheduleData.games.find(x => x.id === game.id) === scheduleData.games.find(x => (x.status_code || 0) >= 2);
@@ -2186,22 +2187,25 @@ function buildSummary(game, boxScoreEnvelope, statsEnvelope) {
   else if (won) lead = `The ${we} beat ${opponent} ${ourScore}-${theirScore}.`;
   else lead = `The ${we} fell to ${opponent} ${ourScore}-${theirScore}.`;
 
-  // ── Player call-out ──
-  const callout = pickPlayerCallout(ourPlayers, pitchers, ourSide, won);
+  // ── Player call-out: combine batter + pitcher highlights ──
+  const batterLine = pickBatterCallout(ourPlayers);
+  const pitcherLine = pickPitcherCallout(ourPitchers);
+  let callout = '';
+  if (batterLine && pitcherLine) callout = batterLine + ' ' + pitcherLine;
+  else if (batterLine) callout = batterLine;
+  else if (pitcherLine) callout = pitcherLine;
+  else if (won && pitchers && pitchers.W) {
+    // Fall back to the pitcher-of-record on a win when nothing else stood out.
+    const p = pitchers.W;
+    callout = `${escapeHtml(p.lastname || '')} earned the win.`;
+  }
 
   // ── Assemble ──
   return `<span class="summary-lead">${escapeHtml(lead)}</span>${callout ? ' ' + callout : ''}`;
 }
 
-function pickPlayerCallout(players, pitchers, ourSide, won) {
-  if (!players || players.length === 0) {
-    // Fall back to pitcher of record on a win/loss.
-    if (won && pitchers && pitchers.W) {
-      const p = pitchers.W;
-      return `${escapeHtml(p.lastname || '')} earned the win${p.era ? ` (ERA <span class="summary-stat">${escapeHtml(p.era)}</span>)` : ''}.`;
-    }
-    return '';
-  }
+function pickBatterCallout(players) {
+  if (!players || players.length === 0) return '';
   // Top RBI: 2+ RBIs and tied at the top → "X and Y each had Z RBI"; otherwise top single
   const ranked = [...players].sort((a, b) => (b.RBI || 0) - (a.RBI || 0));
   const topRBI = ranked[0] ? (ranked[0].RBI || 0) : 0;
@@ -2214,7 +2218,6 @@ function pickPlayerCallout(players, pitchers, ourSide, won) {
     } else if (tied.length === 2) {
       return `<span class="summary-lead">${escapeHtml(tied[0].lastname || '')}</span> and <span class="summary-lead">${escapeHtml(tied[1].lastname || '')}</span> each had <span class="summary-stat">${topRBI} RBI</span>.`;
     } else {
-      // 3+ tied — name the first two and add "(et al.)"
       return `<span class="summary-lead">${escapeHtml(tied[0].lastname || '')}</span>, <span class="summary-lead">${escapeHtml(tied[1].lastname || '')}</span>, and others each drove in <span class="summary-stat">${topRBI}</span>.`;
     }
   }
@@ -2229,12 +2232,38 @@ function pickPlayerCallout(players, pitchers, ourSide, won) {
   if (hr) {
     return `<span class="summary-lead">${escapeHtml(hr.lastname || '')}</span> homered.`;
   }
-  // Default — pitcher of record on wins
-  if (won && pitchers && pitchers.W) {
-    const p = pitchers.W;
-    return `${escapeHtml(p.lastname || '')} earned the win.`;
-  }
   return '';
+}
+
+function pickPitcherCallout(pitchers) {
+  if (!pitchers || pitchers.length === 0) return '';
+  // Find the most dominant outing on our staff:
+  //   - 8+ strikeouts, OR
+  //   - 5+ innings allowing 2 hits or fewer
+  let best = null;
+  let bestScore = 0;
+  for (const p of pitchers) {
+    const k = parseInt(p.K || 0, 10);
+    const ip = parseFloat(p.IP || 0);
+    const h = parseInt(p.H || 0, 10);
+    const er = parseInt(p.ER || 0, 10);
+    const dominantK = k >= 8;
+    const dominantContact = ip >= 5 && h <= 2;
+    if (!(dominantK || dominantContact)) continue;
+    // Rank: prefer the outing with more strikeouts; tiebreak by fewer ER.
+    const score = k * 10 + (10 - er) + (ip * 0.5);
+    if (score > bestScore) { bestScore = score; best = { p, k, ip, h, er, dominantK, dominantContact }; }
+  }
+  if (!best) return '';
+  const { p, k, ip, h, dominantK, dominantContact } = best;
+  const last = escapeHtml(p.lastname || '');
+  if (dominantK && dominantContact) {
+    return `<span class="summary-lead">${last}</span> dominated, striking out <span class="summary-stat">${k}</span> over <span class="summary-stat">${ip}</span> innings of <span class="summary-stat">${h}-hit</span> ball.`;
+  } else if (dominantK) {
+    return `<span class="summary-lead">${last}</span> struck out <span class="summary-stat">${k}</span> over <span class="summary-stat">${ip}</span> innings.`;
+  } else {
+    return `<span class="summary-lead">${last}</span> allowed just <span class="summary-stat">${h} hits</span> over <span class="summary-stat">${ip}</span> innings.`;
+  }
 }
 
 // ═══════ GAME DETAIL MODAL ═══════
@@ -2402,7 +2431,7 @@ function renderBatting(vName, vObj, hName, hObj) {
     if (!obj || !Array.isArray(obj.stats) || obj.stats.length === 0) return '';
     const rows = obj.stats.map(p => `
       <tr>
-        <td>${escapeHtml(p.lastname || '')}, ${escapeHtml((p.firstname || '').charAt(0))}<span class="player-pos">${escapeHtml(p.position || '')}</span></td>
+        <td>${escapeHtml(p.lastname || '')}<span class="player-pos">${escapeHtml(p.position || '')}</span></td>
         ${cols.map(c => `<td>${formatStat(p[c])}</td>`).join('')}
       </tr>
     `).join('');
@@ -2428,7 +2457,7 @@ function renderPitching(vName, vObj, hName, hObj) {
     if (!obj || !Array.isArray(obj.stats) || obj.stats.length === 0) return '';
     const rows = obj.stats.map(p => `
       <tr>
-        <td>${escapeHtml(p.lastname || '')}, ${escapeHtml((p.firstname || '').charAt(0))}</td>
+        <td>${escapeHtml(p.lastname || '')}</td>
         ${cols.map(c => `<td>${formatStat(p[c])}</td>`).join('')}
       </tr>
     `).join('');
@@ -2533,7 +2562,7 @@ function renderStatsTab() {
 
   const rows = sorted.map(p => `
     <tr>
-      <td class="text-left">${escapeHtml(p.lastname || '')}, ${escapeHtml((p.firstname || '').charAt(0))}<span class="player-pos">${escapeHtml(p.position || '')}</span></td>
+      <td class="text-left">${escapeHtml(p.lastname || '')}<span class="player-pos">${escapeHtml(p.position || '')}</span></td>
       ${cols.map(c => `<td>${formatStat(p[c])}</td>`).join('')}
     </tr>
   `).join('');
