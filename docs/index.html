@@ -569,29 +569,54 @@ body {
   box-shadow: var(--shadow-md);
 }
 
-.boxscore-summary {
+/* Schedule card: "what happened" summary on completed games. Spans the
+   full card width below the date / info / result row. */
+.game-summary {
+  grid-column: 1 / -1;
+  padding: 8px 0 0;
+  margin-top: 2px;
+  border-top: 1px solid var(--neutral-100);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--neutral-800);
+}
+.game-summary:empty { display: none; }
+.game-summary.is-loading {
+  color: var(--neutral-600);
+  font-style: italic;
+  font-size: 11px;
+}
+.game-summary .summary-lead { color: var(--chucks-navy); font-weight: 700; }
+.game-summary .summary-stat { font-family: var(--font-mono); font-weight: 700; color: var(--chucks-navy); }
+
+/* Results card: "Player of the Game" callout. */
+.boxscore-potg {
   padding: 10px 14px 12px;
   font-size: 13px;
   line-height: 1.45;
   color: var(--neutral-800);
   border-top: 1px solid var(--neutral-100);
   background: var(--neutral-50);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.boxscore-summary:empty { display: none; }
-.boxscore-summary .summary-lead {
+.boxscore-potg:empty { display: none; }
+.boxscore-potg.is-loading { color: var(--neutral-600); font-style: italic; font-size: 12px; display: block; }
+.potg-badge {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  background: var(--chucks-cyan);
   color: var(--chucks-navy);
-  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 3px;
+  flex-shrink: 0;
 }
-.boxscore-summary .summary-stat {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  color: var(--chucks-navy);
-}
-.boxscore-summary.is-loading {
-  color: var(--neutral-600);
-  font-style: italic;
-  font-size: 12px;
-}
+.potg-text { flex: 1; }
+.potg-text .summary-lead { color: var(--chucks-navy); font-weight: 700; }
+.potg-text .summary-stat { font-family: var(--font-mono); font-weight: 700; color: var(--chucks-navy); }
 
 .boxscore-header {
   display: flex;
@@ -1083,15 +1108,14 @@ body {
   font-weight: 600;
 }
 .stats-table tbody tr { transition: background 0.12s ease; }
-.stats-table tbody tr:hover { background: var(--field-blue); }
-.stats-table .player-pos {
-  display: inline-block;
-  font-size: 10px;
+.stats-table tbody tr:hover { background: var(--neutral-100); }
+.player-pos {
+  font-size: 11px;
   font-weight: 600;
   color: var(--neutral-600);
-  margin-left: 6px;
   font-family: var(--font-mono);
   text-transform: uppercase;
+  margin-left: 2px;
 }
 .stats-table th.sortable { cursor: pointer; user-select: none; }
 .stats-table th.sortable:hover { background: var(--chucks-navy-light); }
@@ -1898,8 +1922,11 @@ function renderSchedule() {
           </div>
         </div>
         ${resultHTML}
+        ${final && g.id ? `<div class="game-summary" data-game-id="${g.id}"></div>` : ''}
       </div>`;
   }).join('');
+  // Lazy-load + render the "what happened" summary on completed games.
+  hydrateGameSummaries(filtered.filter(g => (g.status_code || 0) >= 2 && g.id));
 }
 
 function renderResults() {
@@ -1956,11 +1983,11 @@ function renderResults() {
             </tr>
           </tbody>
         </table>
-        <div class="boxscore-summary" data-game-id="${g.id}"></div>
+        <div class="boxscore-potg" data-game-id="${g.id}"></div>
       </div>`;
   }).join('');
-  // Lazy-load + render summaries for the finals on screen.
-  hydrateGameSummaries(finals);
+  // Lazy-load + render Player-of-the-Game callouts for the finals on screen.
+  hydratePlayerOfTheGame(finals);
 }
 
 function renderStandings(tbody, teams) {
@@ -2105,69 +2132,105 @@ function renderLastUpdated() {
 // contextual lead (opener / shutout / blowout / close game / etc.) and the
 // most notable Woodchucks/Ignite player line from the game.
 
-const gameSummaryCache = new Map(); // gameId -> summary HTML (or null on failure)
+// Cache by gameId. Each entry holds both the summary text (Schedule recap)
+// and the POTG callout (Results) so we only fetch each game once.
+const gameDetailCache = new Map(); // gameId -> { summary, potg } | null
 
-async function hydrateGameSummaries(finals) {
-  if (!finals || finals.length === 0) return;
-  // Show "loading" on each card synchronously so the layout doesn't jump.
-  finals.forEach(g => {
-    const el = document.querySelector(`.boxscore-summary[data-game-id="${g.id}"]`);
-    if (!el) return;
-    if (gameSummaryCache.has(g.id)) {
-      const cached = gameSummaryCache.get(g.id);
-      if (cached) { el.innerHTML = cached; el.classList.remove('is-loading'); }
-      return;
-    }
-    el.classList.add('is-loading');
-    el.textContent = 'Loading game recap…';
-  });
-  // Fetch in parallel — small number of finals; API can handle it.
-  await Promise.all(finals.map(g => loadAndRenderSummary(g)));
-}
-
-async function loadAndRenderSummary(game) {
+async function fetchGameDetail(game) {
   const id = game.id;
-  if (gameSummaryCache.has(id)) return;
+  if (gameDetailCache.has(id)) return gameDetailCache.get(id);
   try {
     const [boxResp, statsResp] = await Promise.all([
       fetchJson(`${TEAM.apiBase}/game/${id}/boxscore`).catch(() => null),
       fetchJson(`${TEAM.apiBase}/game/${id}/stats`).catch(() => null),
     ]);
-    const html = buildSummary(game, boxResp && boxResp.gameBoxScore, statsResp && statsResp.gameStats);
-    gameSummaryCache.set(id, html);
-    const el = document.querySelector(`.boxscore-summary[data-game-id="${id}"]`);
-    if (el) {
-      el.classList.remove('is-loading');
-      if (html) el.innerHTML = html;
-      else el.textContent = '';
-    }
+    const ctx = buildGameContext(game, boxResp && boxResp.gameBoxScore, statsResp && statsResp.gameStats);
+    const entry = {
+      summary: buildSummary(ctx),
+      potg: buildPlayerOfTheGame(ctx),
+    };
+    gameDetailCache.set(id, entry);
+    return entry;
   } catch {
-    gameSummaryCache.set(id, null);
-    const el = document.querySelector(`.boxscore-summary[data-game-id="${id}"]`);
-    if (el) { el.classList.remove('is-loading'); el.textContent = ''; }
+    gameDetailCache.set(id, null);
+    return null;
   }
 }
 
-function buildSummary(game, boxScoreEnvelope, statsEnvelope) {
-  const we = TEAM.name.split(' ').pop(); // "Woodchucks" or "Ignite"
+// Schedule recap: short contextual sentence + best player line.
+async function hydrateGameSummaries(finals) {
+  if (!finals || finals.length === 0) return;
+  finals.forEach(g => {
+    const el = document.querySelector(`.game-summary[data-game-id="${g.id}"]`);
+    if (!el) return;
+    const cached = gameDetailCache.get(g.id);
+    if (cached) {
+      el.classList.remove('is-loading');
+      el.innerHTML = cached.summary || '';
+    } else {
+      el.classList.add('is-loading');
+      el.textContent = 'Loading recap…';
+    }
+  });
+  await Promise.all(finals.map(async g => {
+    const entry = await fetchGameDetail(g);
+    const el = document.querySelector(`.game-summary[data-game-id="${g.id}"]`);
+    if (!el) return;
+    el.classList.remove('is-loading');
+    el.innerHTML = (entry && entry.summary) || '';
+    postHeight();
+  }));
+}
+
+// Results recap: Player of the Game callout.
+async function hydratePlayerOfTheGame(finals) {
+  if (!finals || finals.length === 0) return;
+  finals.forEach(g => {
+    const el = document.querySelector(`.boxscore-potg[data-game-id="${g.id}"]`);
+    if (!el) return;
+    const cached = gameDetailCache.get(g.id);
+    if (cached) {
+      el.classList.remove('is-loading');
+      el.innerHTML = cached.potg || '';
+    } else {
+      el.classList.add('is-loading');
+      el.textContent = 'Finding the Player of the Game…';
+    }
+  });
+  await Promise.all(finals.map(async g => {
+    const entry = await fetchGameDetail(g);
+    const el = document.querySelector(`.boxscore-potg[data-game-id="${g.id}"]`);
+    if (!el) return;
+    el.classList.remove('is-loading');
+    el.innerHTML = (entry && entry.potg) || '';
+    postHeight();
+  }));
+}
+
+function buildGameContext(game, boxScoreEnvelope, statsEnvelope) {
+  const meta = boxScoreEnvelope && boxScoreEnvelope.game;
+  const linescore = boxScoreEnvelope && boxScoreEnvelope.boxScore;
+  const pitchersOfRecord = boxScoreEnvelope && boxScoreEnvelope.pitchersOfRecord;
+  const ourSide = meta ? (meta.home_team === TEAM.teamId ? 'home' : 'visitor') : (game.home ? 'home' : 'visitor');
+  const ourSideStats = statsEnvelope && statsEnvelope.stats && statsEnvelope.stats[ourSide];
+  const ourPlayers = (ourSideStats && ourSideStats.batting && Array.isArray(ourSideStats.batting.stats)) ? ourSideStats.batting.stats : [];
+  const ourPitchers = (ourSideStats && ourSideStats.pitching && Array.isArray(ourSideStats.pitching.stats)) ? ourSideStats.pitching.stats : [];
+  return { game, meta, linescore, pitchersOfRecord, ourSide, ourPlayers, ourPitchers };
+}
+
+// Schedule recap — one short, contextual sentence describing how the game went.
+// Kept concise: just the lead. Stat-heavy player call-outs live in the POTG
+// callout on the Results tab.
+function buildSummary(ctx) {
+  const { game, meta, linescore } = ctx;
+  const we = TEAM.name.split(' ').pop();
   const won = game.chucks_score > game.opponent_score;
   const ourScore = game.chucks_score;
   const theirScore = game.opponent_score;
   const margin = Math.abs(ourScore - theirScore);
   const opponent = game.opponent || 'their opponent';
 
-  // The boxscore endpoint tells us which side (visitor/home) we were and exposes
-  // pitchers of record + inning totals; the stats endpoint has per-player batting.
-  const meta = boxScoreEnvelope && boxScoreEnvelope.game;
-  const linescore = boxScoreEnvelope && boxScoreEnvelope.boxScore;
-  const pitchers = boxScoreEnvelope && boxScoreEnvelope.pitchersOfRecord;
-  const ourSide = meta ? (meta.home_team === TEAM.teamId ? 'home' : 'visitor') : (game.home ? 'home' : 'visitor');
-  const ourSideStats = statsEnvelope && statsEnvelope.stats && statsEnvelope.stats[ourSide];
-  const ourPlayers = (ourSideStats && ourSideStats.batting && Array.isArray(ourSideStats.batting.stats)) ? ourSideStats.batting.stats : [];
-  const ourPitchers = (ourSideStats && ourSideStats.pitching && Array.isArray(ourSideStats.pitching.stats)) ? ourSideStats.pitching.stats : [];
-
-  // ── Lead clause (contextual) ──
-  const isOpener = scheduleData && scheduleData.games && scheduleData.games.find(x => x.id === game.id) === scheduleData.games.find(x => (x.status_code || 0) >= 2);
+  const isOpener = scheduleData && scheduleData.games && scheduleData.games.find(x => (x.status_code || 0) >= 2)?.id === game.id;
   const innings = linescore && linescore.visitor && linescore.visitor.innings ? Object.keys(linescore.visitor.innings).map(Number) : [];
   const wentExtras = meta && meta.regulation && innings.length > meta.regulation;
   const isShutout = won && theirScore === 0;
@@ -2187,83 +2250,78 @@ function buildSummary(game, boxScoreEnvelope, statsEnvelope) {
   else if (won) lead = `The ${we} beat ${opponent} ${ourScore}-${theirScore}.`;
   else lead = `The ${we} fell to ${opponent} ${ourScore}-${theirScore}.`;
 
-  // ── Player call-out: combine batter + pitcher highlights ──
-  const batterLine = pickBatterCallout(ourPlayers);
-  const pitcherLine = pickPitcherCallout(ourPitchers);
-  let callout = '';
-  if (batterLine && pitcherLine) callout = batterLine + ' ' + pitcherLine;
-  else if (batterLine) callout = batterLine;
-  else if (pitcherLine) callout = pitcherLine;
-  else if (won && pitchers && pitchers.W) {
-    // Fall back to the pitcher-of-record on a win when nothing else stood out.
-    const p = pitchers.W;
-    callout = `${escapeHtml(p.lastname || '')} earned the win.`;
-  }
-
-  // ── Assemble ──
-  return `<span class="summary-lead">${escapeHtml(lead)}</span>${callout ? ' ' + callout : ''}`;
+  return `<span class="summary-lead">${escapeHtml(lead)}</span>`;
 }
 
-function pickBatterCallout(players) {
-  if (!players || players.length === 0) return '';
-  // Top RBI: 2+ RBIs and tied at the top → "X and Y each had Z RBI"; otherwise top single
-  const ranked = [...players].sort((a, b) => (b.RBI || 0) - (a.RBI || 0));
-  const topRBI = ranked[0] ? (ranked[0].RBI || 0) : 0;
-  if (topRBI >= 2) {
-    const tied = ranked.filter(p => (p.RBI || 0) === topRBI);
-    if (tied.length === 1) {
-      const p = tied[0];
-      const extra = ((p.HR || 0) > 0) ? ` with a home run` : '';
-      return `<span class="summary-lead">${escapeHtml(p.lastname || '')}</span> drove in <span class="summary-stat">${topRBI}</span>${extra}.`;
-    } else if (tied.length === 2) {
-      return `<span class="summary-lead">${escapeHtml(tied[0].lastname || '')}</span> and <span class="summary-lead">${escapeHtml(tied[1].lastname || '')}</span> each had <span class="summary-stat">${topRBI} RBI</span>.`;
-    } else {
-      return `<span class="summary-lead">${escapeHtml(tied[0].lastname || '')}</span>, <span class="summary-lead">${escapeHtml(tied[1].lastname || '')}</span>, and others each drove in <span class="summary-stat">${topRBI}</span>.`;
-    }
-  }
-  // Multi-hit games (3+ hits) if no big RBI day
-  const multiHit = ranked.filter(p => (p.H || 0) >= 3).sort((a, b) => (b.H || 0) - (a.H || 0));
-  if (multiHit.length > 0) {
-    const p = multiHit[0];
-    return `<span class="summary-lead">${escapeHtml(p.lastname || '')}</span> went <span class="summary-stat">${p.H}-for-${p.AB || '?'}</span>.`;
-  }
-  // Home run anywhere?
-  const hr = ranked.find(p => (p.HR || 0) > 0);
-  if (hr) {
-    return `<span class="summary-lead">${escapeHtml(hr.lastname || '')}</span> homered.`;
-  }
-  return '';
-}
+// Player of the Game (Results tab callout). Scores every batter + pitcher and
+// picks the single best performance — typically a multi-hit / multi-RBI day,
+// a HR, or a dominant pitching line. Returns an empty string when nothing
+// stands out (rather than forcing a weak call-out).
+function buildPlayerOfTheGame(ctx) {
+  const { ourPlayers, ourPitchers, pitchersOfRecord } = ctx;
 
-function pickPitcherCallout(pitchers) {
-  if (!pitchers || pitchers.length === 0) return '';
-  // Find the most dominant outing on our staff:
-  //   - 8+ strikeouts, OR
-  //   - 5+ innings allowing 2 hits or fewer
-  let best = null;
-  let bestScore = 0;
-  for (const p of pitchers) {
-    const k = parseInt(p.K || 0, 10);
+  // Score each batter
+  let bestBatter = null;
+  let bestBatterScore = 0;
+  for (const p of ourPlayers || []) {
+    const h = +p.H || 0;
+    const rbi = +p.RBI || 0;
+    const hr = +p.HR || 0;
+    const r = +p.R || 0;
+    const _2b = +p['2B'] || 0;
+    const _3b = +p['3B'] || 0;
+    const bb = +p.BB || 0;
+    if (h + rbi + hr === 0) continue;
+    // Weighted: HRs and RBIs carry more than singles.
+    const score = h + (_2b * 0.5) + (_3b * 1) + (hr * 3) + (rbi * 1.5) + (r * 0.5) + (bb * 0.25);
+    if (score > bestBatterScore) { bestBatterScore = score; bestBatter = p; }
+  }
+
+  // Score each pitcher
+  let bestPitcher = null;
+  let bestPitcherScore = 0;
+  for (const p of ourPitchers || []) {
     const ip = parseFloat(p.IP || 0);
-    const h = parseInt(p.H || 0, 10);
-    const er = parseInt(p.ER || 0, 10);
-    const dominantK = k >= 8;
-    const dominantContact = ip >= 5 && h <= 2;
-    if (!(dominantK || dominantContact)) continue;
-    // Rank: prefer the outing with more strikeouts; tiebreak by fewer ER.
-    const score = k * 10 + (10 - er) + (ip * 0.5);
-    if (score > bestScore) { bestScore = score; best = { p, k, ip, h, er, dominantK, dominantContact }; }
+    const h = +p.H || 0;
+    const er = +p.ER || 0;
+    const k = +p.K || 0;
+    const bb = +p.BB || 0;
+    if (ip < 2) continue; // a relief one-out cameo isn't a POTG candidate
+    // Higher IP + Ks, lower H/ER. Bonus for dominant outings.
+    let score = (ip * 2) + (k * 0.5) - (h * 0.5) - (er * 1) - (bb * 0.25);
+    if (k >= 8) score += 3;
+    if (ip >= 5 && h <= 2) score += 4;
+    if (er === 0 && ip >= 4) score += 2;
+    if (score > bestPitcherScore) { bestPitcherScore = score; bestPitcher = p; }
   }
-  if (!best) return '';
-  const { p, k, ip, h, dominantK, dominantContact } = best;
-  const last = escapeHtml(p.lastname || '');
-  if (dominantK && dominantContact) {
-    return `<span class="summary-lead">${last}</span> dominated, striking out <span class="summary-stat">${k}</span> over <span class="summary-stat">${ip}</span> innings of <span class="summary-stat">${h}-hit</span> ball.`;
-  } else if (dominantK) {
-    return `<span class="summary-lead">${last}</span> struck out <span class="summary-stat">${k}</span> over <span class="summary-stat">${ip}</span> innings.`;
+
+  if (!bestBatter && !bestPitcher) return '';
+
+  // Pick the winner: pitcher wins if a dominant outing (qualified bonus pushed it past batter).
+  const pitcherWins = bestPitcher && bestPitcherScore >= bestBatterScore;
+  let text;
+  if (pitcherWins) {
+    const p = bestPitcher;
+    const ip = p.IP || '0';
+    const k = p.K || 0;
+    const h = p.H || 0;
+    const er = p.ER || 0;
+    text = `<span class="summary-lead">${escapeHtml(p.lastname || '')}</span> <span class="player-pos">- P</span> — <span class="summary-stat">${ip} IP</span>, <span class="summary-stat">${h} H</span>, <span class="summary-stat">${er} ER</span>, <span class="summary-stat">${k} K</span>`;
   } else {
-    return `<span class="summary-lead">${last}</span> allowed just <span class="summary-stat">${h} hits</span> over <span class="summary-stat">${ip}</span> innings.`;
+    const p = bestBatter;
+    const h = p.H || 0;
+    const ab = p.AB || 0;
+    const rbi = +p.RBI || 0;
+    const hr = +p.HR || 0;
+    const r = +p.R || 0;
+    const bits = [`<span class="summary-stat">${h}-for-${ab}</span>`];
+    if (rbi > 0) bits.push(`<span class="summary-stat">${rbi} RBI</span>`);
+    if (hr > 0) bits.push(`<span class="summary-stat">${hr} HR</span>`);
+    if (r > 0 && rbi === 0 && hr === 0) bits.push(`<span class="summary-stat">${r} R</span>`);
+    text = `<span class="summary-lead">${escapeHtml(p.lastname || '')}</span> <span class="player-pos">- ${escapeHtml(p.position || '')}</span> — ${bits.join(', ')}`;
   }
+
+  return `<span class="potg-badge">Player of the Game</span><div class="potg-text">${text}</div>`;
 }
 
 // ═══════ GAME DETAIL MODAL ═══════
@@ -2431,7 +2489,7 @@ function renderBatting(vName, vObj, hName, hObj) {
     if (!obj || !Array.isArray(obj.stats) || obj.stats.length === 0) return '';
     const rows = obj.stats.map(p => `
       <tr>
-        <td>${escapeHtml(p.lastname || '')}<span class="player-pos">${escapeHtml(p.position || '')}</span></td>
+        <td>${formatPlayerName(p)}</td>
         ${cols.map(c => `<td>${formatStat(p[c])}</td>`).join('')}
       </tr>
     `).join('');
@@ -2457,7 +2515,7 @@ function renderPitching(vName, vObj, hName, hObj) {
     if (!obj || !Array.isArray(obj.stats) || obj.stats.length === 0) return '';
     const rows = obj.stats.map(p => `
       <tr>
-        <td>${escapeHtml(p.lastname || '')}</td>
+        <td>${formatPlayerName(p)}</td>
         ${cols.map(c => `<td>${formatStat(p[c])}</td>`).join('')}
       </tr>
     `).join('');
@@ -2479,6 +2537,18 @@ function renderPitching(vName, vObj, hName, hObj) {
 function formatStat(v) {
   if (v == null) return '-';
   return String(v);
+}
+
+// Player name rendered as "Lastname, F - Pos" (omits the missing parts if any).
+function formatPlayerName(p) {
+  if (!p) return '';
+  const last = escapeHtml(p.lastname || '');
+  const initial = (p.firstname || '').charAt(0);
+  const pos = p.position || '';
+  let main = last;
+  if (initial) main += `, ${escapeHtml(initial)}`;
+  if (pos) main += ` <span class="player-pos">- ${escapeHtml(pos)}</span>`;
+  return main;
 }
 
 function isoFromMdY(mdy) {
@@ -2562,7 +2632,7 @@ function renderStatsTab() {
 
   const rows = sorted.map(p => `
     <tr>
-      <td class="text-left">${escapeHtml(p.lastname || '')}<span class="player-pos">${escapeHtml(p.position || '')}</span></td>
+      <td class="text-left">${formatPlayerName(p)}</td>
       ${cols.map(c => `<td>${formatStat(p[c])}</td>`).join('')}
     </tr>
   `).join('');
