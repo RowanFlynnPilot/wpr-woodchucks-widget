@@ -45,6 +45,7 @@
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -976,6 +977,286 @@ body {
 
 .error-state .retry-btn:hover { filter: brightness(1.08); }
 
+/* ─── STATS TAB ─── */
+.stats-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--neutral-50);
+  border-bottom: 1px solid var(--neutral-200);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.stats-toggle {
+  display: inline-flex;
+  background: #fff;
+  border: 1px solid var(--neutral-300);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.stats-tab-btn {
+  background: none;
+  border: none;
+  padding: 6px 16px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--neutral-600);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.stats-tab-btn.active {
+  background: var(--chucks-navy);
+  color: #fff;
+}
+.stats-tab-btn:hover:not(.active) {
+  color: var(--chucks-navy);
+}
+.stats-season-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--neutral-600);
+}
+.stats-table-wrap {
+  padding: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.stats-table thead th {
+  background: var(--chucks-navy);
+  color: #fff;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 10px;
+  padding: 8px 6px;
+  text-align: right;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+.stats-table thead th.text-left { text-align: left; }
+.stats-table tbody td {
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--neutral-100);
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.stats-table tbody td.text-left {
+  text-align: left;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+}
+.stats-table tbody tr:hover { background: var(--neutral-50); }
+.stats-table .player-pos {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--neutral-600);
+  margin-left: 6px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+.stats-table th.sortable { cursor: pointer; user-select: none; }
+.stats-table th.sortable:hover { background: var(--chucks-navy-light); }
+.stats-table th.sort-active::after {
+  content: " \25BC";
+  font-size: 8px;
+}
+
+/* ─── GAME DETAIL MODAL ─── */
+.game-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.game-modal[hidden] { display: none; }
+.game-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  animation: fadeIn 0.2s ease;
+}
+.game-modal-content {
+  position: relative;
+  max-width: 680px;
+  width: 92%;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  animation: modalIn 0.2s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.game-modal-close {
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--neutral-300);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  color: var(--neutral-700);
+}
+.game-modal-close:hover { background: #fff; color: var(--chucks-navy); }
+
+.game-modal-header {
+  background: linear-gradient(135deg, var(--chucks-navy) 0%, var(--chucks-navy-light) 100%);
+  color: #fff;
+  padding: 20px 24px 16px;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+.game-modal-header .gm-meta {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.game-modal-header .gm-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 1.2px;
+  line-height: 1.1;
+}
+.game-modal-header .gm-sub {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+.game-modal-header .gm-final {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.18);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.game-modal-section {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--neutral-100);
+}
+.game-modal-section h3 {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--neutral-600);
+  margin-bottom: 10px;
+}
+.game-modal-section table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.game-modal-section th {
+  background: var(--neutral-100);
+  font-weight: 700;
+  text-align: right;
+  padding: 6px 4px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--neutral-700);
+  white-space: nowrap;
+}
+.game-modal-section th:first-child { text-align: left; padding-left: 8px; }
+.game-modal-section td {
+  padding: 6px 4px;
+  text-align: right;
+  border-bottom: 1px solid var(--neutral-100);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.game-modal-section td:first-child {
+  text-align: left;
+  padding-left: 8px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+}
+.game-modal-section tr.team-totals td {
+  font-weight: 700;
+  background: var(--neutral-50);
+}
+.game-modal-section .gm-team-header {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--chucks-navy);
+  margin-top: 14px;
+  margin-bottom: 6px;
+  padding-left: 4px;
+}
+.game-modal-section .gm-team-header:first-child { margin-top: 0; }
+.game-modal-section.gm-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--neutral-700);
+}
+.game-modal-section.gm-metadata > div { display: flex; flex-direction: column; gap: 2px; }
+.game-modal-section.gm-metadata .gm-mlabel {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--neutral-600);
+  font-weight: 600;
+}
+.gm-linescore {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.gm-linescore table { min-width: 380px; }
+.gm-linescore .rhe { background: var(--neutral-50); font-weight: 700; }
+
+/* Clickable game card (final games only) */
+.game-card.clickable {
+  cursor: pointer;
+  position: relative;
+}
+.game-card.clickable:hover {
+  background: var(--field-blue);
+}
+.game-card.clickable::after {
+  content: "›";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--neutral-400);
+  font-size: 18px;
+  font-weight: 300;
+  pointer-events: none;
+}
+.boxscore-card.clickable {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.boxscore-card.clickable:hover { background: var(--field-blue); }
+
 /* ─── RESPONSIVE ─── */
 /* Tablet (the widget is already capped at max-width: 720px on the container,
    so most desktop styles work — these are just small typography touch-ups.) */
@@ -1138,6 +1419,7 @@ body {
     <button class="tab-btn active" data-tab="schedule" role="tab" id="tabbtn-schedule" aria-controls="tab-schedule" aria-selected="true" tabindex="0">Schedule</button>
     <button class="tab-btn" data-tab="standings" role="tab" id="tabbtn-standings" aria-controls="tab-standings" aria-selected="false" tabindex="-1">Standings</button>
     <button class="tab-btn" data-tab="results" role="tab" id="tabbtn-results" aria-controls="tab-results" aria-selected="false" tabindex="-1">Results</button>
+    <button class="tab-btn" data-tab="stats" role="tab" id="tabbtn-stats" aria-controls="tab-stats" aria-selected="false" tabindex="-1">Stats</button>
     <button class="tab-btn" data-tab="events" role="tab" id="tabbtn-events" aria-controls="tab-events" aria-selected="false" tabindex="-1">Events</button>
   </div>
 
@@ -1220,6 +1502,20 @@ body {
     </div>
   </div>
 
+  <!-- ═══════ STATS TAB ═══════ -->
+  <div class="tab-panel" id="tab-stats" role="tabpanel" aria-labelledby="tabbtn-stats" hidden>
+    <div class="stats-controls">
+      <div class="stats-toggle" role="group" aria-label="Stats type">
+        <button class="stats-tab-btn active" data-stats="batting" type="button">Batting</button>
+        <button class="stats-tab-btn" data-stats="pitching" type="button">Pitching</button>
+      </div>
+      <div class="stats-season-label" id="statsSeasonLabel"></div>
+    </div>
+    <div class="tab-content">
+      <div class="stats-table-wrap" id="statsTableWrap"></div>
+    </div>
+  </div>
+
   <!-- ═══════ EVENTS TAB ═══════ -->
   <div class="tab-panel" id="tab-events" role="tabpanel" aria-labelledby="tabbtn-events" hidden>
     <div class="tab-content">
@@ -1242,6 +1538,15 @@ body {
     <span class="wpr-band-brand">the Wausau Woodchucks</span>
     <img class="wpr-band-logo" src="woodchucks-logo.png" alt="" loading="lazy" decoding="async" width="28" height="28">
   </a>
+
+  <!-- ═══════ GAME DETAIL MODAL ═══════ -->
+  <div class="game-modal" id="gameModal" hidden role="dialog" aria-modal="true" aria-labelledby="gameModalTitle">
+    <div class="game-modal-overlay" data-close="true" aria-hidden="true"></div>
+    <div class="game-modal-content" role="document">
+      <button class="game-modal-close" type="button" aria-label="Close" data-close="true">&times;</button>
+      <div id="gameModalBody"></div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1261,6 +1566,7 @@ const TEAMS = {
     homeVenue: 'Athletic Park, Wausau',
     ticketsUrl: 'https://wausau-woodchucks.nwltickets.com/SingleGame/Tickets',
     siteUrl: 'https://northwoodsleague.com/wausau-woodchucks/',
+    apiBase: 'https://scorebook.northwoodsleague.com/api',
     logoUrl: 'woodchucks-logo.png',
     brand: { navy: '#162b4d', navyLight: '#1e3a66', accent: '#00b8d4', accentLight: '#4dd0e1' },
     seasonMonths: [4, 5, 6, 7], // May–Aug
@@ -1285,6 +1591,7 @@ const TEAMS = {
     homeVenue: 'Athletic Park, Wausau',
     ticketsUrl: 'https://wausau-ignite.nwltickets.com/SingleGame/Tickets',
     siteUrl: 'https://northwoodsleague.com/wausau-ignite/',
+    apiBase: 'https://scorebook-softball.northwoodsleague.com/api',
     logoUrl: 'ignite-logo.png',
     brand: { navy: '#001830', navyLight: '#1a3450', accent: '#48a8d8', accentLight: '#90c0c0' },
     seasonMonths: [4, 5, 6, 7],
@@ -1546,9 +1853,14 @@ function renderSchedule() {
     }
 
     const venue = g.home ? HOME_VENUE : (g.location ? escapeHtml(g.location) : 'Away');
+    // Final / in-progress games are clickable to open the box score modal.
+    const clickable = (final || live) && g.id;
+    const clickAttrs = clickable
+      ? ` class="game-card clickable" tabindex="0" role="button" aria-label="View box score" data-game-id="${g.id}"`
+      : ' class="game-card"';
 
     return `
-      <div class="game-card">
+      <div${clickAttrs}>
         <div class="game-date">
           <div class="day-name">${escapeHtml(dayAbbr)}</div>
           <div class="day-num">${dayNum}</div>
@@ -1595,8 +1907,12 @@ function renderResults() {
     const won = chucks > opp;
     const statusLabel = g.status_code === 3 ? 'Postponed' : (g.status_code === 4 ? 'Suspended' : (g.status || 'Final'));
 
+    const clickable = !!g.id;
+    const clickAttrs = clickable
+      ? ` class="boxscore-card clickable" tabindex="0" role="button" aria-label="View box score" data-game-id="${g.id}"`
+      : ' class="boxscore-card"';
     return `
-      <div class="boxscore-card">
+      <div${clickAttrs}>
         <div class="boxscore-header">
           <div class="boxscore-date">${escapeHtml(dateLabel)} &middot; ${g.home ? 'vs' : '@'} ${escapeHtml(g.opponent || 'TBD')}</div>
           <div class="boxscore-status final">${escapeHtml(statusLabel)}</div>
@@ -1767,6 +2083,339 @@ function renderLastUpdated() {
   el.title = new Date(iso).toLocaleString();
 }
 
+// ═══════ GAME DETAIL MODAL ═══════
+// Fetched on-demand when a user clicks a final game card. Three endpoints:
+//   /api/game/<id>            — game metadata (date, score, attendance, weather)
+//   /api/game/<id>/boxscore   — linescore by inning + totals + pitchers of record
+//   /api/game/<id>/stats      — full batting + pitching per player
+
+let lastFocusedBeforeModal = null;
+
+async function openGameDetail(gameId, gameSummary) {
+  const modal = document.getElementById('gameModal');
+  const body = document.getElementById('gameModalBody');
+  if (!modal || !body) return;
+  lastFocusedBeforeModal = document.activeElement;
+  modal.removeAttribute('hidden');
+  document.body.style.overflow = 'hidden';
+  body.innerHTML = `
+    <div class="game-modal-header">
+      <div class="gm-meta">${escapeHtml(formatModalDate(gameSummary))}</div>
+      <div class="gm-title">${gameSummary.home ? 'vs' : '@'} ${escapeHtml(gameSummary.opponent || '')}</div>
+      <div class="gm-sub">${escapeHtml(gameSummary.location || '')}</div>
+    </div>
+    ${loadingHtml('Loading box score…')}
+  `;
+  // Focus the close button so keyboard users can dismiss with Enter/Space
+  const closeBtn = modal.querySelector('.game-modal-close');
+  if (closeBtn) closeBtn.focus();
+
+  try {
+    const base = TEAM.apiBase;
+    const [boxResp, statsResp] = await Promise.all([
+      fetchJson(`${base}/game/${gameId}/boxscore`).catch(() => null),
+      fetchJson(`${base}/game/${gameId}/stats`).catch(() => null),
+    ]);
+    if (!boxResp && !statsResp) throw new Error('Both endpoints failed');
+    body.innerHTML = renderGameDetail(boxResp, statsResp);
+  } catch (err) {
+    console.warn('game detail failed:', err);
+    body.innerHTML = `
+      <div class="game-modal-header">
+        <div class="gm-title">Game Details Unavailable</div>
+      </div>
+      ${errorHtml("We couldn't load this game's detail right now. The NWL Scorebook may be busy — try again in a minute.")}
+    `;
+  }
+}
+
+function closeGameModal() {
+  const modal = document.getElementById('gameModal');
+  if (!modal || modal.hasAttribute('hidden')) return;
+  modal.setAttribute('hidden', '');
+  document.body.style.overflow = '';
+  if (lastFocusedBeforeModal && typeof lastFocusedBeforeModal.focus === 'function') {
+    lastFocusedBeforeModal.focus();
+  }
+}
+
+function formatModalDate(g) {
+  if (!g || !g.date) return '';
+  const d = parseDate(g.date);
+  return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+function renderGameDetail(boxResp, statsResp) {
+  const bs = boxResp && boxResp.gameBoxScore;
+  const ss = statsResp && statsResp.gameStats;
+  const game = (bs && bs.game) || (ss && ss.game) || {};
+  const linescore = bs && bs.boxScore;
+  const stats = ss && ss.stats;
+  const pitchersOfRecord = bs && bs.pitchersOfRecord;
+
+  const visitorName = game.visitor_team_shortname || game.visitor_team_name || 'Visitor';
+  const homeName = game.home_team_shortname || game.home_team_name || 'Home';
+  const visitorScore = (typeof game.visitor_score === 'number') ? game.visitor_score : '';
+  const homeScore = (typeof game.home_score === 'number') ? game.home_score : '';
+  const status = game.status || (game.status_code === 2 ? 'Final' : '');
+
+  let html = `
+    <div class="game-modal-header">
+      <div class="gm-meta">${escapeHtml(formatModalDate({ date: isoFromMdY(game.date) }))} · ${escapeHtml(game.time || '')}</div>
+      <div class="gm-title">${escapeHtml(visitorName)} ${visitorScore} <span style="opacity:0.5">@</span> ${escapeHtml(homeName)} ${homeScore}</div>
+      <div class="gm-sub">${escapeHtml(game.location || '')}${game.address ? ' · ' + escapeHtml(game.address) : ''}</div>
+      ${status ? `<div class="gm-final">${escapeHtml(status)}</div>` : ''}
+    </div>
+  `;
+
+  // Linescore
+  if (linescore && linescore.visitor && linescore.home) {
+    const inningNums = Object.keys(linescore.visitor.innings || {}).map(Number).sort((a, b) => a - b);
+    const innRow = (sideName, sideObj, isWinner) => {
+      const cells = inningNums.map(n => `<td>${sideObj.innings[n] != null ? sideObj.innings[n] : '-'}</td>`).join('');
+      const t = sideObj.totals || {};
+      return `<tr${isWinner ? ' class="team-totals"' : ''}>
+        <td>${escapeHtml(sideName)}</td>${cells}
+        <td class="rhe">${t.R != null ? t.R : '-'}</td>
+        <td class="rhe">${t.H != null ? t.H : '-'}</td>
+        <td class="rhe">${t.E != null ? t.E : '-'}</td>
+      </tr>`;
+    };
+    const winnerSide = game.winning_team; // 'visitor' or 'home'
+    html += `
+      <div class="game-modal-section">
+        <h3>Line Score</h3>
+        <div class="gm-linescore">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                ${inningNums.map(n => `<th>${n}</th>`).join('')}
+                <th class="rhe">R</th><th class="rhe">H</th><th class="rhe">E</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${innRow(visitorName, linescore.visitor, winnerSide === 'visitor')}
+              ${innRow(homeName, linescore.home, winnerSide === 'home')}
+            </tbody>
+          </table>
+        </div>
+        ${renderPitchersOfRecord(pitchersOfRecord)}
+      </div>
+    `;
+  }
+
+  // Batting + Pitching per team
+  if (stats && (stats.visitor || stats.home)) {
+    const bothBatting = renderBatting(visitorName, stats.visitor && stats.visitor.batting, homeName, stats.home && stats.home.batting);
+    if (bothBatting) html += `<div class="game-modal-section"><h3>Batting</h3>${bothBatting}</div>`;
+    const bothPitching = renderPitching(visitorName, stats.visitor && stats.visitor.pitching, homeName, stats.home && stats.home.pitching);
+    if (bothPitching) html += `<div class="game-modal-section"><h3>Pitching</h3>${bothPitching}</div>`;
+  }
+
+  // Metadata
+  const meta = [];
+  if (game.attendance) meta.push(['Attendance', game.attendance.toLocaleString()]);
+  if (game.duration) meta.push(['Duration', game.duration]);
+  if (game.weather) meta.push(['Weather', `${game.weather}${game.temperature ? ` · ${game.temperature}°F` : ''}`]);
+  if (game.umpires && typeof game.umpires === 'object') {
+    const umps = Object.entries(game.umpires).map(([pos, name]) => `${pos}: ${name}`).join(' · ');
+    if (umps) meta.push(['Umpires', umps]);
+  }
+  if (meta.length) {
+    html += `<div class="game-modal-section gm-metadata">
+      ${meta.map(([l, v]) => `<div><span class="gm-mlabel">${escapeHtml(l)}</span><span>${escapeHtml(String(v))}</span></div>`).join('')}
+    </div>`;
+  }
+
+  return html;
+}
+
+function renderPitchersOfRecord(pof) {
+  if (!pof) return '';
+  const fmt = (p) => p ? `${escapeHtml(p.firstname || '')} ${escapeHtml(p.lastname || '')} (${p.w || 0}-${p.l || 0}, ${p.era || '-'})` : '';
+  const parts = [];
+  if (pof.W) parts.push(`<strong>W:</strong> ${fmt(pof.W)}`);
+  if (pof.L) parts.push(`<strong>L:</strong> ${fmt(pof.L)}`);
+  if (pof.SV) parts.push(`<strong>SV:</strong> ${fmt(pof.SV)}`);
+  return parts.length ? `<div style="margin-top:10px;font-size:11px;color:var(--neutral-700)">${parts.join(' · ')}</div>` : '';
+}
+
+function renderBatting(vName, vObj, hName, hObj) {
+  if (!vObj && !hObj) return '';
+  const cols = ['AB', 'R', 'H', 'RBI', 'BB', 'K', 'AVG'];
+  const renderSide = (name, obj) => {
+    if (!obj || !Array.isArray(obj.stats) || obj.stats.length === 0) return '';
+    const rows = obj.stats.map(p => `
+      <tr>
+        <td>${escapeHtml(p.lastname || '')}, ${escapeHtml((p.firstname || '').charAt(0))}<span class="player-pos">${escapeHtml(p.position || '')}</span></td>
+        ${cols.map(c => `<td>${formatStat(p[c])}</td>`).join('')}
+      </tr>
+    `).join('');
+    const totals = obj.totals || {};
+    return `
+      <div class="gm-team-header">${escapeHtml(name)}</div>
+      <table>
+        <thead><tr><th>Player</th>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
+        <tbody>
+          ${rows}
+          <tr class="team-totals"><td>Totals</td>${cols.map(c => `<td>${formatStat(totals[c])}</td>`).join('')}</tr>
+        </tbody>
+      </table>
+    `;
+  };
+  return renderSide(vName, vObj) + renderSide(hName, hObj);
+}
+
+function renderPitching(vName, vObj, hName, hObj) {
+  if (!vObj && !hObj) return '';
+  const cols = ['IP', 'H', 'R', 'ER', 'BB', 'K', 'ERA'];
+  const renderSide = (name, obj) => {
+    if (!obj || !Array.isArray(obj.stats) || obj.stats.length === 0) return '';
+    const rows = obj.stats.map(p => `
+      <tr>
+        <td>${escapeHtml(p.lastname || '')}, ${escapeHtml((p.firstname || '').charAt(0))}</td>
+        ${cols.map(c => `<td>${formatStat(p[c])}</td>`).join('')}
+      </tr>
+    `).join('');
+    const totals = obj.totals || {};
+    return `
+      <div class="gm-team-header">${escapeHtml(name)}</div>
+      <table>
+        <thead><tr><th>Pitcher</th>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
+        <tbody>
+          ${rows}
+          <tr class="team-totals"><td>Totals</td>${cols.map(c => `<td>${formatStat(totals[c])}</td>`).join('')}</tr>
+        </tbody>
+      </table>
+    `;
+  };
+  return renderSide(vName, vObj) + renderSide(hName, hObj);
+}
+
+function formatStat(v) {
+  if (v == null) return '-';
+  return String(v);
+}
+
+function isoFromMdY(mdy) {
+  // API returns MM-DD-YYYY; convert to YYYY-MM-DD for parseDate.
+  if (!mdy || typeof mdy !== 'string') return '';
+  const m = mdy.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  return m ? `${m[3]}-${m[1]}-${m[2]}` : mdy;
+}
+
+// ═══════ STATS TAB ═══════
+// Fetched live (not via scraper) when the user first opens the tab. Filtered
+// client-side to the active team. Toggleable batting / pitching.
+
+let statsLoaded = false;
+let statsCache = { batting: null, pitching: null };
+let statsView = 'batting';
+let statsSortKey = null;
+let statsSortDir = 'desc';
+
+async function ensureStatsLoaded() {
+  if (statsLoaded) return;
+  const wrap = document.getElementById('statsTableWrap');
+  if (wrap) wrap.innerHTML = loadingHtml('Loading season stats…');
+  try {
+    const [batting, pitching] = await Promise.all([
+      fetchJson(`${TEAM.apiBase}/statistics?type=batting`).catch(() => null),
+      fetchJson(`${TEAM.apiBase}/statistics?type=pitching`).catch(() => null),
+    ]);
+    statsCache.batting = batting && batting.statistics;
+    statsCache.pitching = pitching && pitching.statistics;
+    statsLoaded = true;
+    renderStatsTab();
+  } catch (err) {
+    if (wrap) wrap.innerHTML = errorHtml('Could not load season stats.', 'ensureStatsLoaded()');
+  }
+}
+
+function renderStatsTab() {
+  const wrap = document.getElementById('statsTableWrap');
+  const label = document.getElementById('statsSeasonLabel');
+  if (!wrap) return;
+  const root = statsCache[statsView];
+  if (!root) { wrap.innerHTML = errorHtml('Stats unavailable for this season.'); return; }
+  if (label && root.info) {
+    const seasonName = root.info.season_name || '';
+    const yearMatch = seasonName.match(/(\d{4})/);
+    const isPriorSeason = yearMatch && parseInt(yearMatch[1], 10) < SEASON_YEAR;
+    if (isPriorSeason) {
+      label.innerHTML = `${escapeHtml(seasonName)} <span style="color:#b85c00;font-weight:600">— final</span>`;
+    } else {
+      label.textContent = seasonName;
+    }
+  }
+
+  const typeData = root.types && root.types[statsView];
+  if (!typeData || !Array.isArray(typeData.stats)) {
+    wrap.innerHTML = `<div class="empty-state" style="padding:40px 20px"><div class="empty-icon">&#9918;</div><p>No ${statsView} stats published yet for the season.</p></div>`;
+    return;
+  }
+
+  // Filter to this team's players only.
+  const teamPlayers = typeData.stats.filter(p => p.team === TEAM.teamId);
+  if (teamPlayers.length === 0) {
+    wrap.innerHTML = `<div class="empty-state" style="padding:40px 20px"><div class="empty-icon">&#9918;</div><p>No ${statsView} stats yet for the ${escapeHtml(TEAM.name)}.<br>Stats appear here after the first game.</p></div>`;
+    return;
+  }
+
+  const cols = statsView === 'batting'
+    ? ['G', 'AB', 'R', 'H', '2B', 'HR', 'RBI', 'BB', 'K', 'SB', 'AVG', 'OBP', 'SLG', 'OPS']
+    : ['G', 'W', 'L', 'SV', 'IP', 'H', 'R', 'ER', 'BB', 'K', 'ERA', 'WHIP'];
+
+  // Default sort: AVG for batting, ERA asc for pitching.
+  const defaultSort = statsView === 'batting' ? { key: 'AVG', dir: 'desc' } : { key: 'ERA', dir: 'asc' };
+  const sortKey = statsSortKey || defaultSort.key;
+  const sortDir = statsSortKey ? statsSortDir : defaultSort.dir;
+  const sorted = [...teamPlayers].sort((a, b) => compareStat(a[sortKey], b[sortKey], sortDir));
+
+  const headerCells = ['<th class="text-left">Player</th>'].concat(
+    cols.map(c => `<th class="sortable${c === sortKey ? ' sort-active' : ''}" data-col="${escapeHtml(c)}">${c}</th>`)
+  ).join('');
+
+  const rows = sorted.map(p => `
+    <tr>
+      <td class="text-left">${escapeHtml(p.lastname || '')}, ${escapeHtml((p.firstname || '').charAt(0))}<span class="player-pos">${escapeHtml(p.position || '')}</span></td>
+      ${cols.map(c => `<td>${formatStat(p[c])}</td>`).join('')}
+    </tr>
+  `).join('');
+
+  wrap.innerHTML = `
+    <table class="stats-table" id="statsTable">
+      <thead><tr>${headerCells}</tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+
+  // Wire sortable headers
+  wrap.querySelectorAll('th.sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = th.dataset.col;
+      if (statsSortKey === col) {
+        statsSortDir = statsSortDir === 'desc' ? 'asc' : 'desc';
+      } else {
+        statsSortKey = col;
+        statsSortDir = 'desc';
+      }
+      renderStatsTab();
+    });
+  });
+}
+
+function compareStat(a, b, dir) {
+  // Coerce numeric-looking strings to numbers (".333", "1.85", etc.).
+  const na = parseFloat(a);
+  const nb = parseFloat(b);
+  let cmp;
+  if (!isNaN(na) && !isNaN(nb)) cmp = na - nb;
+  else cmp = String(a == null ? '' : a).localeCompare(String(b == null ? '' : b));
+  return dir === 'asc' ? cmp : -cmp;
+}
+
 // ═══════ INTERACTIONS ═══════
 
 function changeMonth(dir) {
@@ -1802,6 +2451,8 @@ function activateTab(btn, { focus = false } = {}) {
     panel.removeAttribute('hidden');
   }
   if (focus) btn.focus();
+  // Lazy-load stats when the user first opens that tab.
+  if (btn.dataset.tab === 'stats') ensureStatsLoaded();
 }
 
 tabButtons.forEach(btn => {
@@ -1852,6 +2503,43 @@ document.querySelectorAll('.half-btn').forEach(btn => {
     displayStandings(currentHalf);
   });
   btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
+});
+
+// Stats batting/pitching toggle
+document.querySelectorAll('.stats-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.stats-tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    statsView = btn.dataset.stats;
+    statsSortKey = null; // reset to default sort per view
+    renderStatsTab();
+  });
+});
+
+// Game card click → open modal (delegated since cards re-render).
+function findGameById(id) {
+  if (!scheduleData || !Array.isArray(scheduleData.games)) return null;
+  return scheduleData.games.find(g => String(g.id) === String(id)) || null;
+}
+function handleGameCardActivate(e) {
+  const card = e.target.closest('.game-card.clickable, .boxscore-card.clickable');
+  if (!card) return;
+  if (e.target.closest('a, button')) return; // don't fire on tickets / inner buttons
+  if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+  if (e.type === 'keydown') e.preventDefault();
+  const id = card.dataset.gameId;
+  const game = findGameById(id);
+  if (game) openGameDetail(id, game);
+}
+document.addEventListener('click', handleGameCardActivate);
+document.addEventListener('keydown', handleGameCardActivate);
+
+// Modal close (overlay, X button, Escape).
+document.addEventListener('click', (e) => {
+  if (e.target.dataset && e.target.dataset.close === 'true') closeGameModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeGameModal();
 });
 
 // ═══════ IFRAME AUTO-RESIZE ═══════
