@@ -68,8 +68,13 @@ def fetch_json(api_base, endpoint, params=None):
         return None
 
 
-def fetch_schedule(team):
-    """Fetch the team's schedule and filter for this team's games."""
+def fetch_schedule(team, logo_map=None):
+    """Fetch the team's schedule and filter for this team's games.
+
+    If `logo_map` is provided (a dict), it gets populated with every team's
+    `team_id -> logo_url` from the league-wide schedule. We use this to enrich
+    the standings (which the API returns without logos) in a second pass.
+    """
     team_id = team["team_id"]
     data = fetch_json(team["api_base"], "schedule", params={"teamid": team_id})
     if not data or "schedule" not in data:
@@ -78,6 +83,16 @@ def fetch_schedule(team):
 
     info = data["schedule"]["info"]
     all_games = data["schedule"]["games"]
+
+    # Build logo map from the full league schedule (every team appears as
+    # home or visitor in at least one game).
+    if logo_map is not None:
+        for g in all_games:
+            for side in ("home", "visitor"):
+                tid = g.get(f"{side}_team")
+                logo = g.get(f"{side}_team_logo")
+                if tid and logo and tid not in logo_map:
+                    logo_map[tid] = logo
 
     games = []
     for g in all_games:
@@ -137,8 +152,12 @@ def fetch_schedule(team):
     }
 
 
-def fetch_standings(team):
-    """Fetch league standings (all halves) for this team's sport."""
+def fetch_standings(team, logo_map=None):
+    """Fetch league standings (all halves) for this team's sport.
+
+    `logo_map` (built by fetch_schedule) supplies the team_id -> logo URL
+    lookup; the standings API doesn't include logos itself.
+    """
     data = fetch_json(team["api_base"], "standings")
     if not data or "standings" not in data:
         print("  WARNING: No standings data returned")
@@ -146,6 +165,7 @@ def fetch_standings(team):
 
     info = data["standings"]["info"]
     groups = data["standings"]["groups"]
+    lmap = logo_map or {}
 
     def extract(group, division_name):
         if not group or division_name not in group:
@@ -156,6 +176,7 @@ def fetch_standings(team):
                 "name": t["team"]["Name"],
                 "abbr": t["team"].get("Abv", ""),
                 "division": t["team"].get("division", ""),
+                "logo": lmap.get(t["team"]["idteam"]) or "",
                 "W": t["W"],
                 "L": t["L"],
                 "T": t.get("T", 0),
@@ -206,16 +227,24 @@ def run_team(slug, args):
 
     print(f"\n=== {team['name']} ({team['sport']}) — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ===")
 
+    logo_map = {}
+
     if fetch_all or args.schedule_only:
         print(f"\n[schedule]")
-        schedule = fetch_schedule(team)
+        schedule = fetch_schedule(team, logo_map=logo_map)
         if schedule:
             write_json(output_dir, "schedule.json", schedule)
-            print(f"  ->{schedule['total_games']} games for season {schedule['season']}")
+            print(f"  ->{schedule['total_games']} games for season {schedule['season']} ({len(logo_map)} team logos cached)")
 
     if fetch_all or args.standings_only:
+        # Standings need the logo map. If we skipped --schedule, do a quick
+        # logo-only fetch first so standings rows still get their logos.
+        if not logo_map:
+            print(f"\n[logo lookup]")
+            fetch_schedule(team, logo_map=logo_map)
+            print(f"  ->{len(logo_map)} team logos cached")
         print(f"\n[standings]")
-        standings = fetch_standings(team)
+        standings = fetch_standings(team, logo_map=logo_map)
         if standings:
             write_json(output_dir, "standings.json", standings)
             print(f"  ->Season: {standings['season_name']}")
