@@ -1938,7 +1938,11 @@ function renderSchedule() {
     const monthAbbr = MONTH_ABBR[d.getMonth()];
     const dayAbbr = g.day || d.toLocaleDateString('en-US', { weekday: 'short' });
     const final = (g.status_code || 0) >= 2;
-    const live = (g.status_code || 0) === 1;
+    // Only treat status_code=1 as "live" if the game's date is today or later —
+    // the API sometimes leaves yesterday's games stuck in the in-progress state
+    // until the next scrape rolls through.
+    const todayIso = new Date().toISOString().slice(0, 10);
+    const live = (g.status_code || 0) === 1 && g.date >= todayIso;
 
     let resultHTML = '';
     if (final && typeof g.chucks_score === 'number' && typeof g.opponent_score === 'number') {
@@ -2286,9 +2290,10 @@ function buildGameContext(game, boxScoreEnvelope, statsEnvelope) {
   return { game, meta, linescore, pitchersOfRecord, ourSide, ourPlayers, ourPitchers };
 }
 
-// Schedule recap — a contextual lead sentence + a "led the way" player line.
+// Schedule recap — a contextual lead sentence + a varied player call-out.
 // Example: "The Woodchucks started the season strong, beating the Madison
-// Mallards 8-3. Chase and Karll led the way with a combined 4 hits and 4 RBI."
+// Mallards 8-3. Chase and Karll paced the offense with a combined 4 hits
+// and 4 RBI."  (The verb phrase rotates per game — see CALLOUT_TEMPLATES.)
 function buildSummary(ctx) {
   const { game, meta, linescore } = ctx;
   const we = TEAM.name.split(' ').pop();
@@ -2326,10 +2331,64 @@ function buildSummary(ctx) {
 // "Led the way" player line for the Schedule summary. Picks top batter(s) by
 // RBI (tied players included when 2+ RBI) and sums their hits/RBI/HR for a
 // single combined sentence.
+// Phrasing pools for the player call-out. Picked deterministically per game
+// (via game id hash) so the wording is stable on reload but varies across the
+// schedule — no two adjacent recap cards read identically.
+const CALLOUT_TEMPLATES = {
+  // Two players, win — combined stats.
+  duoWin: [
+    'led the way with a combined',
+    'paced the offense with a combined',
+    'led the charge, combining for',
+    'powered the lineup, combining for',
+    'came up big, combining for',
+    'carried the bats with a combined',
+  ],
+  // Two players, loss — keep it factual without the implied "winning effort".
+  duoLoss: [
+    'were the bright spots, combining for',
+    'did most of the damage, combining for',
+    'provided the offense, combining for',
+  ],
+  // Single player, win — followed by "going N-for-M…".
+  soloGoingWin: [
+    'led the way, going',
+    'paced the offense, going',
+    'had a big day, going',
+    'came up big, going',
+    'delivered, going',
+  ],
+  // Single player, loss — followed by "going N-for-M…".
+  soloGoingLoss: [
+    'was the bright spot, going',
+    'provided the offense, going',
+    'kept it interesting, going',
+  ],
+  // Single player, no AB info — fall through to plain "with X".
+  soloPlainWin: [
+    'led the way with',
+    'paced the offense with',
+    'powered the lineup with',
+  ],
+  soloPlainLoss: [
+    'was the bright spot with',
+    'provided the offense with',
+  ],
+};
+
+function pickTemplate(pool, seed) {
+  // Cheap deterministic hash on the seed (game id string).
+  let h = 0;
+  for (const c of String(seed)) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return pool[h % pool.length];
+}
+
 function buildScheduleCallout(ctx) {
+  const game = ctx.game;
   const players = (ctx.ourPlayers || []).filter(p => p && ((+p.H || 0) > 0 || (+p.RBI || 0) > 0));
   if (players.length === 0) return '';
 
+  const won = game.chucks_score > game.opponent_score;
   const ranked = [...players].sort((a, b) => (+b.RBI || 0) - (+a.RBI || 0));
   const topRBI = +ranked[0].RBI || 0;
   let picked;
@@ -2358,7 +2417,8 @@ function buildScheduleCallout(ctx) {
     : `${bits.slice(0, -1).join(', ')}, and ${bits[bits.length - 1]}`;
 
   if (picked.length >= 2) {
-    return `${names[0]} and ${names[1]} led the way with a combined ${statsClause}.`;
+    const verb = pickTemplate(won ? CALLOUT_TEMPLATES.duoWin : CALLOUT_TEMPLATES.duoLoss, game.id);
+    return `${names[0]} and ${names[1]} ${verb} ${statsClause}.`;
   }
   // Single player — use "going N-for-M with X RBI" when we have at-bats.
   const p = picked[0];
@@ -2369,9 +2429,11 @@ function buildScheduleCallout(ctx) {
     const sub = [`<span class="summary-stat">${h}-for-${ab}</span>`];
     if (rbi > 0) sub.push(`<span class="summary-stat">${rbi} RBI</span>`);
     const subClause = sub.length === 1 ? sub[0] : `${sub[0]} with ${sub.slice(1).join(' and ')}`;
-    return `${names[0]} led the way, going ${subClause}.`;
+    const verb = pickTemplate(won ? CALLOUT_TEMPLATES.soloGoingWin : CALLOUT_TEMPLATES.soloGoingLoss, game.id);
+    return `${names[0]} ${verb} ${subClause}.`;
   }
-  return `${names[0]} led the way with ${statsClause}.`;
+  const verb = pickTemplate(won ? CALLOUT_TEMPLATES.soloPlainWin : CALLOUT_TEMPLATES.soloPlainLoss, game.id);
+  return `${names[0]} ${verb} ${statsClause}.`;
 }
 
 // Player of the Game (Results tab callout). Scores every batter + pitcher and
