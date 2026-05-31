@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-05-31T20:09:49.972306+00:00",
+  "last_updated": "2026-05-31T21:29:28.350457+00:00",
   "total_games": 70,
   "games": [
     {
@@ -128,13 +128,13 @@
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6161logocapgb.png",
       "location": "Capital Credit Union Park",
       "status_code": 1,
-      "status": "In progress / Bottom 7th",
+      "status": "In progress / Bottom 10th",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "visitor_score": 2,
-      "home_score": 4,
-      "chucks_score": 2,
-      "opponent_score": 4
+      "visitor_score": 8,
+      "home_score": 7,
+      "chucks_score": 8,
+      "opponent_score": 7
     },
     {
       "id": 5729,
