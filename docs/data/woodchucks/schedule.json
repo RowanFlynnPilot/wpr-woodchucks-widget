@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-05-30T23:50:29.389720+00:00",
+  "last_updated": "2026-05-31T17:52:45.993314+00:00",
   "total_games": 70,
   "games": [
     {
@@ -108,14 +108,14 @@
       "opponent_abbr": "WIR",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
       "location": "Athletic Park",
-      "status_code": 1,
-      "status": "In progress / Bottom 7th",
+      "status_code": 2,
+      "status": "Final/9",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "visitor_score": 6,
-      "home_score": 1,
-      "chucks_score": 1,
-      "opponent_score": 6
+      "visitor_score": 8,
+      "home_score": 2,
+      "chucks_score": 2,
+      "opponent_score": 8
     },
     {
       "id": 5712,
