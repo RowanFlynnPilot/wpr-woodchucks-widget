@@ -1,7 +1,7 @@
 {
   "season": 26,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-06-08T00:01:28.812438+00:00",
+  "last_updated": "2026-06-08T02:33:52.381121+00:00",
   "great_lakes_west": {
     "first_half": [],
     "second_half": [
@@ -269,6 +269,22 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 66,
+        "name": "Rockford Rivets",
+        "abbr": "RFD",
+        "division": "Great Lakes East",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6666logocaprfd.png",
+        "W": 7,
+        "L": 7,
+        "T": 0,
+        "PCT": ".500",
+        "GB": "2.0",
+        "STREAK": "3W",
+        "LAST10": "5-5",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 74,
         "name": "Traverse City Pit Spitters",
         "abbr": "TVC",
@@ -280,22 +296,6 @@
         "PCT": ".500",
         "GB": "2.0",
         "STREAK": "1L",
-        "LAST10": "5-5",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
-        "team_id": 66,
-        "name": "Rockford Rivets",
-        "abbr": "RFD",
-        "division": "Great Lakes East",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6666logocaprfd.png",
-        "W": 6,
-        "L": 7,
-        "T": 0,
-        "PCT": ".462",
-        "GB": "2.5",
-        "STREAK": "2W",
         "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
@@ -383,6 +383,22 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 66,
+        "name": "Rockford Rivets",
+        "abbr": "RFD",
+        "division": "Great Lakes East",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6666logocaprfd.png",
+        "W": 7,
+        "L": 7,
+        "T": 0,
+        "PCT": ".500",
+        "GB": "2.0",
+        "STREAK": "3W",
+        "LAST10": "5-5",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 74,
         "name": "Traverse City Pit Spitters",
         "abbr": "TVC",
@@ -394,22 +410,6 @@
         "PCT": ".500",
         "GB": "2.0",
         "STREAK": "1L",
-        "LAST10": "5-5",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
-        "team_id": 66,
-        "name": "Rockford Rivets",
-        "abbr": "RFD",
-        "division": "Great Lakes East",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6666logocaprfd.png",
-        "W": 6,
-        "L": 7,
-        "T": 0,
-        "PCT": ".462",
-        "GB": "2.5",
-        "STREAK": "2W",
         "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
