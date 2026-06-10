@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-10T02:11:06.027988+00:00",
+  "last_updated": "2026-06-10T06:46:43.791332+00:00",
   "total_games": 70,
   "games": [
     {
@@ -279,13 +279,13 @@
       "opponent_abbr": "TB",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/5757logocaptb.png",
       "location": "Athletic Park",
-      "status_code": 1,
-      "status": "In progress / Bottom 8th",
+      "status_code": 2,
+      "status": "Final/9",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
       "visitor_score": 4,
-      "home_score": 6,
-      "chucks_score": 6,
+      "home_score": 7,
+      "chucks_score": 7,
       "opponent_score": 4
     },
     {
