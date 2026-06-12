@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-11T23:12:21.692465+00:00",
+  "last_updated": "2026-06-12T01:41:37.408706+00:00",
   "total_games": 42,
   "games": [
     {
@@ -32,10 +32,14 @@
       "opponent_abbr": "LC",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/1STEAM_PRIMARY_500.png",
       "location": "Athletic Park",
-      "status_code": 0,
-      "status": "Scheduled",
+      "status_code": 1,
+      "status": "In progress / Bottom 5th",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "visitor_score": 9,
+      "home_score": 10,
+      "chucks_score": 10,
+      "opponent_score": 9
     },
     {
       "id": 202,
