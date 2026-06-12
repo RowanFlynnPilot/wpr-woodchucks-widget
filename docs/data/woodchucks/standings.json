@@ -1,7 +1,7 @@
 {
   "season": 26,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-06-12T21:00:17.348234+00:00",
+  "last_updated": "2026-06-12T22:26:02.918532+00:00",
   "great_lakes_west": {
     "first_half": [],
     "second_half": [
@@ -91,12 +91,12 @@
         "abbr": "WIR",
         "division": "Great Lakes West",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
-        "W": 3,
+        "W": 4,
         "L": 10,
         "T": 0,
-        "PCT": ".231",
-        "GB": "7.0",
-        "STREAK": "3L",
+        "PCT": ".286",
+        "GB": "6.5",
+        "STREAK": "1W",
         "LAST10": "3-7",
         "first_half_clinched": 0,
         "second_half_clinched": 0
@@ -189,12 +189,12 @@
         "abbr": "WIR",
         "division": "Great Lakes West",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
-        "W": 3,
+        "W": 4,
         "L": 10,
         "T": 0,
-        "PCT": ".231",
-        "GB": "7.0",
-        "STREAK": "3L",
+        "PCT": ".286",
+        "GB": "6.5",
+        "STREAK": "1W",
         "LAST10": "3-7",
         "first_half_clinched": 0,
         "second_half_clinched": 0
@@ -285,22 +285,6 @@
         "second_half_clinched": 0
       },
       {
-        "team_id": 60,
-        "name": "Battle Creek Battle Jacks",
-        "abbr": "BC",
-        "division": "Great Lakes East",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6060logocapbc.png",
-        "W": 7,
-        "L": 9,
-        "T": 0,
-        "PCT": ".438",
-        "GB": "3.5",
-        "STREAK": "4L",
-        "LAST10": "3-7",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
         "team_id": 63,
         "name": "Kenosha Kingfish",
         "abbr": "KEN",
@@ -313,6 +297,22 @@
         "GB": "3.5",
         "STREAK": "4W",
         "LAST10": "6-4",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
+        "team_id": 60,
+        "name": "Battle Creek Battle Jacks",
+        "abbr": "BC",
+        "division": "Great Lakes East",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6060logocapbc.png",
+        "W": 7,
+        "L": 10,
+        "T": 0,
+        "PCT": ".412",
+        "GB": "4.0",
+        "STREAK": "5L",
+        "LAST10": "3-7",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       }
@@ -399,22 +399,6 @@
         "second_half_clinched": 0
       },
       {
-        "team_id": 60,
-        "name": "Battle Creek Battle Jacks",
-        "abbr": "BC",
-        "division": "Great Lakes East",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6060logocapbc.png",
-        "W": 7,
-        "L": 9,
-        "T": 0,
-        "PCT": ".438",
-        "GB": "3.5",
-        "STREAK": "4L",
-        "LAST10": "3-7",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
         "team_id": 63,
         "name": "Kenosha Kingfish",
         "abbr": "KEN",
@@ -427,6 +411,22 @@
         "GB": "3.5",
         "STREAK": "4W",
         "LAST10": "6-4",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
+        "team_id": 60,
+        "name": "Battle Creek Battle Jacks",
+        "abbr": "BC",
+        "division": "Great Lakes East",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6060logocapbc.png",
+        "W": 7,
+        "L": 10,
+        "T": 0,
+        "PCT": ".412",
+        "GB": "4.0",
+        "STREAK": "5L",
+        "LAST10": "3-7",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       }
