@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-13T21:14:13.834292+00:00",
+  "last_updated": "2026-06-13T22:34:05.451921+00:00",
   "total_games": 42,
   "games": [
     {
@@ -70,10 +70,14 @@
       "opponent_abbr": "GF",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/86-GrandForksSpitfires-1762910017.png",
       "location": "Athletic Park",
-      "status_code": 0,
-      "status": "Scheduled",
+      "status_code": 1,
+      "status": "In progress / Top 2nd",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "visitor_score": 0,
+      "home_score": 2,
+      "chucks_score": 2,
+      "opponent_score": 0
     },
     {
       "id": 209,
