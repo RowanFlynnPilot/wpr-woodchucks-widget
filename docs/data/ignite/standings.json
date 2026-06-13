@@ -1,7 +1,7 @@
 {
   "season": 4,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-06-13T02:09:54.445286+00:00",
+  "last_updated": "2026-06-13T06:35:04.800105+00:00",
   "great_lakes_west": {
     "first_half": [],
     "second_half": [
@@ -22,6 +22,22 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 86,
+        "name": "Grand Forks Spitfires",
+        "abbr": "GF",
+        "division": "NWL Softball",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/86-GrandForksSpitfires-1762910017.png",
+        "W": 2,
+        "L": 1,
+        "T": 0,
+        "PCT": ".667",
+        "GB": "0.5",
+        "STREAK": "1W",
+        "LAST10": "2-1",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 1,
         "name": "La Crosse Steam",
         "abbr": "LC",
@@ -34,22 +50,6 @@
         "GB": "0.5",
         "STREAK": "2W",
         "LAST10": "2-1",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
-        "team_id": 86,
-        "name": "Grand Forks Spitfires",
-        "abbr": "GF",
-        "division": "NWL Softball",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/86-GrandForksSpitfires-1762910017.png",
-        "W": 1,
-        "L": 1,
-        "T": 0,
-        "PCT": ".500",
-        "GB": "1.0",
-        "STREAK": "1L",
-        "LAST10": "1-1",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -92,12 +92,12 @@
         "division": "NWL Softball",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/5Wausau-Ignite-500.png",
         "W": 0,
-        "L": 2,
+        "L": 3,
         "T": 0,
         "PCT": ".000",
-        "GB": "2.0",
-        "STREAK": "2L",
-        "LAST10": "0-2",
+        "GB": "2.5",
+        "STREAK": "3L",
+        "LAST10": "0-3",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       }
@@ -120,6 +120,22 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 86,
+        "name": "Grand Forks Spitfires",
+        "abbr": "GF",
+        "division": "NWL Softball",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/86-GrandForksSpitfires-1762910017.png",
+        "W": 2,
+        "L": 1,
+        "T": 0,
+        "PCT": ".667",
+        "GB": "0.5",
+        "STREAK": "1W",
+        "LAST10": "2-1",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 1,
         "name": "La Crosse Steam",
         "abbr": "LC",
@@ -132,22 +148,6 @@
         "GB": "0.5",
         "STREAK": "2W",
         "LAST10": "2-1",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
-        "team_id": 86,
-        "name": "Grand Forks Spitfires",
-        "abbr": "GF",
-        "division": "NWL Softball",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/86-GrandForksSpitfires-1762910017.png",
-        "W": 1,
-        "L": 1,
-        "T": 0,
-        "PCT": ".500",
-        "GB": "1.0",
-        "STREAK": "1L",
-        "LAST10": "1-1",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -190,12 +190,12 @@
         "division": "NWL Softball",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/5Wausau-Ignite-500.png",
         "W": 0,
-        "L": 2,
+        "L": 3,
         "T": 0,
         "PCT": ".000",
-        "GB": "2.0",
-        "STREAK": "2L",
-        "LAST10": "0-2",
+        "GB": "2.5",
+        "STREAK": "3L",
+        "LAST10": "0-3",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       }

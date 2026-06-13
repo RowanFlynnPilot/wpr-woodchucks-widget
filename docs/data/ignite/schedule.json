@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-13T02:09:54.269775+00:00",
+  "last_updated": "2026-06-13T06:35:04.614997+00:00",
   "total_games": 42,
   "games": [
     {
@@ -51,13 +51,13 @@
       "opponent_abbr": "GF",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/86-GrandForksSpitfires-1762910017.png",
       "location": "Athletic Park",
-      "status_code": 1,
-      "status": "In progress / Bottom 7th",
+      "status_code": 2,
+      "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
       "visitor_score": 9,
-      "home_score": 6,
-      "chucks_score": 6,
+      "home_score": 7,
+      "chucks_score": 7,
       "opponent_score": 9
     },
     {
