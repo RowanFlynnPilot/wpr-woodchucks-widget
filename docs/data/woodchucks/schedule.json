@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-14T07:15:07.690963+00:00",
+  "last_updated": "2026-06-14T18:06:24.136079+00:00",
   "total_games": 70,
   "games": [
     {
@@ -336,10 +336,14 @@
       "opponent_abbr": "LAK",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/64-LakeshoreChinooks-1768241484.png",
       "location": "Kapco Park",
-      "status_code": 0,
-      "status": "Scheduled",
+      "status_code": 1,
+      "status": "In progress / Top 1st",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "visitor_score": 0,
+      "home_score": 0,
+      "chucks_score": 0,
+      "opponent_score": 0
     },
     {
       "id": 5880,
