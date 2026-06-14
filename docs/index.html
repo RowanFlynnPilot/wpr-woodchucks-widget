@@ -15,6 +15,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&family=Bebas+Neue&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<!-- Plausible Analytics (privacy-friendly, cookieless). Fires manual page
+     views from init() with team-segmented synthetic paths so the dashboard
+     at plausible.io/rowanflynnpilot.github.io shows Woodchucks vs Ignite
+     traffic separately. -->
+<script defer data-domain="rowanflynnpilot.github.io" src="https://plausible.io/js/script.manual.js"></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments);};</script>
 <style>
 :root {
   --wpr-teal: #4aaba7;
@@ -3064,8 +3070,19 @@ function applyBranding() {
 
 // ═══════ INIT ═══════
 
+// Manual Plausible pageview: route each team to its own synthetic URL so the
+// dashboard breaks the totals out as /wpr-woodchucks-widget/woodchucks/ and
+// /wpr-woodchucks-widget/ignite/ instead of merging them under one path.
+function trackPageview() {
+  try {
+    const url = `https://rowanflynnpilot.github.io/wpr-woodchucks-widget/${TEAM.slug}/`;
+    window.plausible('pageview', { u: url });
+  } catch {}
+}
+
 async function init() {
   applyBranding();
+  trackPageview();
   currentMonth = defaultMonth();
   setLoadingAll();
   await Promise.all([loadSchedule(), loadStandings(), loadMeta(), loadEvents()]);
