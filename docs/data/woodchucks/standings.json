@@ -1,7 +1,7 @@
 {
   "season": 26,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-06-14T02:33:19.312663+00:00",
+  "last_updated": "2026-06-14T07:15:08.215319+00:00",
   "great_lakes_west": {
     "first_half": [],
     "second_half": [
@@ -70,6 +70,22 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 67,
+        "name": "Wisconsin Rapids Rafters",
+        "abbr": "WIR",
+        "division": "Great Lakes West",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
+        "W": 6,
+        "L": 10,
+        "T": 0,
+        "PCT": ".375",
+        "GB": "6.0",
+        "STREAK": "3W",
+        "LAST10": "5-5",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 70,
         "name": "Fond du Lac Dock Spiders",
         "abbr": "FDL",
@@ -82,22 +98,6 @@
         "GB": "7.0",
         "STREAK": "1L",
         "LAST10": "2-8",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
-        "team_id": 67,
-        "name": "Wisconsin Rapids Rafters",
-        "abbr": "WIR",
-        "division": "Great Lakes West",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
-        "W": 5,
-        "L": 10,
-        "T": 0,
-        "PCT": ".333",
-        "GB": "6.5",
-        "STREAK": "2W",
-        "LAST10": "4-6",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       }
@@ -168,6 +168,22 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 67,
+        "name": "Wisconsin Rapids Rafters",
+        "abbr": "WIR",
+        "division": "Great Lakes West",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
+        "W": 6,
+        "L": 10,
+        "T": 0,
+        "PCT": ".375",
+        "GB": "6.0",
+        "STREAK": "3W",
+        "LAST10": "5-5",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 70,
         "name": "Fond du Lac Dock Spiders",
         "abbr": "FDL",
@@ -180,22 +196,6 @@
         "GB": "7.0",
         "STREAK": "1L",
         "LAST10": "2-8",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
-        "team_id": 67,
-        "name": "Wisconsin Rapids Rafters",
-        "abbr": "WIR",
-        "division": "Great Lakes West",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
-        "W": 5,
-        "L": 10,
-        "T": 0,
-        "PCT": ".333",
-        "GB": "6.5",
-        "STREAK": "2W",
-        "LAST10": "4-6",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       }
