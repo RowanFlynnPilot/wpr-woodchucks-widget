@@ -3343,12 +3343,12 @@ function renderMini() {
     html += `<div class="mini-empty">No upcoming or recent games yet.</div>`;
   }
 
-  // CTA — links to the standalone full widget URL, opens in a new tab so it
-  // doesn't navigate the parent article away.
-  const fullUrl = `https://rowanflynnpilot.github.io/wpr-woodchucks-widget/?team=${TEAM.slug}`;
+  // CTA — links to the WP&R landing page that hosts the full widget, opens
+  // in a new tab so it doesn't navigate the parent article away.
+  const fullUrl = 'https://wausaupilotandreview.com/woodchucks-ignite/';
   html += `
       <a class="mini-cta" href="${escapeHtml(fullUrl)}" target="_blank" rel="noopener">
-        Full ${escapeHtml(TEAM.name.split(' ').pop())} schedule, standings & stats
+        Full ${escapeHtml(TEAM.name.split(' ').pop())} schedule, standings &amp; stats
         <span aria-hidden="true">&rarr;</span>
       </a>
     </div>
