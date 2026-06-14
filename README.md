@@ -70,6 +70,34 @@ Drop these in Custom HTML blocks. Both widgets share one parent-side listener �
 
 If WordPress strips the `<script>` tag (security plugin / user role), both widgets still work — they just stay at the initial 600px height with internal scrolling.
 
+### Mini variants (for in-article embeds)
+
+Compact 280px-tall version designed to drop into the middle of an article. Shows team logo, current record, last game with auto-recap, next scheduled game, and a "View full" CTA to the standalone widget. Mobile-friendly down to ~320px.
+
+```html
+<!-- Woodchucks mini -->
+<iframe
+  data-team="woodchucks"
+  src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/?team=woodchucks&mini=true"
+  style="width:100%;max-width:480px;height:280px;border:none;display:block;margin:0 auto;"
+  title="Wausau Woodchucks — at a glance"
+  loading="lazy"
+  scrolling="no">
+</iframe>
+
+<!-- Ignite mini -->
+<iframe
+  data-team="ignite"
+  src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/?team=ignite&mini=true"
+  style="width:100%;max-width:480px;height:280px;border:none;display:block;margin:0 auto;"
+  title="Wausau Ignite — at a glance"
+  loading="lazy"
+  scrolling="no">
+</iframe>
+```
+
+The mini variants use the **same resize listener** as the full widgets — paste the `<script>` block once at the bottom of the page and it covers both. Mini and full can live on the same article page.
+
 ## Setup
 
 ### 1. Enable GitHub Pages

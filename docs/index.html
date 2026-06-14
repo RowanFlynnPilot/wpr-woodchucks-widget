@@ -1374,6 +1374,179 @@ img.opp-logo:not([src]), img.standings-logo:not([src]) { display: none; }
   margin-right: 0;
 }
 
+/* ─── MINI WIDGET ─── */
+/* Compact in-article variant — designed for ~300-500px wide article columns.
+   Activated by ?mini=true; the full UI is bypassed and replaced with this. */
+body.is-mini { background: transparent; }
+body.is-mini .widget-container {
+  max-width: 480px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.mini {
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, var(--chucks-navy) 0%, var(--chucks-navy-light) 100%);
+  color: #fff;
+}
+.mini-logo-wrap {
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.mini-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+.mini-title {
+  flex: 1;
+  min-width: 0;
+}
+.mini-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mini-sub {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mini-record {
+  text-align: right;
+  flex-shrink: 0;
+}
+.mini-record-num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 16px;
+}
+.mini-streak {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--chucks-cyan);
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+.mini-row {
+  padding: 10px 14px;
+  border-top: 1px solid var(--neutral-100);
+}
+.mini-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--neutral-600);
+  margin-bottom: 4px;
+}
+.mini-game-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--chucks-navy);
+  flex-wrap: wrap;
+}
+.mini-opp-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.mini-game-opp { flex: 1; min-width: 0; }
+.mini-game-time {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--neutral-600);
+}
+.mini-result {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.mini-result.win { color: var(--chucks-win); background: rgba(30,125,50,0.08); }
+.mini-result.loss { color: var(--chucks-red); background: rgba(198,40,40,0.08); }
+.mini-recap {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--neutral-800);
+}
+.mini-recap:empty { display: none; }
+.mini-recap .summary-lead { color: var(--chucks-navy); font-weight: 700; }
+.mini-recap .summary-stat {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--chucks-navy);
+}
+
+.mini-empty {
+  padding: 20px 14px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--neutral-600);
+  font-style: italic;
+}
+
+.mini-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--chucks-cyan);
+  color: var(--chucks-navy);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  text-align: center;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+.mini-cta:hover { filter: brightness(1.05); text-decoration: none; }
+
+/* Mini at tiny widths (e.g. 320px article column) */
+@media (max-width: 360px) {
+  .mini-name { font-size: 16px; }
+  .mini-record-num { font-size: 14px; }
+  .mini-game-line { font-size: 12px; }
+  .mini-cta { font-size: 11px; padding: 9px 12px; }
+}
+
 /* ─── RESPONSIVE ─── */
 /* Tablet (the widget is already capped at max-width: 720px on the container,
    so most desktop styles work — these are just small typography touch-ups.) */
@@ -1715,6 +1888,7 @@ const TEAMS = {
 
 const params = new URLSearchParams(window.location.search);
 const TEAM = TEAMS[(params.get('team') || '').toLowerCase()] || TEAMS.woodchucks;
+const IS_MINI = params.get('mini') === 'true' || params.get('mini') === '1';
 
 const STALE_HOURS = 24;
 
@@ -3075,24 +3249,141 @@ function applyBranding() {
 // /wpr-woodchucks-widget/ignite/ instead of merging them under one path.
 function trackPageview() {
   try {
-    const url = `https://rowanflynnpilot.github.io/wpr-woodchucks-widget/${TEAM.slug}/`;
+    const variant = IS_MINI ? '/mini' : '';
+    const url = `https://rowanflynnpilot.github.io/wpr-woodchucks-widget/${TEAM.slug}${variant}/`;
     window.plausible('pageview', { u: url });
   } catch {}
+}
+
+// ═══════ MINI WIDGET ═══════
+// Stripped-down version for in-article embeds. Shows team header, current
+// record, next game, last result + auto-recap, and a "View full widget" CTA.
+// Activated with ?mini=true.
+
+function renderMini() {
+  const container = document.querySelector('.widget-container');
+  if (!container) return;
+  const games = (scheduleData && Array.isArray(scheduleData.games)) ? scheduleData.games : [];
+  const today = new Date().toISOString().slice(0, 10);
+
+  // Find the most recent final and the next scheduled game.
+  const finals = games.filter(g => (g.status_code || 0) >= 2 && typeof g.chucks_score === 'number');
+  const lastFinal = finals.length ? finals[finals.length - 1] : null;
+  const upcoming = games.find(g => g.date && g.date >= today && (g.status_code || 0) < 2);
+
+  // Pull current record from standings if available.
+  let record = null, streak = null;
+  if (standingsData) {
+    const teamLast = TEAM.name.split(' ').pop();
+    const halves = standingsData.great_lakes_west || {};
+    const all = [...(halves.full || []), ...(halves.second_half || []), ...(halves.first_half || [])];
+    const me = all.find(t => (t.name || '').includes(teamLast));
+    if (me) {
+      record = `${me.W ?? 0}-${me.L ?? 0}`;
+      if (me.STREAK && me.STREAK !== '-') streak = me.STREAK;
+    }
+  }
+
+  const formatGameLine = (g) => {
+    if (!g) return '';
+    const d = parseDate(g.date);
+    const dateLabel = `${d.toLocaleDateString('en-US', { weekday: 'short' })}, ${MONTH_ABBR[d.getMonth()]} ${d.getDate()}`;
+    return { dateLabel, vsAt: g.home ? 'vs' : '@', opponent: g.opponent || 'TBD', logo: g.opponent_logo || '', time: formatTimeLabel(g.time), venue: g.home ? HOME_VENUE : (g.location || 'Away') };
+  };
+
+  let html = `
+    <div class="mini">
+      <div class="mini-header">
+        <div class="mini-logo-wrap"><img class="mini-logo" src="${escapeHtml(TEAM.logoUrl)}" alt="${escapeHtml(TEAM.name)}" width="40" height="40"></div>
+        <div class="mini-title">
+          <div class="mini-name">${escapeHtml(TEAM.name)}</div>
+          <div class="mini-sub">${escapeHtml(TEAM.league)}</div>
+        </div>
+        ${record ? `<div class="mini-record"><div class="mini-record-num">${escapeHtml(record)}</div>${streak ? `<div class="mini-streak">${escapeHtml(streak)}</div>` : ''}</div>` : ''}
+      </div>
+  `;
+
+  if (lastFinal) {
+    const g = lastFinal;
+    const info = formatGameLine(g);
+    const won = g.chucks_score > g.opponent_score;
+    const scoreStr = `${g.chucks_score}-${g.opponent_score}`;
+    html += `
+      <div class="mini-row">
+        <div class="mini-label">Last Game</div>
+        <div class="mini-game" data-game-id="${g.id || ''}">
+          <div class="mini-game-line">
+            ${info.logo ? `<img class="mini-opp-logo" src="${escapeHtml(info.logo)}" alt="" loading="lazy" decoding="async" width="20" height="20">` : ''}
+            <span class="mini-game-opp">${info.vsAt} ${escapeHtml(info.opponent)}</span>
+            <span class="mini-result ${won ? 'win' : 'loss'}">${won ? 'W' : 'L'} ${scoreStr}</span>
+          </div>
+          <div class="mini-recap" data-mini-recap-id="${g.id || ''}"></div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (upcoming) {
+    const info = formatGameLine(upcoming);
+    html += `
+      <div class="mini-row">
+        <div class="mini-label">Next Game</div>
+        <div class="mini-game">
+          <div class="mini-game-line">
+            ${info.logo ? `<img class="mini-opp-logo" src="${escapeHtml(info.logo)}" alt="" loading="lazy" decoding="async" width="20" height="20">` : ''}
+            <span class="mini-game-opp">${info.vsAt} ${escapeHtml(info.opponent)}</span>
+            <span class="mini-game-time">${escapeHtml(info.dateLabel)} · ${escapeHtml(info.time)}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (!lastFinal && !upcoming) {
+    html += `<div class="mini-empty">No upcoming or recent games yet.</div>`;
+  }
+
+  // CTA — links to the standalone full widget URL, opens in a new tab so it
+  // doesn't navigate the parent article away.
+  const fullUrl = `https://rowanflynnpilot.github.io/wpr-woodchucks-widget/?team=${TEAM.slug}`;
+  html += `
+      <a class="mini-cta" href="${escapeHtml(fullUrl)}" target="_blank" rel="noopener">
+        Full ${escapeHtml(TEAM.name.split(' ').pop())} schedule, standings & stats
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  `;
+
+  container.innerHTML = html;
+
+  // Hydrate the last-game recap line (same machinery as the full widget).
+  if (lastFinal) {
+    fetchGameDetail(lastFinal).then(entry => {
+      const el = document.querySelector(`[data-mini-recap-id="${lastFinal.id}"]`);
+      if (el && entry && entry.summary) el.innerHTML = entry.summary;
+      postHeight();
+    });
+  }
 }
 
 async function init() {
   applyBranding();
   trackPageview();
+  if (IS_MINI) document.body.classList.add('is-mini');
   currentMonth = defaultMonth();
-  setLoadingAll();
-  await Promise.all([loadSchedule(), loadStandings(), loadMeta(), loadEvents()]);
-  currentMonth = bestMonthForSchedule();
-  renderSchedule();
-  renderResults();
-  displayStandings();
-  renderRecordBanner();
-  renderLastUpdated();
-  renderEvents();
+  if (!IS_MINI) setLoadingAll();
+  await Promise.all([loadSchedule(), loadStandings(), loadMeta(), IS_MINI ? Promise.resolve() : loadEvents()]);
+  if (IS_MINI) {
+    renderMini();
+  } else {
+    currentMonth = bestMonthForSchedule();
+    renderSchedule();
+    renderResults();
+    displayStandings();
+    renderRecordBanner();
+    renderLastUpdated();
+    renderEvents();
+  }
   postHeight();
 }
 
