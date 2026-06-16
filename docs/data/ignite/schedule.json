@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-16T02:39:34.173206+00:00",
+  "last_updated": "2026-06-16T08:37:25.249282+00:00",
   "total_games": 42,
   "games": [
     {
@@ -108,14 +108,14 @@
       "opponent_abbr": "MD",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/4Mare-A-Moon-500.png",
       "location": "Warner Park",
-      "status_code": 1,
-      "status": "In progress / Top 6th",
+      "status_code": 2,
+      "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "visitor_score": 1,
-      "home_score": 9,
-      "chucks_score": 1,
-      "opponent_score": 9
+      "visitor_score": 5,
+      "home_score": 11,
+      "chucks_score": 5,
+      "opponent_score": 11
     },
     {
       "id": 215,
