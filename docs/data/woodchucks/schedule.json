@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-17T08:19:59.047301+00:00",
+  "last_updated": "2026-06-17T19:15:56.095207+00:00",
   "total_games": 70,
   "games": [
     {
@@ -387,7 +387,7 @@
       "id": 5906,
       "date": "2026-06-17",
       "day": "Wed",
-      "time": "12:05 pm",
+      "time": "5:05 pm",
       "home": false,
       "opponent": "Eau Claire Express",
       "opponent_abbr": "EC",
@@ -402,7 +402,7 @@
       "id": 5912,
       "date": "2026-06-17",
       "day": "Wed",
-      "time": "6:35 pm",
+      "time": "8:35 pm",
       "home": false,
       "opponent": "Eau Claire Express",
       "opponent_abbr": "EC",
