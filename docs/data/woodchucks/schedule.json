@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-19T02:50:40.307485+00:00",
+  "last_updated": "2026-06-19T08:24:09.785544+00:00",
   "total_games": 70,
   "games": [
     {
@@ -393,14 +393,14 @@
       "opponent_abbr": "FDL",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/7070logocapfdl.png",
       "location": "Herr-Baker Field",
-      "status_code": 1,
-      "status": "In progress / Top 10th",
+      "status_code": 3,
+      "status": "Final/11",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "visitor_score": 4,
-      "home_score": 4,
-      "chucks_score": 4,
-      "opponent_score": 4
+      "visitor_score": 7,
+      "home_score": 8,
+      "chucks_score": 7,
+      "opponent_score": 8
     },
     {
       "id": 5945,
