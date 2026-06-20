@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-20T21:44:04.261036+00:00",
+  "last_updated": "2026-06-20T22:56:44.993036+00:00",
   "total_games": 70,
   "games": [
     {
@@ -431,10 +431,14 @@
       "opponent_abbr": "FDL",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/7070logocapfdl.png",
       "location": "Athletic Park",
-      "status_code": 0,
-      "status": "Scheduled",
+      "status_code": 1,
+      "status": "In progress / Top 3rd",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "visitor_score": 6,
+      "home_score": 3,
+      "chucks_score": 3,
+      "opponent_score": 6
     },
     {
       "id": 5965,
