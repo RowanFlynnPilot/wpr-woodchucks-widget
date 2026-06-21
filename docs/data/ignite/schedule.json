@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-21T02:36:07.184573+00:00",
+  "last_updated": "2026-06-21T07:23:18.051539+00:00",
   "total_games": 42,
   "games": [
     {
@@ -184,14 +184,14 @@
       "opponent_abbr": "MT",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/3Honeybees_Primary_500.png",
       "location": "Corbett Field",
-      "status_code": 1,
-      "status": "In progress / Bottom 4th",
+      "status_code": 2,
+      "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "visitor_score": 4,
-      "home_score": 1,
-      "chucks_score": 4,
-      "opponent_score": 1
+      "visitor_score": 6,
+      "home_score": 7,
+      "chucks_score": 6,
+      "opponent_score": 7
     },
     {
       "id": 225,
