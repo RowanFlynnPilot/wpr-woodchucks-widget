@@ -1,7 +1,7 @@
 {
   "season": 26,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-06-22T00:08:27.242781+00:00",
+  "last_updated": "2026-06-22T02:39:34.759925+00:00",
   "great_lakes_west": {
     "first_half": [],
     "second_half": [
@@ -247,8 +247,8 @@
         "T": 0,
         "PCT": ".556",
         "GB": "2.5",
-        "STREAK": "2W",
-        "LAST10": "7-3",
+        "STREAK": "3W",
+        "LAST10": "6-3",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -295,8 +295,8 @@
         "T": 0,
         "PCT": ".370",
         "GB": "7.5",
-        "STREAK": "5L",
-        "LAST10": "3-7",
+        "STREAK": "6L",
+        "LAST10": "3-6",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -361,8 +361,8 @@
         "T": 0,
         "PCT": ".556",
         "GB": "2.5",
-        "STREAK": "2W",
-        "LAST10": "7-3",
+        "STREAK": "3W",
+        "LAST10": "6-3",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -409,8 +409,8 @@
         "T": 0,
         "PCT": ".370",
         "GB": "7.5",
-        "STREAK": "5L",
-        "LAST10": "3-7",
+        "STREAK": "6L",
+        "LAST10": "3-6",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
