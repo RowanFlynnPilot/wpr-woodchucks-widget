@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-23T02:05:41.878381+00:00",
+  "last_updated": "2026-06-23T06:30:12.801333+00:00",
   "total_games": 42,
   "games": [
     {
@@ -211,25 +211,6 @@
       "home_score": 7,
       "chucks_score": 9,
       "opponent_score": 7
-    },
-    {
-      "id": 229,
-      "date": "2026-06-22",
-      "day": "Mon",
-      "time": "6:35 pm",
-      "home": false,
-      "opponent": "Minot Honeybees",
-      "opponent_abbr": "MT",
-      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/3Honeybees_Primary_500.png",
-      "location": "Corbett Field",
-      "status_code": 6,
-      "status": "Suspended - Other",
-      "broadcast": "flosports",
-      "broadcast_label": "FloCollege",
-      "visitor_score": 10,
-      "home_score": 0,
-      "chucks_score": 10,
-      "opponent_score": 0
     },
     {
       "id": 232,
@@ -547,10 +528,29 @@
       "broadcast_label": "FloCollege"
     },
     {
-      "id": 286,
+      "id": 229,
       "date": "2026-07-18",
       "day": "Sat",
       "time": "5:05 pm",
+      "home": false,
+      "opponent": "Minot Honeybees",
+      "opponent_abbr": "MT",
+      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/3Honeybees_Primary_500.png",
+      "location": "Corbett Field",
+      "status_code": 6,
+      "status": "Resched 7/18",
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege",
+      "visitor_score": 10,
+      "home_score": 0,
+      "chucks_score": 10,
+      "opponent_score": 0
+    },
+    {
+      "id": 286,
+      "date": "2026-07-18",
+      "day": "Sat",
+      "time": "7:05 pm",
       "home": true,
       "opponent": "Minot Honeybees",
       "opponent_abbr": "MT",
