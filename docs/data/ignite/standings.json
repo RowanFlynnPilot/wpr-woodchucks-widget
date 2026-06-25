@@ -1,7 +1,7 @@
 {
   "season": 4,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-06-25T06:29:57.188959+00:00",
+  "last_updated": "2026-06-25T18:59:48.177781+00:00",
   "great_lakes_west": {
     "first_half": [],
     "second_half": [
@@ -38,6 +38,22 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 1,
+        "name": "La Crosse Steam",
+        "abbr": "LC",
+        "division": "NWL Softball",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/1STEAM_PRIMARY_500.png",
+        "W": 6,
+        "L": 7,
+        "T": 0,
+        "PCT": ".462",
+        "GB": "7.0",
+        "STREAK": "2W",
+        "LAST10": "4-6",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 3,
         "name": "Minot Honeybees",
         "abbr": "MT",
@@ -50,22 +66,6 @@
         "GB": "7.5",
         "STREAK": "2W",
         "LAST10": "5-5",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
-        "team_id": 1,
-        "name": "La Crosse Steam",
-        "abbr": "LC",
-        "division": "NWL Softball",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/1STEAM_PRIMARY_500.png",
-        "W": 5,
-        "L": 7,
-        "T": 0,
-        "PCT": ".417",
-        "GB": "7.5",
-        "STREAK": "1W",
-        "LAST10": "4-6",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -92,11 +92,11 @@
         "division": "NWL Softball",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/2Habaneros_PepperFlameAlt_500.png",
         "W": 2,
-        "L": 11,
+        "L": 12,
         "T": 0,
-        "PCT": ".154",
-        "GB": "11.0",
-        "STREAK": "8L",
+        "PCT": ".143",
+        "GB": "11.5",
+        "STREAK": "9L",
         "LAST10": "1-9",
         "first_half_clinched": 0,
         "second_half_clinched": 0
@@ -136,6 +136,22 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 1,
+        "name": "La Crosse Steam",
+        "abbr": "LC",
+        "division": "NWL Softball",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/1STEAM_PRIMARY_500.png",
+        "W": 6,
+        "L": 7,
+        "T": 0,
+        "PCT": ".462",
+        "GB": "7.0",
+        "STREAK": "2W",
+        "LAST10": "4-6",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 3,
         "name": "Minot Honeybees",
         "abbr": "MT",
@@ -148,22 +164,6 @@
         "GB": "7.5",
         "STREAK": "2W",
         "LAST10": "5-5",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
-        "team_id": 1,
-        "name": "La Crosse Steam",
-        "abbr": "LC",
-        "division": "NWL Softball",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/1STEAM_PRIMARY_500.png",
-        "W": 5,
-        "L": 7,
-        "T": 0,
-        "PCT": ".417",
-        "GB": "7.5",
-        "STREAK": "1W",
-        "LAST10": "4-6",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -190,11 +190,11 @@
         "division": "NWL Softball",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/2Habaneros_PepperFlameAlt_500.png",
         "W": 2,
-        "L": 11,
+        "L": 12,
         "T": 0,
-        "PCT": ".154",
-        "GB": "11.0",
-        "STREAK": "8L",
+        "PCT": ".143",
+        "GB": "11.5",
+        "STREAK": "9L",
         "LAST10": "1-9",
         "first_half_clinched": 0,
         "second_half_clinched": 0
