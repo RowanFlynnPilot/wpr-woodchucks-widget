@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-25T00:06:02.220214+00:00",
+  "last_updated": "2026-06-25T02:07:57.218590+00:00",
   "total_games": 42,
   "games": [
     {
@@ -222,14 +222,14 @@
       "opponent_abbr": "MD",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/4Mare-A-Moon-500.png",
       "location": "Athletic Park",
-      "status_code": 1,
-      "status": "In progress / Top 3rd",
+      "status_code": 2,
+      "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "visitor_score": 1,
-      "home_score": 0,
-      "chucks_score": 0,
-      "opponent_score": 1
+      "visitor_score": 7,
+      "home_score": 1,
+      "chucks_score": 1,
+      "opponent_score": 7
     },
     {
       "id": 236,

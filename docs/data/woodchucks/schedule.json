@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-25T00:06:01.111879+00:00",
+  "last_updated": "2026-06-25T02:07:56.420831+00:00",
   "total_games": 70,
   "games": [
     {
@@ -498,21 +498,6 @@
       "opponent_score": 9
     },
     {
-      "id": 6003,
-      "date": "2026-06-24",
-      "day": "Wed",
-      "time": "6:35 pm",
-      "home": false,
-      "opponent": "Green Bay Rockers",
-      "opponent_abbr": "GB",
-      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6161logocapgb.png",
-      "location": "Capital Credit Union Park",
-      "status_code": 0,
-      "status": "Scheduled",
-      "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
-    },
-    {
       "id": 6021,
       "date": "2026-06-25",
       "day": "Thu",
@@ -738,10 +723,25 @@
       "broadcast_label": "FloCollege"
     },
     {
+      "id": 6003,
+      "date": "2026-07-12",
+      "day": "Sun",
+      "time": "12:05 pm",
+      "home": false,
+      "opponent": "Green Bay Rockers",
+      "opponent_abbr": "GB",
+      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6161logocapgb.png",
+      "location": "Capital Credit Union Park",
+      "status_code": 0,
+      "status": "Resched 7/12",
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege"
+    },
+    {
       "id": 6168,
       "date": "2026-07-12",
       "day": "Sun",
-      "time": "1:05 pm",
+      "time": "2:30 pm",
       "home": false,
       "opponent": "Green Bay Rockers",
       "opponent_abbr": "GB",
