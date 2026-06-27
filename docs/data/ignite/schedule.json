@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-27T00:01:23.308745+00:00",
+  "last_updated": "2026-06-27T02:04:16.398642+00:00",
   "total_games": 42,
   "games": [
     {
@@ -260,14 +260,14 @@
       "opponent_abbr": "LC",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/1STEAM_PRIMARY_500.png",
       "location": "Copeland Park",
-      "status_code": 1,
-      "status": "In progress / Top 2nd",
+      "status_code": 2,
+      "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "visitor_score": 4,
-      "home_score": 1,
-      "chucks_score": 4,
-      "opponent_score": 1
+      "visitor_score": 6,
+      "home_score": 5,
+      "chucks_score": 6,
+      "opponent_score": 5
     },
     {
       "id": 240,
