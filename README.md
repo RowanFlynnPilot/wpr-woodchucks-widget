@@ -129,12 +129,43 @@ Compact two-section card built for daily newsletter blocks (~390px tall, max 380
 </iframe>
 ```
 
-**Email caveat:** Most email clients (Gmail, Outlook, etc.) strip `<iframe>` tags from delivered email. These embeds work best in:
-- Web-based newsletters (a WordPress post that doubles as a newsletter article)
-- Newsletter platforms with rich-content support (Beehiiv, some Substack views)
-- Anywhere the email links _back_ to a WP&R article that contains the embed
+**For web placement** (WordPress posts, articles) — the iframe above works perfectly.
 
-For email-native delivery, consider linking to a WP&R page that contains the card rather than embedding the iframe directly.
+**For email** (Mailchimp, Beehiiv, ConvertKit, native Mail clients, etc.) — every major email client strips `<iframe>` tags. Use the **static daily snapshot PNG** instead (next section).
+
+### Email-friendly daily snapshot PNG
+
+A GitHub Action ([`.github/workflows/snapshot.yml`](.github/workflows/snapshot.yml)) renders the `?mini=tickets` card to a static PNG once every morning (11:00 UTC = 6 AM CDT / 5 AM CST) and commits it to `docs/snapshots/`. The PNGs are served by GitHub Pages at:
+
+- https://rowanflynnpilot.github.io/wpr-woodchucks-widget/snapshots/woodchucks-today.png
+- https://rowanflynnpilot.github.io/wpr-woodchucks-widget/snapshots/ignite-today.png
+
+Email-safe embed code — works in **Gmail, Outlook, Apple Mail, Yahoo Mail, mobile and desktop**:
+
+```html
+<!-- Woodchucks -->
+<a href="https://wausaupilotandreview.com/woodchucks-ignite/" style="text-decoration:none">
+  <img src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/snapshots/woodchucks-today.png"
+       alt="Wausau Woodchucks — last game and probable starters"
+       width="380" style="max-width:100%;height:auto;display:block;border:0;border-radius:8px">
+</a>
+
+<!-- Ignite -->
+<a href="https://wausaupilotandreview.com/woodchucks-ignite/" style="text-decoration:none">
+  <img src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/snapshots/ignite-today.png"
+       alt="Wausau Ignite — last game and probable starters"
+       width="380" style="max-width:100%;height:auto;display:block;border:0;border-radius:8px">
+</a>
+```
+
+The image is 760px wide at 2x retina for sharp rendering; the `width="380"` attribute tells email clients to display it at standard size. The whole image is a clickable link to the WP&R landing page (where the live interactive widget lives). For a per-game tickets deep-link from email, the recipient lands on the WP&R article first and can click through from the live widget there.
+
+The PNG is overwritten in place every morning, so the embed URL stays stable forever — no email-platform reconfiguration needed day-to-day.
+
+To trigger a fresh snapshot manually (e.g. mid-day before a special newsletter):
+1. Go to the [Actions tab](https://github.com/RowanFlynnPilot/wpr-woodchucks-widget/actions/workflows/snapshot.yml)
+2. Click "Run workflow" → "Run workflow"
+3. Wait ~2 min for it to finish and commit; PNG URL updates automatically
 
 ## Setup
 
