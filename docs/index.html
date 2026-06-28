@@ -1548,24 +1548,30 @@ body.is-mini .widget-container {
 }
 
 /* ─── MINI TICKETS VARIANT (newsletter-style card) ─── */
-/* Compact "next game + buy tickets" card for daily-newsletter embeds.
-   Activated by ?mini=tickets. */
+/* Last-game-and-next card for daily-newsletter embeds. Activated by ?mini=tickets. */
 body.is-mini-tickets .widget-container {
   width: 100%;
   max-width: 380px;
 }
-.mt { display: block; width: 100%; }
+.mt {
+  display: block;
+  width: 100%;
+  background: #fff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--neutral-200);
+}
 .mt-header {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 14px;
+  padding: 11px 14px;
   background: linear-gradient(135deg, var(--chucks-navy) 0%, var(--chucks-navy-light) 100%);
   color: #fff;
 }
 .mt-logo-wrap {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   background: #fff;
   border-radius: var(--radius-sm);
   display: flex;
@@ -1574,11 +1580,11 @@ body.is-mini-tickets .widget-container {
   flex-shrink: 0;
   overflow: hidden;
 }
-.mt-logo { width: 40px; height: 40px; object-fit: contain; }
+.mt-logo { width: 36px; height: 36px; object-fit: contain; }
 .mt-title { flex: 1; min-width: 0; }
 .mt-name {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 19px;
+  font-size: 18px;
   letter-spacing: 1px;
   line-height: 1.1;
   white-space: nowrap;
@@ -1591,76 +1597,141 @@ body.is-mini-tickets .widget-container {
   text-transform: uppercase;
   letter-spacing: 1.4px;
   color: var(--chucks-cyan);
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
-.mt-game {
-  padding: 14px 16px 10px;
-  text-align: center;
+.mt-section {
+  padding: 11px 14px;
+  border-top: 1px solid var(--neutral-100);
+}
+.mt-section-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+.mt-kicker {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--chucks-navy);
 }
 .mt-when {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--chucks-navy);
-  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--neutral-600);
 }
-.mt-time {
-  font-family: var(--font-mono);
-  font-weight: 700;
-}
-.mt-opp {
+.mt-matchup {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  gap: 9px;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   letter-spacing: 0.5px;
   color: var(--chucks-navy);
-  margin-bottom: 6px;
   line-height: 1.1;
 }
-.mt-opp-logo { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
+.mt-opp-logo { width: 26px; height: 26px; object-fit: contain; flex-shrink: 0; }
 .mt-vsat {
   font-family: 'Source Sans 3', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--neutral-600);
-  vertical-align: middle;
   margin-right: 2px;
 }
+.mt-opp-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mt-score {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--neutral-700);
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--neutral-100);
+  flex-shrink: 0;
+}
+.mt-score.win { color: #fff; background: var(--chucks-navy); }
+.mt-score.loss { color: var(--neutral-700); background: var(--neutral-100); }
 .mt-venue {
   font-size: 11px;
   color: var(--neutral-600);
-  margin-top: 2px;
+  margin-top: 4px;
+  margin-left: 35px;
 }
+.mt-pitchers {
+  margin-top: 7px;
+  font-size: 11px;
+  color: var(--neutral-700);
+  line-height: 1.45;
+}
+.mt-pitchers-title {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--neutral-500);
+  margin-bottom: 3px;
+}
+.mt-pitcher-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.mt-pitcher-tag {
+  display: inline-block;
+  min-width: 22px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--chucks-navy);
+  text-transform: uppercase;
+}
+.mt-pitcher-name { color: var(--chucks-navy); font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mt-pitcher-stats { color: var(--neutral-600); font-family: var(--font-mono); font-size: 10px; white-space: nowrap; }
+.mt-loading { color: var(--neutral-500); font-style: italic; font-size: 11px; }
 
+.mt-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--neutral-50);
+  border-top: 1px solid var(--neutral-100);
+}
 .mt-cta {
-  display: block;
-  margin: 0 14px 14px;
-  padding: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 11px;
   background: var(--chucks-cyan);
   color: var(--chucks-navy);
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 17px;
-  letter-spacing: 1.2px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
   text-decoration: none;
-  text-align: center;
   border-radius: var(--radius-sm);
+  letter-spacing: 0.3px;
   transition: filter 0.15s;
 }
 .mt-cta:hover, .mt-cta:focus-visible { filter: brightness(1.05); text-decoration: none; }
-.mt-cta-secondary {
-  background: var(--neutral-100);
+.mt-more {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--chucks-navy);
+  text-decoration: none;
+  white-space: nowrap;
 }
+.mt-more:hover, .mt-more:focus-visible { text-decoration: underline; }
 
 .mt-empty {
-  padding: 30px 16px 14px;
+  padding: 14px;
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--neutral-600);
   font-style: italic;
 }
@@ -1965,6 +2036,7 @@ const TEAMS = {
     sport: 'Baseball',
     league: 'Northwoods League · Great Lakes West',
     teamId: 68,
+    abbr: 'WAU',
     seasonYear: 2026,
     homeVenue: 'Athletic Park, Wausau',
     ticketsUrl: 'https://wausau-woodchucks.nwltickets.com/SingleGame/Tickets',
@@ -1989,7 +2061,8 @@ const TEAMS = {
     name: 'Wausau Ignite',
     sport: 'Softball',
     league: 'Northwoods League Softball',
-    teamId: 5, // Lives on scorebook-softball.northwoodsleague.com (separate subdomain from baseball).
+    teamId: 5,
+    abbr: 'WS', // Lives on scorebook-softball.northwoodsleague.com (separate subdomain from baseball).
     seasonYear: 2026,
     homeVenue: 'Athletic Park, Wausau',
     ticketsUrl: 'https://wausau-ignite.nwltickets.com/SingleGame/Tickets',
@@ -2508,7 +2581,23 @@ function renderLastUpdated() {
 
 // Cache by gameId. Each entry holds both the summary text (Schedule recap)
 // and the POTG callout (Results) so we only fetch each game once.
-const gameDetailCache = new Map(); // gameId -> { summary, potg } | null
+const gameDetailCache = new Map(); // gameId -> { summary, potg, pitchersOfRecord } | null
+
+// Separate cache for the lighter /game/{id} endpoint — used by the mini-tickets
+// card to surface probable starters for upcoming games.
+const gameMetaCache = new Map(); // gameId -> { probable_lineups, ... } | null
+async function fetchGameMeta(gameId) {
+  if (gameMetaCache.has(gameId)) return gameMetaCache.get(gameId);
+  try {
+    const resp = await fetchJson(`${TEAM.apiBase}/game/${gameId}`);
+    const game = (resp && resp.game) || null;
+    gameMetaCache.set(gameId, game);
+    return game;
+  } catch {
+    gameMetaCache.set(gameId, null);
+    return null;
+  }
+}
 
 async function fetchGameDetail(game) {
   const id = game.id;
@@ -2522,6 +2611,9 @@ async function fetchGameDetail(game) {
     const entry = {
       summary: buildSummary(ctx),
       potg: buildPlayerOfTheGame(ctx),
+      // Raw pitchersOfRecord so the mini-tickets card can show W:/L:/SV: lines
+      // without re-fetching the boxscore.
+      pitchersOfRecord: (boxResp && boxResp.gameBoxScore && boxResp.gameBoxScore.pitchersOfRecord) || null,
     };
     gameDetailCache.set(id, entry);
     return entry;
@@ -3489,62 +3581,183 @@ function renderMini() {
   }
 }
 
-// Newsletter-style mini variant — just the team header, the next game line,
-// and a prominent Buy Tickets button. Designed for daily-newsletter embeds.
+// Newsletter-style mini variant — last game (winning/losing pitcher) + next
+// game (probable starters with season W-L, ERA) + small tickets button + a
+// link to the WP&R landing page. Designed for daily-newsletter embeds.
 function renderMiniTickets() {
   const container = document.querySelector('.widget-container');
   if (!container) return;
   document.body.classList.add('is-mini-tickets');
   const games = (scheduleData && Array.isArray(scheduleData.games)) ? scheduleData.games : [];
   const today = new Date().toISOString().slice(0, 10);
+  const finals = games.filter(g => (g.status_code || 0) === 2);
+  const lastFinal = finals.length ? finals[finals.length - 1] : null;
   const upcoming = games.find(g => g.date && g.date >= today && (g.status_code || 0) < 2);
 
-  let body;
-  if (upcoming) {
-    const d = parseDate(upcoming.date);
-    const isToday = upcoming.date === today;
-    const dateLabel = isToday
-      ? 'Tonight'
-      : `${d.toLocaleDateString('en-US', { weekday: 'long' })}, ${MONTH_ABBR[d.getMonth()]} ${d.getDate()}`;
-    const vsAt = upcoming.home ? 'vs' : '@';
-    const oppLogo = upcoming.opponent_logo || '';
-    const venue = upcoming.home ? HOME_VENUE : (upcoming.location || 'Away');
-    // Prefer the game-specific tickets URL when the scraper preserved one;
-    // fall back to the team's general single-game tickets page.
-    const tixUrl = upcoming.tickets_url && upcoming.tickets_url.trim() ? upcoming.tickets_url : TEAM.ticketsUrl;
-    body = `
-      <div class="mt-game">
-        <div class="mt-when">${escapeHtml(dateLabel)} &middot; <span class="mt-time">${escapeHtml(formatTimeLabel(upcoming.time))}</span></div>
-        <div class="mt-opp">
-          ${oppLogo ? `<img class="mt-opp-logo" src="${escapeHtml(oppLogo)}" alt="" loading="lazy" decoding="async" width="32" height="32">` : ''}
-          <span><span class="mt-vsat">${vsAt}</span> ${escapeHtml(upcoming.opponent || 'TBD')}</span>
-        </div>
-        <div class="mt-venue">${escapeHtml(venue)}</div>
-      </div>
-      <a class="mt-cta" href="${escapeHtml(tixUrl)}" target="_blank" rel="noopener">
-        <span aria-hidden="true">&#127903;&#65039;</span> Buy Tickets
-      </a>
-    `;
-  } else {
-    body = `
-      <div class="mt-empty">No upcoming games on the schedule.</div>
-      <a class="mt-cta mt-cta-secondary" href="${escapeHtml(TEAM.siteUrl)}" target="_blank" rel="noopener">
-        Visit the ${escapeHtml(TEAM.name.split(' ').pop())} site
-      </a>
-    `;
+  const fullUrl = 'https://wausaupilotandreview.com/woodchucks-ignite/';
+
+  const sections = [];
+  if (lastFinal) sections.push(renderMtLast(lastFinal));
+  if (upcoming) sections.push(renderMtNext(upcoming, today));
+  if (!lastFinal && !upcoming) {
+    sections.push(`<div class="mt-empty">No recent or upcoming games on the schedule.</div>`);
   }
+
+  // Tickets button uses per-game URL if the scraper preserved one, else the
+  // team's general single-game tickets page.
+  const tixUrl = (upcoming && upcoming.tickets_url && upcoming.tickets_url.trim())
+    ? upcoming.tickets_url
+    : TEAM.ticketsUrl;
 
   container.innerHTML = `
     <div class="mt">
       <div class="mt-header">
-        <div class="mt-logo-wrap"><img class="mt-logo" src="${escapeHtml(TEAM.logoUrl)}" alt="${escapeHtml(TEAM.name)}" width="44" height="44"></div>
+        <div class="mt-logo-wrap"><img class="mt-logo" src="${escapeHtml(TEAM.logoUrl)}" alt="${escapeHtml(TEAM.name)}" width="40" height="40"></div>
         <div class="mt-title">
           <div class="mt-name">${escapeHtml(TEAM.name)}</div>
-          <div class="mt-sub">Next Game</div>
+          <div class="mt-sub">Last &amp; next</div>
         </div>
       </div>
-      ${body}
+      ${sections.join('')}
+      <div class="mt-actions">
+        ${upcoming ? `<a class="mt-cta" href="${escapeHtml(tixUrl)}" target="_blank" rel="noopener"><span aria-hidden="true">&#127903;&#65039;</span> Tickets</a>` : ''}
+        <a class="mt-more" href="${escapeHtml(fullUrl)}" target="_blank" rel="noopener">Full coverage on WP&amp;R &rarr;</a>
+      </div>
     </div>
+  `;
+
+  // Hydrate pitcher lines asynchronously.
+  if (lastFinal) {
+    fetchGameDetail(lastFinal).then(entry => {
+      const el = document.querySelector(`[data-mt-pitchers-id="${lastFinal.id}"]`);
+      if (el) {
+        el.innerHTML = renderPitchersOfRecordCompact(entry && entry.pitchersOfRecord)
+          || `<div class="mt-loading">Pitcher line not available.</div>`;
+      }
+      postHeight();
+    });
+  }
+  if (upcoming) {
+    fetchGameMeta(upcoming.id).then(meta => {
+      const el = document.querySelector(`[data-mt-probables-id="${upcoming.id}"]`);
+      if (!el) return;
+      el.innerHTML = renderProbableStarters(meta && meta.probable_lineups, upcoming)
+        || `<div class="mt-loading">Probable starters not yet posted.</div>`;
+      postHeight();
+    });
+  }
+}
+
+function renderMtLast(g) {
+  const d = parseDate(g.date);
+  const dateLabel = `${d.toLocaleDateString('en-US', { weekday: 'short' })}, ${MONTH_ABBR[d.getMonth()]} ${d.getDate()}`;
+  const won = g.chucks_score != null && g.opponent_score != null && g.chucks_score > g.opponent_score;
+  const tied = g.chucks_score != null && g.chucks_score === g.opponent_score;
+  const scoreClass = won ? 'win' : (tied ? '' : 'loss');
+  const scoreLabel = (g.chucks_score == null || g.opponent_score == null)
+    ? 'F'
+    : `${won ? 'W' : (tied ? 'T' : 'L')} ${g.chucks_score}-${g.opponent_score}`;
+  const vsAt = g.home ? 'vs' : '@';
+  const oppLogo = g.opponent_logo || '';
+  return `
+    <div class="mt-section">
+      <div class="mt-section-label">
+        <span class="mt-kicker">Last game</span>
+        <span class="mt-when">${escapeHtml(dateLabel)} &middot; Final</span>
+      </div>
+      <div class="mt-matchup">
+        ${oppLogo ? `<img class="mt-opp-logo" src="${escapeHtml(oppLogo)}" alt="" loading="lazy" decoding="async" width="26" height="26">` : ''}
+        <span class="mt-opp-name"><span class="mt-vsat">${vsAt}</span> ${escapeHtml(g.opponent || 'TBD')}</span>
+        <span class="mt-score ${scoreClass}">${escapeHtml(scoreLabel)}</span>
+      </div>
+      <div class="mt-pitchers" data-mt-pitchers-id="${g.id}">
+        <span class="mt-loading">Loading pitcher line&hellip;</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderMtNext(g, todayIso) {
+  const d = parseDate(g.date);
+  const isToday = g.date === todayIso;
+  const dateLabel = isToday
+    ? 'Today'
+    : `${d.toLocaleDateString('en-US', { weekday: 'short' })}, ${MONTH_ABBR[d.getMonth()]} ${d.getDate()}`;
+  const vsAt = g.home ? 'vs' : '@';
+  const oppLogo = g.opponent_logo || '';
+  const venue = g.home ? HOME_VENUE : (g.location || 'Away');
+  return `
+    <div class="mt-section">
+      <div class="mt-section-label">
+        <span class="mt-kicker">Next game</span>
+        <span class="mt-when">${escapeHtml(dateLabel)} &middot; ${escapeHtml(formatTimeLabel(g.time))}</span>
+      </div>
+      <div class="mt-matchup">
+        ${oppLogo ? `<img class="mt-opp-logo" src="${escapeHtml(oppLogo)}" alt="" loading="lazy" decoding="async" width="26" height="26">` : ''}
+        <span class="mt-opp-name"><span class="mt-vsat">${vsAt}</span> ${escapeHtml(g.opponent || 'TBD')}</span>
+      </div>
+      <div class="mt-venue">${escapeHtml(venue)}</div>
+      <div class="mt-pitchers" data-mt-probables-id="${g.id}">
+        <span class="mt-loading">Loading probable starters&hellip;</span>
+      </div>
+    </div>
+  `;
+}
+
+// Compact W:/L:/SV: line for the last-game section. Mirrors the modal helper
+// but smaller, with the tag in mono and the stats line right-aligned.
+function renderPitchersOfRecordCompact(pof) {
+  if (!pof) return '';
+  const ourAbbr = TEAM.abbr || 'US';
+  const rows = [];
+  const fmt = (p, tag) => {
+    if (!p) return '';
+    const name = `${(p.firstname || '').trim()} ${(p.lastname || '').trim()}`.trim() || 'TBD';
+    const stats = `${p.w != null ? p.w : 0}-${p.l != null ? p.l : 0}, ${p.era != null && p.era !== '' ? p.era : '-'} ERA`;
+    return `
+      <div class="mt-pitcher-row">
+        <span class="mt-pitcher-tag">${tag}</span>
+        <span class="mt-pitcher-name">${escapeHtml(name)}</span>
+        <span class="mt-pitcher-stats">${escapeHtml(stats)}</span>
+      </div>
+    `;
+  };
+  if (pof.W) rows.push(fmt(pof.W, 'W'));
+  if (pof.L) rows.push(fmt(pof.L, 'L'));
+  if (pof.SV) rows.push(fmt(pof.SV, 'SV'));
+  if (rows.length === 0) return '';
+  return `<div class="mt-pitchers-title">Decision</div>${rows.join('')}`;
+}
+
+// Probable starters table for the next-game section. `probable_lineups` is
+// either an object with home/visitor pitcher entries, or absent/true (no
+// data) when the league hasn't posted them yet.
+function renderProbableStarters(pl, game) {
+  if (!pl || typeof pl !== 'object') return '';
+  const ourSide = game.home ? 'home' : 'visitor';
+  const theirSide = game.home ? 'visitor' : 'home';
+  const ours = pl[ourSide] && pl[ourSide].pitcher;
+  const theirs = pl[theirSide] && pl[theirSide].pitcher;
+  if (!ours && !theirs) return '';
+  const ourAbbr = TEAM.abbr || 'US';
+  const oppAbbr = (game.opponent_abbr || 'OPP').toUpperCase();
+  const fmt = (p, tag) => {
+    if (!p) return '';
+    const s = p.stats || {};
+    const name = (p.name || '').trim() || 'TBD';
+    const stats = `${s.W != null ? s.W : 0}-${s.L != null ? s.L : 0}, ${s.ERA != null && s.ERA !== '' ? s.ERA : '-'} ERA`;
+    return `
+      <div class="mt-pitcher-row">
+        <span class="mt-pitcher-tag">${escapeHtml(tag)}</span>
+        <span class="mt-pitcher-name">${escapeHtml(name)}</span>
+        <span class="mt-pitcher-stats">${escapeHtml(stats)}</span>
+      </div>
+    `;
+  };
+  return `
+    <div class="mt-pitchers-title">Probable starters</div>
+    ${fmt(ours, ourAbbr)}
+    ${fmt(theirs, oppAbbr)}
   `;
 }
 

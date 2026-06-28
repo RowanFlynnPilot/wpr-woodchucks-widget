@@ -98,27 +98,32 @@ Compact 280px-tall version designed to drop into the middle of an article. Shows
 
 The mini variants use the **same resize listener** as the full widgets — paste the `<script>` block once at the bottom of the page and it covers both. Mini and full can live on the same article page.
 
-### Newsletter-style tickets card (`?mini=tickets`)
+### Newsletter-style card (`?mini=tickets`)
 
-An even more compact variant — just the team logo, next upcoming game, and a Buy Tickets button. Designed for daily newsletter blocks (~233px tall, max 380px wide). The Buy Tickets button uses the game-specific ticket URL when the scraper has one (preferred); otherwise falls back to the team's general single-game tickets page.
+Compact two-section card built for daily newsletter blocks (~390px tall, max 380px wide):
+
+- **Last game** — opponent, final score (W/L color-coded), and the winning/losing pitcher line with each pitcher's season record + ERA
+- **Next game** — date, time, opponent, venue, and both probable starters with their season W-L / ERA (when the league has posted them)
+- **Tickets button** — small, secondary action; uses the game-specific ticket URL when the scraper has one, otherwise falls back to the team's general single-game tickets page
+- **Full coverage link** — points to the WP&R landing page at `wausaupilotandreview.com/woodchucks-ignite/`
 
 ```html
-<!-- Woodchucks tickets card -->
+<!-- Woodchucks newsletter card -->
 <iframe
   data-team="woodchucks"
   src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/?team=woodchucks&mini=tickets"
-  style="width:100%;max-width:380px;height:240px;border:none;display:block;margin:0 auto;"
-  title="Woodchucks next game"
+  style="width:100%;max-width:380px;height:400px;border:none;display:block;margin:0 auto;"
+  title="Woodchucks last & next"
   loading="lazy"
   scrolling="no">
 </iframe>
 
-<!-- Ignite tickets card -->
+<!-- Ignite newsletter card -->
 <iframe
   data-team="ignite"
   src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/?team=ignite&mini=tickets"
-  style="width:100%;max-width:380px;height:240px;border:none;display:block;margin:0 auto;"
-  title="Ignite next game"
+  style="width:100%;max-width:380px;height:400px;border:none;display:block;margin:0 auto;"
+  title="Ignite last & next"
   loading="lazy"
   scrolling="no">
 </iframe>
