@@ -1547,6 +1547,124 @@ body.is-mini .widget-container {
   .mini-cta { font-size: 11px; padding: 9px 12px; }
 }
 
+/* ─── MINI TICKETS VARIANT (newsletter-style card) ─── */
+/* Compact "next game + buy tickets" card for daily-newsletter embeds.
+   Activated by ?mini=tickets. */
+body.is-mini-tickets .widget-container {
+  width: 100%;
+  max-width: 380px;
+}
+.mt { display: block; width: 100%; }
+.mt-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, var(--chucks-navy) 0%, var(--chucks-navy-light) 100%);
+  color: #fff;
+}
+.mt-logo-wrap {
+  width: 44px;
+  height: 44px;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.mt-logo { width: 40px; height: 40px; object-fit: contain; }
+.mt-title { flex: 1; min-width: 0; }
+.mt-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 19px;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mt-sub {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--chucks-cyan);
+  margin-top: 3px;
+}
+
+.mt-game {
+  padding: 14px 16px 10px;
+  text-align: center;
+}
+.mt-when {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--chucks-navy);
+  margin-bottom: 8px;
+}
+.mt-time {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+.mt-opp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  color: var(--chucks-navy);
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+.mt-opp-logo { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
+.mt-vsat {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--neutral-600);
+  vertical-align: middle;
+  margin-right: 2px;
+}
+.mt-venue {
+  font-size: 11px;
+  color: var(--neutral-600);
+  margin-top: 2px;
+}
+
+.mt-cta {
+  display: block;
+  margin: 0 14px 14px;
+  padding: 12px;
+  background: var(--chucks-cyan);
+  color: var(--chucks-navy);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 17px;
+  letter-spacing: 1.2px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  transition: filter 0.15s;
+}
+.mt-cta:hover, .mt-cta:focus-visible { filter: brightness(1.05); text-decoration: none; }
+.mt-cta-secondary {
+  background: var(--neutral-100);
+  color: var(--chucks-navy);
+}
+
+.mt-empty {
+  padding: 30px 16px 14px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--neutral-600);
+  font-style: italic;
+}
+
 /* ─── RESPONSIVE ─── */
 /* Tablet (the widget is already capped at max-width: 720px on the container,
    so most desktop styles work — these are just small typography touch-ups.) */
@@ -1888,7 +2006,11 @@ const TEAMS = {
 
 const params = new URLSearchParams(window.location.search);
 const TEAM = TEAMS[(params.get('team') || '').toLowerCase()] || TEAMS.woodchucks;
-const IS_MINI = params.get('mini') === 'true' || params.get('mini') === '1';
+// Mini supports two variants: `?mini=true` (default — record + last + next + CTA)
+// and `?mini=tickets` (newsletter-style — logo + next game + tickets button).
+const MINI_VARIANT = (params.get('mini') || '').toLowerCase();
+const IS_MINI = MINI_VARIANT === 'true' || MINI_VARIANT === '1' || MINI_VARIANT === 'tickets';
+const IS_MINI_TICKETS = MINI_VARIANT === 'tickets';
 
 const STALE_HOURS = 24;
 
@@ -3261,6 +3383,7 @@ function trackPageview() {
 // Activated with ?mini=true.
 
 function renderMini() {
+  if (IS_MINI_TICKETS) { renderMiniTickets(); return; }
   const container = document.querySelector('.widget-container');
   if (!container) return;
   const games = (scheduleData && Array.isArray(scheduleData.games)) ? scheduleData.games : [];
@@ -3364,6 +3487,65 @@ function renderMini() {
       postHeight();
     });
   }
+}
+
+// Newsletter-style mini variant — just the team header, the next game line,
+// and a prominent Buy Tickets button. Designed for daily-newsletter embeds.
+function renderMiniTickets() {
+  const container = document.querySelector('.widget-container');
+  if (!container) return;
+  document.body.classList.add('is-mini-tickets');
+  const games = (scheduleData && Array.isArray(scheduleData.games)) ? scheduleData.games : [];
+  const today = new Date().toISOString().slice(0, 10);
+  const upcoming = games.find(g => g.date && g.date >= today && (g.status_code || 0) < 2);
+
+  let body;
+  if (upcoming) {
+    const d = parseDate(upcoming.date);
+    const isToday = upcoming.date === today;
+    const dateLabel = isToday
+      ? 'Tonight'
+      : `${d.toLocaleDateString('en-US', { weekday: 'long' })}, ${MONTH_ABBR[d.getMonth()]} ${d.getDate()}`;
+    const vsAt = upcoming.home ? 'vs' : '@';
+    const oppLogo = upcoming.opponent_logo || '';
+    const venue = upcoming.home ? HOME_VENUE : (upcoming.location || 'Away');
+    // Prefer the game-specific tickets URL when the scraper preserved one;
+    // fall back to the team's general single-game tickets page.
+    const tixUrl = upcoming.tickets_url && upcoming.tickets_url.trim() ? upcoming.tickets_url : TEAM.ticketsUrl;
+    body = `
+      <div class="mt-game">
+        <div class="mt-when">${escapeHtml(dateLabel)} &middot; <span class="mt-time">${escapeHtml(formatTimeLabel(upcoming.time))}</span></div>
+        <div class="mt-opp">
+          ${oppLogo ? `<img class="mt-opp-logo" src="${escapeHtml(oppLogo)}" alt="" loading="lazy" decoding="async" width="32" height="32">` : ''}
+          <span><span class="mt-vsat">${vsAt}</span> ${escapeHtml(upcoming.opponent || 'TBD')}</span>
+        </div>
+        <div class="mt-venue">${escapeHtml(venue)}</div>
+      </div>
+      <a class="mt-cta" href="${escapeHtml(tixUrl)}" target="_blank" rel="noopener">
+        <span aria-hidden="true">&#127903;&#65039;</span> Buy Tickets
+      </a>
+    `;
+  } else {
+    body = `
+      <div class="mt-empty">No upcoming games on the schedule.</div>
+      <a class="mt-cta mt-cta-secondary" href="${escapeHtml(TEAM.siteUrl)}" target="_blank" rel="noopener">
+        Visit the ${escapeHtml(TEAM.name.split(' ').pop())} site
+      </a>
+    `;
+  }
+
+  container.innerHTML = `
+    <div class="mt">
+      <div class="mt-header">
+        <div class="mt-logo-wrap"><img class="mt-logo" src="${escapeHtml(TEAM.logoUrl)}" alt="${escapeHtml(TEAM.name)}" width="44" height="44"></div>
+        <div class="mt-title">
+          <div class="mt-name">${escapeHtml(TEAM.name)}</div>
+          <div class="mt-sub">Next Game</div>
+        </div>
+      </div>
+      ${body}
+    </div>
+  `;
 }
 
 async function init() {

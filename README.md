@@ -98,6 +98,39 @@ Compact 280px-tall version designed to drop into the middle of an article. Shows
 
 The mini variants use the **same resize listener** as the full widgets — paste the `<script>` block once at the bottom of the page and it covers both. Mini and full can live on the same article page.
 
+### Newsletter-style tickets card (`?mini=tickets`)
+
+An even more compact variant — just the team logo, next upcoming game, and a Buy Tickets button. Designed for daily newsletter blocks (~233px tall, max 380px wide). The Buy Tickets button uses the game-specific ticket URL when the scraper has one (preferred); otherwise falls back to the team's general single-game tickets page.
+
+```html
+<!-- Woodchucks tickets card -->
+<iframe
+  data-team="woodchucks"
+  src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/?team=woodchucks&mini=tickets"
+  style="width:100%;max-width:380px;height:240px;border:none;display:block;margin:0 auto;"
+  title="Woodchucks next game"
+  loading="lazy"
+  scrolling="no">
+</iframe>
+
+<!-- Ignite tickets card -->
+<iframe
+  data-team="ignite"
+  src="https://rowanflynnpilot.github.io/wpr-woodchucks-widget/?team=ignite&mini=tickets"
+  style="width:100%;max-width:380px;height:240px;border:none;display:block;margin:0 auto;"
+  title="Ignite next game"
+  loading="lazy"
+  scrolling="no">
+</iframe>
+```
+
+**Email caveat:** Most email clients (Gmail, Outlook, etc.) strip `<iframe>` tags from delivered email. These embeds work best in:
+- Web-based newsletters (a WordPress post that doubles as a newsletter article)
+- Newsletter platforms with rich-content support (Beehiiv, some Substack views)
+- Anywhere the email links _back_ to a WP&R article that contains the embed
+
+For email-native delivery, consider linking to a WP&R page that contains the card rather than embedding the iframe directly.
+
 ## Setup
 
 ### 1. Enable GitHub Pages

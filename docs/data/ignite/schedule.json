@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-28T06:40:41.721918+00:00",
+  "last_updated": "2026-06-28T17:29:29.746252+00:00",
   "total_games": 42,
   "games": [
     {
@@ -17,6 +17,7 @@
       "status": "Final/5",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 0,
       "home_score": 11,
       "chucks_score": 0,
@@ -36,6 +37,7 @@
       "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 16,
       "home_score": 14,
       "chucks_score": 14,
@@ -55,6 +57,7 @@
       "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 9,
       "home_score": 7,
       "chucks_score": 7,
@@ -74,6 +77,7 @@
       "status": "Final/8",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 7,
       "home_score": 8,
       "chucks_score": 8,
@@ -93,6 +97,7 @@
       "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 6,
       "home_score": 7,
       "chucks_score": 6,
@@ -112,6 +117,7 @@
       "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 5,
       "home_score": 11,
       "chucks_score": 5,
@@ -131,6 +137,7 @@
       "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 2,
       "home_score": 10,
       "chucks_score": 10,
@@ -150,6 +157,7 @@
       "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 6,
       "home_score": 8,
       "chucks_score": 8,
@@ -169,6 +177,7 @@
       "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 11,
       "home_score": 7,
       "chucks_score": 11,
@@ -188,6 +197,7 @@
       "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 6,
       "home_score": 7,
       "chucks_score": 6,
@@ -207,6 +217,7 @@
       "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 9,
       "home_score": 7,
       "chucks_score": 9,
@@ -226,6 +237,7 @@
       "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 7,
       "home_score": 1,
       "chucks_score": 1,
@@ -245,6 +257,7 @@
       "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 9,
       "home_score": 10,
       "chucks_score": 9,
@@ -264,6 +277,7 @@
       "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 6,
       "home_score": 5,
       "chucks_score": 6,
@@ -283,6 +297,7 @@
       "status": "Final/6",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "",
       "visitor_score": 9,
       "home_score": 19,
       "chucks_score": 19,
@@ -301,7 +316,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/"
     },
     {
       "id": 242,
@@ -316,7 +332,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9730"
     },
     {
       "id": 251,
@@ -331,7 +348,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://grand-forks-spitfires.nwltickets.com/SingleGame/Tickets/"
     },
     {
       "id": 254,
@@ -346,7 +364,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://grand-forks-spitfires.nwltickets.com/SingleGame/Tickets/"
     },
     {
       "id": 256,
@@ -361,7 +380,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://grand-forks-spitfires.nwltickets.com/SingleGame/Tickets/"
     },
     {
       "id": 259,
@@ -376,7 +396,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://grand-forks-spitfires.nwltickets.com/SingleGame/Tickets/"
     },
     {
       "id": 262,
@@ -391,7 +412,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/"
     },
     {
       "id": 264,
@@ -406,7 +428,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9847"
     },
     {
       "id": 267,
@@ -421,7 +444,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/"
     },
     {
       "id": 270,
@@ -436,7 +460,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9853"
     },
     {
       "id": 272,
@@ -451,7 +476,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9866"
     },
     {
       "id": 273,
@@ -466,7 +492,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://mankato-habaneros.nwltickets.com/SingleGame/Tickets/"
     },
     {
       "id": 275,
@@ -481,7 +508,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://mankato-habaneros.nwltickets.com/SingleGame/Tickets/SelectSeats/9910"
     },
     {
       "id": 278,
@@ -496,7 +524,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://mankato-habaneros.nwltickets.com/SingleGame/Tickets/SelectSeats/9922"
     },
     {
       "id": 282,
@@ -511,7 +540,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/"
     },
     {
       "id": 284,
@@ -526,7 +556,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9957"
     },
     {
       "id": 285,
@@ -541,7 +572,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://madison-night-mares.nwltickets.com/SingleGame/Tickets/SelectSeats/9958"
     },
     {
       "id": 229,
@@ -557,6 +589,7 @@
       "status": "Resched 7/18",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
+      "tickets_url": "https://minot-honeybees.nwltickets.com/SingleGame/Tickets/SelectSeats/9649",
       "visitor_score": 10,
       "home_score": 0,
       "chucks_score": 10,
@@ -575,7 +608,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9973"
     },
     {
       "id": 289,
@@ -590,7 +624,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9988"
     },
     {
       "id": 292,
@@ -605,7 +640,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://madison-night-mares.nwltickets.com/SingleGame/Tickets/SelectSeats/10005"
     },
     {
       "id": 299,
@@ -620,7 +656,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://la-crosse-steam.nwltickets.com/SingleGame/Tickets/SelectSeats/10052"
     },
     {
       "id": 305,
@@ -635,7 +672,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://la-crosse-steam.nwltickets.com/SingleGame/Tickets/SelectSeats/10102"
     },
     {
       "id": 307,
@@ -650,7 +688,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/"
     },
     {
       "id": 310,
@@ -665,7 +704,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/10134"
     },
     {
       "id": 313,
@@ -680,7 +720,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://la-crosse-steam.nwltickets.com/SingleGame/Tickets/SelectSeats/10139"
     },
     {
       "id": 317,
@@ -695,7 +736,8 @@
       "status_code": 0,
       "status": "Scheduled",
       "broadcast": "flosports",
-      "broadcast_label": "FloCollege"
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/10174"
     }
   ]
 }

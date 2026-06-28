@@ -127,6 +127,9 @@ def fetch_schedule(team, logo_map=None):
             "status": g.get("status", "Scheduled"),
             "broadcast": g.get("broadcast", ""),
             "broadcast_label": g.get("broadcast_label", ""),
+            # Game-specific ticket purchase URL (when available). Mini-tickets
+            # variant uses this; falls back to TEAM.ticketsUrl on the widget side.
+            "tickets_url": g.get("tickets_url", "") or "",
         }
 
         if g.get("status_code", 0) >= 1:
