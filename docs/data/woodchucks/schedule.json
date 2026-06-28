@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-28T20:39:01.850040+00:00",
+  "last_updated": "2026-06-28T21:52:06.205914+00:00",
   "total_games": 70,
   "games": [
     {
@@ -594,13 +594,13 @@
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
       "location": "Witter Field",
       "status_code": 1,
-      "status": "In progress / Top 5th",
+      "status": "In progress / Bottom 9th",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
       "tickets_url": "https://wisconsin-rapids-rafters.nwltickets.com/SingleGame/Tickets/SelectSeats/9725",
-      "visitor_score": 5,
+      "visitor_score": 8,
       "home_score": 0,
-      "chucks_score": 5,
+      "chucks_score": 8,
       "opponent_score": 0
     },
     {
