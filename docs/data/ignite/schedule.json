@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-06-29T14:44:26.181265+00:00",
+  "last_updated": "2026-06-29T18:56:48.996348+00:00",
   "total_games": 42,
   "games": [
     {
@@ -347,7 +347,7 @@
       "id": 251,
       "date": "2026-07-02",
       "day": "Thu",
-      "time": "7:05 pm",
+      "time": "7:35 pm",
       "home": false,
       "opponent": "Grand Forks Spitfires",
       "opponent_abbr": "GF",
