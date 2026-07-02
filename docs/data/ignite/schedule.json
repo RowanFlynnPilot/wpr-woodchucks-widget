@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-02T12:54:17.610318+00:00",
+  "last_updated": "2026-07-02T18:21:33.008327+00:00",
   "total_games": 42,
   "games": [
     {
@@ -592,7 +592,7 @@
       "opponent": "Minot Honeybees",
       "opponent_abbr": "MT",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/3Honeybees_Primary_500.png",
-      "location": "Corbett Field",
+      "location": "Athletic Park",
       "status_code": 6,
       "status": "Resched 7/18",
       "broadcast": "flosports",
