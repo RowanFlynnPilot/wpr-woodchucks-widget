@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-05T01:13:16.757560+00:00",
+  "last_updated": "2026-07-05T01:56:08.845295+00:00",
   "total_games": 42,
   "games": [
     {
@@ -393,15 +393,15 @@
       "opponent_abbr": "GF",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/86-GrandForksSpitfires-1762910017.png",
       "location": "Albrecht Field",
-      "status_code": 1,
-      "status": "In progress / Bottom 6th",
+      "status_code": 2,
+      "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://grand-forks-spitfires.nwltickets.com/SingleGame/Tickets/",
-      "visitor_score": 6,
-      "home_score": 9,
-      "chucks_score": 6,
-      "opponent_score": 9
+      "tickets_url": "",
+      "visitor_score": 8,
+      "home_score": 12,
+      "chucks_score": 8,
+      "opponent_score": 12
     },
     {
       "id": 259,
