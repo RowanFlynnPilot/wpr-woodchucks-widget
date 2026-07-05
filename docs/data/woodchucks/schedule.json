@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-05T20:11:05.328010+00:00",
+  "last_updated": "2026-07-05T21:31:08.087405+00:00",
   "total_games": 70,
   "games": [
     {
@@ -733,15 +733,15 @@
       "opponent_abbr": "MAD",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6565logocapmad.png",
       "location": "Warner Park",
-      "status_code": 1,
-      "status": "In progress / Top 7th",
+      "status_code": 2,
+      "status": "Final/9",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://madison-mallards.nwltickets.com/SingleGame/Tickets/SelectSeats/9830",
+      "tickets_url": "",
       "visitor_score": 6,
-      "home_score": 3,
+      "home_score": 4,
       "chucks_score": 6,
-      "opponent_score": 3
+      "opponent_score": 4
     },
     {
       "id": 5906,
