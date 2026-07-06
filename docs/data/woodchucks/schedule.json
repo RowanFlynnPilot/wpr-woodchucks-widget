@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-06T20:45:56.145245+00:00",
+  "last_updated": "2026-07-06T22:04:57.312748+00:00",
   "total_games": 70,
   "games": [
     {
@@ -773,11 +773,15 @@
       "opponent_abbr": "EC",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/52ECCap-180.png",
       "location": "Carson Park",
-      "status_code": 0,
-      "status": "Resched 7/6",
+      "status_code": 1,
+      "status": "In progress / Top 3rd",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://eau-claire-express.nwltickets.com/SingleGame/Tickets/SelectSeats/9553"
+      "tickets_url": "https://eau-claire-express.nwltickets.com/SingleGame/Tickets/SelectSeats/9553",
+      "visitor_score": 0,
+      "home_score": 5,
+      "chucks_score": 0,
+      "opponent_score": 5
     },
     {
       "id": 6144,
