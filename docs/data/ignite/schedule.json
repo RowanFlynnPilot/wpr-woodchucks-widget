@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-10T01:48:39.156999+00:00",
+  "last_updated": "2026-07-10T05:52:27.569644+00:00",
   "total_games": 42,
   "games": [
     {
@@ -493,15 +493,15 @@
       "opponent_abbr": "MK",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/2Habaneros_PepperFlameAlt_500.png",
       "location": "Athletic Park",
-      "status_code": 1,
-      "status": "In progress / Top 5th",
+      "status_code": 2,
+      "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9853",
-      "visitor_score": 6,
-      "home_score": 5,
-      "chucks_score": 5,
-      "opponent_score": 6
+      "tickets_url": "",
+      "visitor_score": 9,
+      "home_score": 10,
+      "chucks_score": 10,
+      "opponent_score": 9
     },
     {
       "id": 272,
