@@ -1,7 +1,7 @@
 {
   "season": 4,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-07-11T01:27:48.791924+00:00",
+  "last_updated": "2026-07-11T04:38:56.903124+00:00",
   "great_lakes_west": {
     "first_half": [],
     "second_half": [
@@ -22,6 +22,22 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 5,
+        "name": "Wausau Ignite",
+        "abbr": "WS",
+        "division": "NWL Softball",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/5Wausau-Ignite-500.png",
+        "W": 14,
+        "L": 12,
+        "T": 0,
+        "PCT": ".538",
+        "GB": "10.0",
+        "STREAK": "3W",
+        "LAST10": "6-4",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 86,
         "name": "Grand Forks Spitfires",
         "abbr": "GF",
@@ -34,22 +50,6 @@
         "GB": "10.5",
         "STREAK": "1L",
         "LAST10": "5-5",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
-        "team_id": 5,
-        "name": "Wausau Ignite",
-        "abbr": "WS",
-        "division": "NWL Softball",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/5Wausau-Ignite-500.png",
-        "W": 13,
-        "L": 12,
-        "T": 0,
-        "PCT": ".520",
-        "GB": "10.5",
-        "STREAK": "2W",
-        "LAST10": "6-4",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -76,11 +76,11 @@
         "division": "NWL Softball",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/2Habaneros_PepperFlameAlt_500.png",
         "W": 7,
-        "L": 16,
+        "L": 17,
         "T": 0,
-        "PCT": ".304",
-        "GB": "15.5",
-        "STREAK": "4L",
+        "PCT": ".292",
+        "GB": "16.0",
+        "STREAK": "5L",
         "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
@@ -120,6 +120,22 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 5,
+        "name": "Wausau Ignite",
+        "abbr": "WS",
+        "division": "NWL Softball",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/5Wausau-Ignite-500.png",
+        "W": 14,
+        "L": 12,
+        "T": 0,
+        "PCT": ".538",
+        "GB": "10.0",
+        "STREAK": "3W",
+        "LAST10": "6-4",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 86,
         "name": "Grand Forks Spitfires",
         "abbr": "GF",
@@ -132,22 +148,6 @@
         "GB": "10.5",
         "STREAK": "1L",
         "LAST10": "5-5",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
-        "team_id": 5,
-        "name": "Wausau Ignite",
-        "abbr": "WS",
-        "division": "NWL Softball",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/5Wausau-Ignite-500.png",
-        "W": 13,
-        "L": 12,
-        "T": 0,
-        "PCT": ".520",
-        "GB": "10.5",
-        "STREAK": "2W",
-        "LAST10": "6-4",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -174,11 +174,11 @@
         "division": "NWL Softball",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/2Habaneros_PepperFlameAlt_500.png",
         "W": 7,
-        "L": 16,
+        "L": 17,
         "T": 0,
-        "PCT": ".304",
-        "GB": "15.5",
-        "STREAK": "4L",
+        "PCT": ".292",
+        "GB": "16.0",
+        "STREAK": "5L",
         "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
