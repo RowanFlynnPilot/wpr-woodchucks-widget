@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-12T17:49:11.338629+00:00",
+  "last_updated": "2026-07-12T18:45:45.907436+00:00",
   "total_games": 70,
   "games": [
     {
@@ -834,14 +834,14 @@
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6161logocapgb.png",
       "location": "Capital Credit Union Park",
       "status_code": 1,
-      "status": "In progress / Top 3rd",
+      "status": "In progress / Top 5th",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
       "tickets_url": "https://green-bay-rockers.nwltickets.com/SingleGame/Tickets/SelectSeats/9674",
-      "visitor_score": 0,
-      "home_score": 0,
-      "chucks_score": 0,
-      "opponent_score": 0
+      "visitor_score": 1,
+      "home_score": 5,
+      "chucks_score": 1,
+      "opponent_score": 5
     },
     {
       "id": 6168,
