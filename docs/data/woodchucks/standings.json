@@ -1,7 +1,7 @@
 {
   "season": 26,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-07-12T20:49:29.395261+00:00",
+  "last_updated": "2026-07-12T21:37:42.380403+00:00",
   "great_lakes_west": {
     "first_half": [
       {
@@ -339,12 +339,12 @@
         "division": "Great Lakes East",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/105-RichmondFlyingMummies-1759877971.png",
         "W": 4,
-        "L": 3,
+        "L": 4,
         "T": 0,
-        "PCT": ".571",
-        "GB": "2.0",
-        "STREAK": "2W",
-        "LAST10": "4-3",
+        "PCT": ".500",
+        "GB": "2.5",
+        "STREAK": "1L",
+        "LAST10": "4-4",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -365,6 +365,22 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 63,
+        "name": "Kenosha Kingfish",
+        "abbr": "KEN",
+        "division": "Great Lakes East",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6363logocapken.png",
+        "W": 3,
+        "L": 5,
+        "T": 0,
+        "PCT": ".375",
+        "GB": "3.5",
+        "STREAK": "1W",
+        "LAST10": "3-5",
+        "first_half_clinched": 1,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 62,
         "name": "Kalamazoo Growlers",
         "abbr": "KZO",
@@ -378,22 +394,6 @@
         "STREAK": "4L",
         "LAST10": "3-6",
         "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
-        "team_id": 63,
-        "name": "Kenosha Kingfish",
-        "abbr": "KEN",
-        "division": "Great Lakes East",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6363logocapken.png",
-        "W": 2,
-        "L": 5,
-        "T": 0,
-        "PCT": ".286",
-        "GB": "4.0",
-        "STREAK": "1L",
-        "LAST10": "2-5",
-        "first_half_clinched": 1,
         "second_half_clinched": 0
       },
       {
@@ -550,12 +550,12 @@
         "abbr": "KEN",
         "division": "Great Lakes East",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6363logocapken.png",
-        "W": 23,
+        "W": 24,
         "L": 19,
         "T": 0,
-        "PCT": ".548",
-        "GB": "3.5",
-        "STREAK": "1L",
+        "PCT": ".558",
+        "GB": "3.0",
+        "STREAK": "1W",
         "LAST10": "5-5",
         "first_half_clinched": 1,
         "second_half_clinched": 0
@@ -599,11 +599,11 @@
         "division": "Great Lakes East",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/105-RichmondFlyingMummies-1759877971.png",
         "W": 21,
-        "L": 22,
+        "L": 23,
         "T": 0,
-        "PCT": ".488",
-        "GB": "6.0",
-        "STREAK": "2W",
+        "PCT": ".477",
+        "GB": "6.5",
+        "STREAK": "1L",
         "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
