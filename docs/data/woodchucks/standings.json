@@ -1,7 +1,7 @@
 {
   "season": 26,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-07-13T19:55:31.665614+00:00",
+  "last_updated": "2026-07-13T20:47:44.137245+00:00",
   "great_lakes_west": {
     "first_half": [
       {
@@ -43,12 +43,12 @@
         "division": "Great Lakes West",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/7070logocapfdl.png",
         "W": 5,
-        "L": 4,
+        "L": 5,
         "T": 0,
-        "PCT": ".556",
-        "GB": "2.5",
-        "STREAK": "3L",
-        "LAST10": "5-4",
+        "PCT": ".500",
+        "GB": "3.0",
+        "STREAK": "4L",
+        "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -271,11 +271,11 @@
         "division": "Great Lakes West",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/7070logocapfdl.png",
         "W": 17,
-        "L": 28,
+        "L": 29,
         "T": 0,
-        "PCT": ".378",
-        "GB": "12.5",
-        "STREAK": "3L",
+        "PCT": ".370",
+        "GB": "13.0",
+        "STREAK": "4L",
         "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
