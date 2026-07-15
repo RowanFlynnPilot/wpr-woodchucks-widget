@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-15T00:10:32.757033+00:00",
+  "last_updated": "2026-07-15T01:16:45.212247+00:00",
   "total_games": 42,
   "games": [
     {
@@ -573,15 +573,15 @@
       "opponent_abbr": "MK",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/2Habaneros_PepperFlameAlt_500.png",
       "location": "ISG Field",
-      "status_code": 1,
-      "status": "In progress / Top 3rd",
+      "status_code": 2,
+      "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://mankato-habaneros.nwltickets.com/SingleGame/Tickets/SelectSeats/9922",
+      "tickets_url": "",
       "visitor_score": 1,
-      "home_score": 1,
+      "home_score": 6,
       "chucks_score": 1,
-      "opponent_score": 1
+      "opponent_score": 6
     },
     {
       "id": 282,
