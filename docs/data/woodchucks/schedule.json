@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-15T19:11:56.729183+00:00",
+  "last_updated": "2026-07-15T20:29:20.191919+00:00",
   "total_games": 70,
   "games": [
     {
@@ -904,22 +904,6 @@
       "opponent_score": 7
     },
     {
-      "id": 6207,
-      "date": "2026-07-15",
-      "day": "Wed",
-      "time": "6:35 pm",
-      "home": true,
-      "opponent": "Madison Mallards",
-      "opponent_abbr": "MAD",
-      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6565logocapmad.png",
-      "location": "Athletic Park",
-      "status_code": 0,
-      "status": "Scheduled",
-      "broadcast": "flosports",
-      "broadcast_label": "FloCollege",
-      "tickets_url": "https://wausau-woodchucks.nwltickets.com/SingleGame/Tickets/SelectSeats/9932"
-    },
-    {
       "id": 6218,
       "date": "2026-07-16",
       "day": "Thu",
@@ -982,6 +966,22 @@
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
       "tickets_url": "https://duluth-huskies.nwltickets.com/SingleGame/Tickets/SelectSeats/9996"
+    },
+    {
+      "id": 6207,
+      "date": "2026-07-20",
+      "day": "Mon",
+      "time": "6:05 pm",
+      "home": true,
+      "opponent": "Madison Mallards",
+      "opponent_abbr": "MAD",
+      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6565logocapmad.png",
+      "location": "Athletic Park",
+      "status_code": 0,
+      "status": "Resched 7/20",
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-woodchucks.nwltickets.com/SingleGame/Tickets/SelectSeats/9932"
     },
     {
       "id": 6274,
