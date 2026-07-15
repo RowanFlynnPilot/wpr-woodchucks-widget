@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-15T01:16:43.954449+00:00",
+  "last_updated": "2026-07-15T04:21:02.787193+00:00",
   "total_games": 70,
   "games": [
     {
@@ -893,15 +893,15 @@
       "opponent_abbr": "MAD",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6565logocapmad.png",
       "location": "Athletic Park",
-      "status_code": 1,
-      "status": "In progress / Top 7th",
+      "status_code": 2,
+      "status": "Final/9",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://wausau-woodchucks.nwltickets.com/SingleGame/Tickets/SelectSeats/9913",
-      "visitor_score": 3,
-      "home_score": 4,
-      "chucks_score": 4,
-      "opponent_score": 3
+      "tickets_url": "",
+      "visitor_score": 7,
+      "home_score": 12,
+      "chucks_score": 12,
+      "opponent_score": 7
     },
     {
       "id": 6207,
