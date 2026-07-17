@@ -1,7 +1,7 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-16T23:24:00.161672+00:00",
-  "total_games": 41,
+  "last_updated": "2026-07-17T00:56:49.619112+00:00",
+  "total_games": 40,
   "games": [
     {
       "id": 196,
@@ -762,22 +762,6 @@
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
       "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/10174"
-    },
-    {
-      "id": 284,
-      "date": "2031-08-30",
-      "day": "Sat",
-      "time": "7:35 pm",
-      "home": true,
-      "opponent": "Grand Forks Spitfires",
-      "opponent_abbr": "GF",
-      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/86-GrandForksSpitfires-1762910017.png",
-      "location": "Athletic Park",
-      "status_code": 0,
-      "status": "Scheduled",
-      "broadcast": "flosports",
-      "broadcast_label": "FloCollege",
-      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9957"
     }
   ]
 }
