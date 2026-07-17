@@ -1,7 +1,7 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-17T12:03:09.259066+00:00",
-  "total_games": 70,
+  "last_updated": "2026-07-17T17:56:05.605508+00:00",
+  "total_games": 68,
   "games": [
     {
       "id": 5641,
@@ -902,38 +902,6 @@
       "home_score": 12,
       "chucks_score": 12,
       "opponent_score": 7
-    },
-    {
-      "id": 6218,
-      "date": "2026-07-17",
-      "day": "Fri",
-      "time": "5:35 pm",
-      "home": false,
-      "opponent": "Thunder Bay Border Cats",
-      "opponent_abbr": "TB",
-      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/5757logocaptb.png",
-      "location": "Port Arthur Stadium",
-      "status_code": 0,
-      "status": "Resched 7/17",
-      "broadcast": "flosports",
-      "broadcast_label": "FloCollege",
-      "tickets_url": "https://thunder-bay-border-cats.nwltickets.com/SingleGame/Tickets/SelectSeats/9946"
-    },
-    {
-      "id": 6235,
-      "date": "2026-07-17",
-      "day": "Fri",
-      "time": "8:35 pm",
-      "home": false,
-      "opponent": "Thunder Bay Border Cats",
-      "opponent_abbr": "TB",
-      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/5757logocaptb.png",
-      "location": "Port Arthur Stadium",
-      "status_code": 0,
-      "status": "Scheduled",
-      "broadcast": "flosports",
-      "broadcast_label": "FloCollege",
-      "tickets_url": "https://thunder-bay-border-cats.nwltickets.com/SingleGame/Tickets/SelectSeats/9964"
     },
     {
       "id": 6242,
