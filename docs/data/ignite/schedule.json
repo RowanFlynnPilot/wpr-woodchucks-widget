@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-18T21:38:31.782728+00:00",
+  "last_updated": "2026-07-18T22:36:14.483422+00:00",
   "total_games": 40,
   "games": [
     {
@@ -613,8 +613,8 @@
       "opponent_abbr": "MT",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/3Honeybees_Primary_500.png",
       "location": "Athletic Park",
-      "status_code": 6,
-      "status": "Resched 7/18",
+      "status_code": 1,
+      "status": "In progress / Bottom 4th",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
       "tickets_url": "https://minot-honeybees.nwltickets.com/SingleGame/Tickets/SelectSeats/9649",
