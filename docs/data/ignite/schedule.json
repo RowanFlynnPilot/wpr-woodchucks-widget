@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-18T22:36:14.483422+00:00",
+  "last_updated": "2026-07-18T23:40:46.192465+00:00",
   "total_games": 40,
   "games": [
     {
@@ -613,15 +613,15 @@
       "opponent_abbr": "MT",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/3Honeybees_Primary_500.png",
       "location": "Athletic Park",
-      "status_code": 1,
-      "status": "In progress / Bottom 4th",
+      "status_code": 2,
+      "status": "Final/5",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://minot-honeybees.nwltickets.com/SingleGame/Tickets/SelectSeats/9649",
-      "visitor_score": 10,
-      "home_score": 0,
-      "chucks_score": 10,
-      "opponent_score": 0
+      "tickets_url": "",
+      "visitor_score": 12,
+      "home_score": 1,
+      "chucks_score": 12,
+      "opponent_score": 1
     },
     {
       "id": 286,
@@ -633,11 +633,15 @@
       "opponent_abbr": "MT",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/3Honeybees_Primary_500.png",
       "location": "Athletic Park",
-      "status_code": 0,
-      "status": "Scheduled",
+      "status_code": 1,
+      "status": "In progress / Top 1st",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9973"
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9973",
+      "visitor_score": 0,
+      "home_score": 0,
+      "chucks_score": 0,
+      "opponent_score": 0
     },
     {
       "id": 289,
