@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-19T01:27:26.661771+00:00",
+  "last_updated": "2026-07-19T04:44:29.609041+00:00",
   "total_games": 68,
   "games": [
     {
@@ -913,11 +913,11 @@
       "opponent_abbr": "DUL",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/51-DuluthHuskies-1768232461.png",
       "location": "Wade Stadium",
-      "status_code": 1,
-      "status": "In progress / Bottom 9th",
+      "status_code": 2,
+      "status": "Final/9",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://duluth-huskies.nwltickets.com/SingleGame/Tickets/SelectSeats/9975",
+      "tickets_url": "",
       "visitor_score": 11,
       "home_score": 1,
       "chucks_score": 11,

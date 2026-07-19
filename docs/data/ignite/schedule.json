@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-19T01:27:27.956870+00:00",
+  "last_updated": "2026-07-19T04:44:30.818101+00:00",
   "total_games": 40,
   "games": [
     {
@@ -633,11 +633,11 @@
       "opponent_abbr": "MT",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/3Honeybees_Primary_500.png",
       "location": "Athletic Park",
-      "status_code": 1,
-      "status": "In progress / Bottom 6th",
+      "status_code": 2,
+      "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9973",
+      "tickets_url": "",
       "visitor_score": 9,
       "home_score": 3,
       "chucks_score": 3,
