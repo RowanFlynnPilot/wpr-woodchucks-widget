@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-19T18:46:05.494858+00:00",
+  "last_updated": "2026-07-19T20:00:27.743602+00:00",
   "total_games": 40,
   "games": [
     {
@@ -654,14 +654,14 @@
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/3Honeybees_Primary_500.png",
       "location": "Athletic Park",
       "status_code": 1,
-      "status": "In progress / Bottom 2nd",
+      "status": "In progress / Bottom 6th",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
       "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/9988",
-      "visitor_score": 2,
-      "home_score": 2,
-      "chucks_score": 2,
-      "opponent_score": 2
+      "visitor_score": 5,
+      "home_score": 5,
+      "chucks_score": 5,
+      "opponent_score": 5
     },
     {
       "id": 292,
