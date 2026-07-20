@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-20T22:44:11.963274+00:00",
+  "last_updated": "2026-07-20T23:45:00.813539+00:00",
   "total_games": 40,
   "games": [
     {
@@ -673,11 +673,15 @@
       "opponent_abbr": "MD",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/4Mare-A-Moon-500.png",
       "location": "Warner Park",
-      "status_code": 0,
-      "status": "Scheduled",
+      "status_code": 1,
+      "status": "In progress / Top 2nd",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://madison-night-mares.nwltickets.com/SingleGame/Tickets/SelectSeats/10005"
+      "tickets_url": "https://madison-night-mares.nwltickets.com/SingleGame/Tickets/SelectSeats/10005",
+      "visitor_score": 3,
+      "home_score": 4,
+      "chucks_score": 3,
+      "opponent_score": 4
     },
     {
       "id": 299,
