@@ -1,7 +1,7 @@
 {
   "season": 26,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-07-19T23:23:56.045012+00:00",
+  "last_updated": "2026-07-20T02:33:28.995362+00:00",
   "great_lakes_west": {
     "first_half": [
       {
@@ -301,22 +301,6 @@
   "great_lakes_east": {
     "first_half": [
       {
-        "team_id": 100,
-        "name": "Royal Oak Leprechauns",
-        "abbr": "RO",
-        "division": "Great Lakes East",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/100RoyalOak_500.png",
-        "W": 10,
-        "L": 5,
-        "T": 0,
-        "PCT": ".667",
-        "GB": "-",
-        "STREAK": "1L",
-        "LAST10": "7-3",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
         "team_id": 74,
         "name": "Traverse City Pit Spitters",
         "abbr": "TVC",
@@ -333,17 +317,33 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 100,
+        "name": "Royal Oak Leprechauns",
+        "abbr": "RO",
+        "division": "Great Lakes East",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/100RoyalOak_500.png",
+        "W": 10,
+        "L": 6,
+        "T": 0,
+        "PCT": ".625",
+        "GB": "0.5",
+        "STREAK": "2L",
+        "LAST10": "7-3",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 66,
         "name": "Rockford Rivets",
         "abbr": "RFD",
         "division": "Great Lakes East",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6666logocaprfd.png",
-        "W": 6,
+        "W": 7,
         "L": 5,
         "T": 0,
-        "PCT": ".545",
-        "GB": "2.0",
-        "STREAK": "2W",
+        "PCT": ".583",
+        "GB": "1.5",
+        "STREAK": "3W",
         "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
@@ -567,11 +567,11 @@
         "division": "Great Lakes East",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/100RoyalOak_500.png",
         "W": 29,
-        "L": 22,
+        "L": 23,
         "T": 0,
-        "PCT": ".569",
-        "GB": "2.0",
-        "STREAK": "1L",
+        "PCT": ".558",
+        "GB": "2.5",
+        "STREAK": "2L",
         "LAST10": "7-3",
         "first_half_clinched": 0,
         "second_half_clinched": 0
@@ -614,12 +614,12 @@
         "abbr": "RFD",
         "division": "Great Lakes East",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6666logocaprfd.png",
-        "W": 19,
+        "W": 20,
         "L": 28,
         "T": 0,
-        "PCT": ".404",
-        "GB": "10.0",
-        "STREAK": "2W",
+        "PCT": ".417",
+        "GB": "9.5",
+        "STREAK": "3W",
         "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
