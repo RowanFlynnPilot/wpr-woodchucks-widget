@@ -1,7 +1,7 @@
 {
   "season": 26,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-07-22T22:51:24.368666+00:00",
+  "last_updated": "2026-07-22T23:52:41.449804+00:00",
   "great_lakes_west": {
     "first_half": [
       {
@@ -43,11 +43,11 @@
         "division": "Great Lakes West",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/7070logocapfdl.png",
         "W": 9,
-        "L": 7,
+        "L": 8,
         "T": 0,
-        "PCT": ".563",
-        "GB": "3.0",
-        "STREAK": "2W",
+        "PCT": ".529",
+        "GB": "3.5",
+        "STREAK": "1L",
         "LAST10": "4-6",
         "first_half_clinched": 0,
         "second_half_clinched": 0
@@ -90,13 +90,13 @@
         "abbr": "WIR",
         "division": "Great Lakes West",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
-        "W": 4,
+        "W": 5,
         "L": 12,
         "T": 0,
-        "PCT": ".250",
-        "GB": "8.0",
-        "STREAK": "1L",
-        "LAST10": "2-8",
+        "PCT": ".294",
+        "GB": "7.5",
+        "STREAK": "1W",
+        "LAST10": "3-7",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       }
@@ -271,11 +271,11 @@
         "division": "Great Lakes West",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/7070logocapfdl.png",
         "W": 21,
-        "L": 31,
+        "L": 32,
         "T": 0,
-        "PCT": ".404",
-        "GB": "14.0",
-        "STREAK": "2W",
+        "PCT": ".396",
+        "GB": "14.5",
+        "STREAK": "1L",
         "LAST10": "4-6",
         "first_half_clinched": 0,
         "second_half_clinched": 0
@@ -286,13 +286,13 @@
         "abbr": "WIR",
         "division": "Great Lakes West",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
-        "W": 14,
+        "W": 15,
         "L": 36,
         "T": 0,
-        "PCT": ".280",
-        "GB": "20.0",
-        "STREAK": "1L",
-        "LAST10": "2-8",
+        "PCT": ".294",
+        "GB": "19.5",
+        "STREAK": "1W",
+        "LAST10": "3-7",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       }
