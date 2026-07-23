@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-22T23:52:40.918351+00:00",
+  "last_updated": "2026-07-23T01:45:08.492434+00:00",
   "total_games": 68,
   "games": [
     {
@@ -994,14 +994,14 @@
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/51-DuluthHuskies-1768232461.png",
       "location": "Athletic Park",
       "status_code": 1,
-      "status": "In progress / Top 2nd",
+      "status": "In progress / Bottom 5th",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
       "tickets_url": "https://wausau-woodchucks.nwltickets.com/SingleGame/Tickets/SelectSeats/10037",
-      "visitor_score": 0,
-      "home_score": 2,
-      "chucks_score": 2,
-      "opponent_score": 0
+      "visitor_score": 8,
+      "home_score": 14,
+      "chucks_score": 14,
+      "opponent_score": 8
     },
     {
       "id": 6297,
