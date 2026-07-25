@@ -1,7 +1,7 @@
 {
   "season": 26,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-07-24T23:53:12.293516+00:00",
+  "last_updated": "2026-07-25T01:29:24.367923+00:00",
   "great_lakes_west": {
     "first_half": [
       {
@@ -355,11 +355,11 @@
         "division": "Great Lakes East",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6666logocaprfd.png",
         "W": 9,
-        "L": 7,
+        "L": 8,
         "T": 0,
-        "PCT": ".563",
-        "GB": "3.0",
-        "STREAK": "2L",
+        "PCT": ".529",
+        "GB": "3.5",
+        "STREAK": "3L",
         "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
@@ -402,13 +402,13 @@
         "abbr": "BC",
         "division": "Great Lakes East",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6060logocapbc.png",
-        "W": 4,
+        "W": 5,
         "L": 15,
         "T": 0,
-        "PCT": ".211",
-        "GB": "9.5",
-        "STREAK": "3L",
-        "LAST10": "2-8",
+        "PCT": ".250",
+        "GB": "9.0",
+        "STREAK": "1W",
+        "LAST10": "3-7",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       }
@@ -593,22 +593,6 @@
         "second_half_clinched": 0
       },
       {
-        "team_id": 66,
-        "name": "Rockford Rivets",
-        "abbr": "RFD",
-        "division": "Great Lakes East",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6666logocaprfd.png",
-        "W": 22,
-        "L": 30,
-        "T": 0,
-        "PCT": ".423",
-        "GB": "10.5",
-        "STREAK": "2L",
-        "LAST10": "5-5",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
         "team_id": 105,
         "name": "Richmond Flying Mummies",
         "abbr": "RMD",
@@ -625,18 +609,34 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 66,
+        "name": "Rockford Rivets",
+        "abbr": "RFD",
+        "division": "Great Lakes East",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6666logocaprfd.png",
+        "W": 22,
+        "L": 31,
+        "T": 0,
+        "PCT": ".415",
+        "GB": "11.0",
+        "STREAK": "3L",
+        "LAST10": "5-5",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 60,
         "name": "Battle Creek Battle Jacks",
         "abbr": "BC",
         "division": "Great Lakes East",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6060logocapbc.png",
-        "W": 16,
+        "W": 17,
         "L": 38,
         "T": 0,
-        "PCT": ".296",
-        "GB": "17.5",
-        "STREAK": "3L",
-        "LAST10": "2-8",
+        "PCT": ".309",
+        "GB": "17.0",
+        "STREAK": "1W",
+        "LAST10": "3-7",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       }
