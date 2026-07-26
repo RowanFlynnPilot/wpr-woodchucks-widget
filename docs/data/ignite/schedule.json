@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-26T21:23:02.899042+00:00",
+  "last_updated": "2026-07-26T22:26:03.345036+00:00",
   "total_games": 40,
   "games": [
     {
@@ -713,11 +713,15 @@
       "opponent_abbr": "LC",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/1STEAM_PRIMARY_500.png",
       "location": "Copeland Park",
-      "status_code": 0,
-      "status": "Scheduled",
+      "status_code": 1,
+      "status": "In progress / Bottom 1st",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://la-crosse-steam.nwltickets.com/SingleGame/Tickets/SelectSeats/10102"
+      "tickets_url": "https://la-crosse-steam.nwltickets.com/SingleGame/Tickets/SelectSeats/10102",
+      "visitor_score": 0,
+      "home_score": 1,
+      "chucks_score": 0,
+      "opponent_score": 1
     },
     {
       "id": 307,

@@ -1,7 +1,7 @@
 {
   "season": 26,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-07-26T21:23:02.484314+00:00",
+  "last_updated": "2026-07-26T22:26:02.785328+00:00",
   "great_lakes_west": {
     "first_half": [
       {
@@ -317,35 +317,35 @@
         "second_half_clinched": 0
       },
       {
+        "team_id": 63,
+        "name": "Kenosha Kingfish",
+        "abbr": "KEN",
+        "division": "Great Lakes East",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6363logocapken.png",
+        "W": 13,
+        "L": 7,
+        "T": 0,
+        "PCT": ".650",
+        "GB": "0.5",
+        "STREAK": "3W",
+        "LAST10": "9-1",
+        "first_half_clinched": 1,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 100,
         "name": "Royal Oak Leprechauns",
         "abbr": "RO",
         "division": "Great Lakes East",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/100RoyalOak_500.png",
         "W": 14,
-        "L": 8,
+        "L": 9,
         "T": 0,
-        "PCT": ".636",
-        "GB": "0.5",
-        "STREAK": "2L",
-        "LAST10": "6-4",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
-        "team_id": 63,
-        "name": "Kenosha Kingfish",
-        "abbr": "KEN",
-        "division": "Great Lakes East",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6363logocapken.png",
-        "W": 12,
-        "L": 7,
-        "T": 0,
-        "PCT": ".632",
+        "PCT": ".609",
         "GB": "1.0",
-        "STREAK": "2W",
-        "LAST10": "8-2",
-        "first_half_clinched": 1,
+        "STREAK": "3L",
+        "LAST10": "5-5",
+        "first_half_clinched": 0,
         "second_half_clinched": 0
       },
       {
@@ -529,6 +529,22 @@
     ],
     "full": [
       {
+        "team_id": 63,
+        "name": "Kenosha Kingfish",
+        "abbr": "KEN",
+        "division": "Great Lakes East",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6363logocapken.png",
+        "W": 34,
+        "L": 21,
+        "T": 0,
+        "PCT": ".618",
+        "GB": "-",
+        "STREAK": "3W",
+        "LAST10": "9-1",
+        "first_half_clinched": 1,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 74,
         "name": "Traverse City Pit Spitters",
         "abbr": "TVC",
@@ -545,34 +561,18 @@
         "second_half_clinched": 0
       },
       {
-        "team_id": 63,
-        "name": "Kenosha Kingfish",
-        "abbr": "KEN",
-        "division": "Great Lakes East",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6363logocapken.png",
-        "W": 33,
-        "L": 21,
-        "T": 0,
-        "PCT": ".611",
-        "GB": "0.5",
-        "STREAK": "2W",
-        "LAST10": "8-2",
-        "first_half_clinched": 1,
-        "second_half_clinched": 0
-      },
-      {
         "team_id": 100,
         "name": "Royal Oak Leprechauns",
         "abbr": "RO",
         "division": "Great Lakes East",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/100RoyalOak_500.png",
         "W": 33,
-        "L": 25,
+        "L": 26,
         "T": 0,
-        "PCT": ".569",
-        "GB": "2.5",
-        "STREAK": "2L",
-        "LAST10": "6-4",
+        "PCT": ".559",
+        "GB": "3.0",
+        "STREAK": "3L",
+        "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
