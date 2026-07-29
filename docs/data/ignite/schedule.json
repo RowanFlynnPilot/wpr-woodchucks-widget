@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-29T01:25:56.808649+00:00",
+  "last_updated": "2026-07-29T04:40:38.848003+00:00",
   "total_games": 40,
   "games": [
     {
@@ -753,14 +753,14 @@
       "opponent_abbr": "LC",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/1STEAM_PRIMARY_500.png",
       "location": "Athletic Park",
-      "status_code": 1,
-      "status": "In progress / Top 3rd",
+      "status_code": 2,
+      "status": "Final/5",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/10134",
+      "tickets_url": "",
       "visitor_score": 0,
-      "home_score": 2,
-      "chucks_score": 2,
+      "home_score": 13,
+      "chucks_score": 13,
       "opponent_score": 0
     },
     {
