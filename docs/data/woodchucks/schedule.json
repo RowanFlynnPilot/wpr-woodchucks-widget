@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-28T23:48:47.587570+00:00",
+  "last_updated": "2026-07-29T01:25:55.848844+00:00",
   "total_games": 68,
   "games": [
     {
@@ -1134,14 +1134,14 @@
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/7070logocapfdl.png",
       "location": "Herr-Baker Field",
       "status_code": 1,
-      "status": "In progress / Bottom 1st",
+      "status": "In progress / Bottom 6th",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
       "tickets_url": "https://fond-du-lac-dock-spiders.nwltickets.com/SingleGame/Tickets/SelectSeats/10123",
-      "visitor_score": 2,
-      "home_score": 0,
-      "chucks_score": 2,
-      "opponent_score": 0
+      "visitor_score": 3,
+      "home_score": 2,
+      "chucks_score": 3,
+      "opponent_score": 2
     },
     {
       "id": 6380,
