@@ -1,7 +1,7 @@
 {
   "season": 4,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-07-30T21:05:50.133777+00:00",
+  "last_updated": "2026-07-30T22:32:12.339550+00:00",
   "great_lakes_west": {
     "first_half": [],
     "second_half": [
@@ -18,7 +18,7 @@
         "GB": "-",
         "STREAK": "6W",
         "LAST10": "8-2",
-        "first_half_clinched": 0,
+        "first_half_clinched": 1,
         "second_half_clinched": 0
       },
       {
@@ -35,7 +35,7 @@
         "STREAK": "2W",
         "LAST10": "7-3",
         "first_half_clinched": 0,
-        "second_half_clinched": 0
+        "second_half_clinched": 1
       },
       {
         "team_id": 86,
@@ -116,7 +116,7 @@
         "GB": "-",
         "STREAK": "6W",
         "LAST10": "8-2",
-        "first_half_clinched": 0,
+        "first_half_clinched": 1,
         "second_half_clinched": 0
       },
       {
@@ -133,7 +133,7 @@
         "STREAK": "2W",
         "LAST10": "7-3",
         "first_half_clinched": 0,
-        "second_half_clinched": 0
+        "second_half_clinched": 1
       },
       {
         "team_id": 86,
