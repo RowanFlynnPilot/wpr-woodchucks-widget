@@ -1,7 +1,7 @@
 {
   "season": 2026,
-  "last_updated": "2026-07-30T18:08:07.510909+00:00",
-  "total_games": 40,
+  "last_updated": "2026-07-30T19:58:28.810120+00:00",
+  "total_games": 43,
   "games": [
     {
       "id": 196,
@@ -798,6 +798,54 @@
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
       "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/10174"
+    },
+    {
+      "id": 324,
+      "date": "2026-08-03",
+      "day": "Mon",
+      "time": "6:35 pm",
+      "home": true,
+      "opponent": "Madison Night Mares",
+      "opponent_abbr": "MD",
+      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/4Mare-A-Moon-500.png",
+      "location": "Athletic Park",
+      "status_code": 0,
+      "status": "Scheduled",
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/"
+    },
+    {
+      "id": 325,
+      "date": "2026-08-05",
+      "day": "Wed",
+      "time": "6:05 pm",
+      "home": false,
+      "opponent": "Madison Night Mares",
+      "opponent_abbr": "MD",
+      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/4Mare-A-Moon-500.png",
+      "location": "Warner Park",
+      "status_code": 0,
+      "status": "Scheduled",
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://madison-night-mares.nwltickets.com/SingleGame/Tickets/"
+    },
+    {
+      "id": 326,
+      "date": "2026-08-06",
+      "day": "Thu",
+      "time": "6:05 pm",
+      "home": false,
+      "opponent": "Madison Night Mares",
+      "opponent_abbr": "MD",
+      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/4Mare-A-Moon-500.png",
+      "location": "Warner Park",
+      "status_code": 0,
+      "status": "Scheduled",
+      "broadcast": "flosports",
+      "broadcast_label": "FloCollege",
+      "tickets_url": "https://madison-night-mares.nwltickets.com/SingleGame/Tickets/"
     }
   ]
 }
