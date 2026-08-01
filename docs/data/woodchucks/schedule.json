@@ -1,7 +1,7 @@
 {
   "season": 2026,
-  "last_updated": "2026-08-01T01:46:32.386791+00:00",
-  "total_games": 68,
+  "last_updated": "2026-08-01T05:16:14.555533+00:00",
+  "total_games": 67,
   "games": [
     {
       "id": 5641,
@@ -1182,22 +1182,6 @@
       "home_score": 7,
       "chucks_score": 7,
       "opponent_score": 6
-    },
-    {
-      "id": 6395,
-      "date": "2026-07-31",
-      "day": "Fri",
-      "time": "6:35 pm",
-      "home": false,
-      "opponent": "Wisconsin Rapids Rafters",
-      "opponent_abbr": "WIR",
-      "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
-      "location": "Witter Field",
-      "status_code": 0,
-      "status": "Scheduled",
-      "broadcast": "flosports",
-      "broadcast_label": "FloCollege",
-      "tickets_url": "https://wisconsin-rapids-rafters.nwltickets.com/SingleGame/Tickets/SelectSeats/10171"
     },
     {
       "id": 6407,

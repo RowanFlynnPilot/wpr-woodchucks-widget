@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-08-01T01:46:33.563287+00:00",
+  "last_updated": "2026-08-01T05:16:15.966454+00:00",
   "total_games": 43,
   "games": [
     {
@@ -793,15 +793,15 @@
       "opponent_abbr": "MD",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/4Mare-A-Moon-500.png",
       "location": "Athletic Park",
-      "status_code": 1,
-      "status": "In progress / Top 6th",
+      "status_code": 2,
+      "status": "Final/7",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/SelectSeats/10174",
-      "visitor_score": 0,
-      "home_score": 2,
-      "chucks_score": 2,
-      "opponent_score": 0
+      "tickets_url": "",
+      "visitor_score": 4,
+      "home_score": 3,
+      "chucks_score": 3,
+      "opponent_score": 4
     },
     {
       "id": 324,
