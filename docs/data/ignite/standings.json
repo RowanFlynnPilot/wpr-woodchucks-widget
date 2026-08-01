@@ -1,7 +1,7 @@
 {
   "season": 4,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-07-31T23:29:52.743217+00:00",
+  "last_updated": "2026-08-01T01:02:30.470782+00:00",
   "great_lakes_west": {
     "first_half": [],
     "second_half": [
@@ -38,6 +38,22 @@
         "second_half_clinched": 1
       },
       {
+        "team_id": 1,
+        "name": "La Crosse Steam",
+        "abbr": "LC",
+        "division": "NWL Softball",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/1STEAM_PRIMARY_500.png",
+        "W": 20,
+        "L": 20,
+        "T": 0,
+        "PCT": ".500",
+        "GB": "14.0",
+        "STREAK": "1W",
+        "LAST10": "6-4",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 86,
         "name": "Grand Forks Spitfires",
         "abbr": "GF",
@@ -54,33 +70,17 @@
         "second_half_clinched": 0
       },
       {
-        "team_id": 1,
-        "name": "La Crosse Steam",
-        "abbr": "LC",
-        "division": "NWL Softball",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/1STEAM_PRIMARY_500.png",
-        "W": 19,
-        "L": 20,
-        "T": 0,
-        "PCT": ".487",
-        "GB": "14.5",
-        "STREAK": "2L",
-        "LAST10": "6-4",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
         "team_id": 2,
         "name": "Mankato Habaneros",
         "abbr": "MK",
         "division": "NWL Softball",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/2Habaneros_PepperFlameAlt_500.png",
         "W": 13,
-        "L": 27,
+        "L": 28,
         "T": 0,
-        "PCT": ".325",
-        "GB": "21.0",
-        "STREAK": "4L",
+        "PCT": ".317",
+        "GB": "21.5",
+        "STREAK": "5L",
         "LAST10": "3-7",
         "first_half_clinched": 0,
         "second_half_clinched": 0
@@ -136,6 +136,22 @@
         "second_half_clinched": 1
       },
       {
+        "team_id": 1,
+        "name": "La Crosse Steam",
+        "abbr": "LC",
+        "division": "NWL Softball",
+        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/1STEAM_PRIMARY_500.png",
+        "W": 20,
+        "L": 20,
+        "T": 0,
+        "PCT": ".500",
+        "GB": "14.0",
+        "STREAK": "1W",
+        "LAST10": "6-4",
+        "first_half_clinched": 0,
+        "second_half_clinched": 0
+      },
+      {
         "team_id": 86,
         "name": "Grand Forks Spitfires",
         "abbr": "GF",
@@ -152,33 +168,17 @@
         "second_half_clinched": 0
       },
       {
-        "team_id": 1,
-        "name": "La Crosse Steam",
-        "abbr": "LC",
-        "division": "NWL Softball",
-        "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/1STEAM_PRIMARY_500.png",
-        "W": 19,
-        "L": 20,
-        "T": 0,
-        "PCT": ".487",
-        "GB": "14.5",
-        "STREAK": "2L",
-        "LAST10": "6-4",
-        "first_half_clinched": 0,
-        "second_half_clinched": 0
-      },
-      {
         "team_id": 2,
         "name": "Mankato Habaneros",
         "abbr": "MK",
         "division": "NWL Softball",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/2Habaneros_PepperFlameAlt_500.png",
         "W": 13,
-        "L": 27,
+        "L": 28,
         "T": 0,
-        "PCT": ".325",
-        "GB": "21.0",
-        "STREAK": "4L",
+        "PCT": ".317",
+        "GB": "21.5",
+        "STREAK": "5L",
         "LAST10": "3-7",
         "first_half_clinched": 0,
         "second_half_clinched": 0
