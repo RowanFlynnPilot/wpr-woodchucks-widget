@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-08-02T21:14:26.379581+00:00",
+  "last_updated": "2026-08-02T22:15:27.299629+00:00",
   "total_games": 67,
   "games": [
     {
@@ -1213,14 +1213,14 @@
       "opponent_abbr": "LAK",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/64-LakeshoreChinooks-1768241484.png",
       "location": "Athletic Park",
-      "status_code": 1,
-      "status": "In progress / Bottom 7th",
+      "status_code": 2,
+      "status": "Final/9",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://wausau-woodchucks.nwltickets.com/SingleGame/Tickets/SelectSeats/10197",
+      "tickets_url": "",
       "visitor_score": 10,
-      "home_score": 10,
-      "chucks_score": 10,
+      "home_score": 15,
+      "chucks_score": 15,
       "opponent_score": 10
     },
     {
