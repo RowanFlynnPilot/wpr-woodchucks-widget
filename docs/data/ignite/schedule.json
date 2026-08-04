@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-08-03T23:57:56.168844+00:00",
+  "last_updated": "2026-08-04T01:21:26.314265+00:00",
   "total_games": 43,
   "games": [
     {
@@ -814,14 +814,14 @@
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/4Mare-A-Moon-500.png",
       "location": "Athletic Park",
       "status_code": 1,
-      "status": "In progress / Top 2nd",
+      "status": "In progress / Top 7th",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
       "tickets_url": "https://wausau-ignite.nwltickets.com/SingleGame/Tickets/",
-      "visitor_score": 0,
+      "visitor_score": 3,
       "home_score": 1,
       "chucks_score": 1,
-      "opponent_score": 0
+      "opponent_score": 3
     },
     {
       "id": 325,
