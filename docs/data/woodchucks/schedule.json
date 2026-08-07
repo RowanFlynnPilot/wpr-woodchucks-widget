@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-08-07T02:02:33.148345+00:00",
+  "last_updated": "2026-08-07T04:34:33.640383+00:00",
   "total_games": 67,
   "games": [
     {
@@ -1293,14 +1293,14 @@
       "opponent_abbr": "KEN",
       "opponent_logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6363logocapken.png",
       "location": "Simmons Field",
-      "status_code": 1,
-      "status": "In progress / Bottom 8th",
+      "status_code": 2,
+      "status": "Final/9",
       "broadcast": "flosports",
       "broadcast_label": "FloCollege",
-      "tickets_url": "https://kenosha-kingfish.nwltickets.com/SingleGame/Tickets/SelectSeats/10248",
-      "visitor_score": 4,
+      "tickets_url": "",
+      "visitor_score": 5,
       "home_score": 4,
-      "chucks_score": 4,
+      "chucks_score": 5,
       "opponent_score": 4
     },
     {
