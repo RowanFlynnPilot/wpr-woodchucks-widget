@@ -1,7 +1,7 @@
 {
   "season": 26,
   "season_name": "2026 - Regular Season",
-  "last_updated": "2026-08-08T02:48:26.807643+00:00",
+  "last_updated": "2026-08-08T04:02:28.292427+00:00",
   "great_lakes_west": {
     "first_half": [
       {
@@ -18,7 +18,7 @@
         "STREAK": "1W",
         "LAST10": "5-5",
         "first_half_clinched": 0,
-        "second_half_clinched": 0
+        "second_half_clinched": 1
       },
       {
         "team_id": 68,
@@ -59,12 +59,12 @@
         "division": "Great Lakes West",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/7070logocapfdl.png",
         "W": 17,
-        "L": 14,
+        "L": 15,
         "T": 0,
-        "PCT": ".548",
-        "GB": "4.5",
-        "STREAK": "1W",
-        "LAST10": "6-4",
+        "PCT": ".531",
+        "GB": "5.0",
+        "STREAK": "1L",
+        "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -90,12 +90,12 @@
         "abbr": "WIR",
         "division": "Great Lakes West",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
-        "W": 9,
+        "W": 10,
         "L": 24,
         "T": 0,
-        "PCT": ".273",
-        "GB": "13.5",
-        "STREAK": "5L",
+        "PCT": ".294",
+        "GB": "13.0",
+        "STREAK": "1W",
         "LAST10": "2-8",
         "first_half_clinched": 0,
         "second_half_clinched": 0
@@ -164,7 +164,7 @@
         "STREAK": "5W",
         "LAST10": "7-3",
         "first_half_clinched": 0,
-        "second_half_clinched": 0
+        "second_half_clinched": 1
       },
       {
         "team_id": 70,
@@ -230,7 +230,7 @@
         "STREAK": "1W",
         "LAST10": "5-5",
         "first_half_clinched": 0,
-        "second_half_clinched": 0
+        "second_half_clinched": 1
       },
       {
         "team_id": 65,
@@ -271,12 +271,12 @@
         "division": "Great Lakes West",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/7070logocapfdl.png",
         "W": 29,
-        "L": 38,
+        "L": 39,
         "T": 0,
-        "PCT": ".433",
-        "GB": "15.0",
-        "STREAK": "1W",
-        "LAST10": "6-4",
+        "PCT": ".426",
+        "GB": "15.5",
+        "STREAK": "1L",
+        "LAST10": "5-5",
         "first_half_clinched": 0,
         "second_half_clinched": 0
       },
@@ -286,12 +286,12 @@
         "abbr": "WIR",
         "division": "Great Lakes West",
         "logo": "https://assets.northwoodsleague.com/scorebook/images/teams/6767logocapwir.png",
-        "W": 19,
+        "W": 20,
         "L": 48,
         "T": 0,
-        "PCT": ".284",
-        "GB": "25.0",
-        "STREAK": "5L",
+        "PCT": ".294",
+        "GB": "24.5",
+        "STREAK": "1W",
         "LAST10": "2-8",
         "first_half_clinched": 0,
         "second_half_clinched": 0
